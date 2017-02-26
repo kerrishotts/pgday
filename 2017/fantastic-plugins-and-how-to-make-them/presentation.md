@@ -52,48 +52,48 @@ _noun_ A module consisting of code and settings extending the essential function
     * run time
     * build time
     * install time
+* Cordova device integration provided by **core** plugins
+* Two categories
+  * Core
+  * Community
 
 ---
 
 # Plugins at run time
 
+Full access to the native SDK and device features. Some ideas:
+
+* Faster computations (compared to JS)
 * Expose native device features
     * push notifications, native social network sharing 
-* Use native UI Widgets
+* Use native widgets
     * [Microsoft ACE](https://github.com/Microsoft/ace)
-* Quality assurance, Logging, etc.
+* Quality assurance, logging, etc.
 * Analytics
-* Faster computations (compared to JS)
 
 ---
 
 # Plugins at build time
 
-* Could transpile ES2015+ or Typescript to ES5
-* SASS/less pre-processing
-* Image inlining / webpack
-* Code coverage, linting and quality checks
-* Or be used as "proofs of concept" in Cordova dev:
-    * [cordova-plugin-ios-launch-screen](https://github.com/kerrishotts/cordova-plugin-ios-launch-screen/tree/2.0.0) before adding to `cordova-ios@4.3.1`
+Full access to the build-time environment and Cordova project. Some ideas:
+
+* Transpile ES2015+, TypeScript, etc. to ES5
+* Bundle dependencies (webpack, browserify, jspm)
+* Pre-process CSS files (SASS, less, auto-prefixer)
+* Check code quality (eslint, tslint, jshint)
+* Run tests, create code coverage reports
 
 ---
 
 # Plugins at install time
 
+Full access to the Cordova project and environment at install time. Some ideas:
+
 * Could bundle other plugins
+* Could configure the project environment
 * Or, could provide tests for another plugin...
 
 ## *Plugin-ception :fireworks:* <!-- {h2:style='text-align:center'} -->
-
----
-
-# Who has used plugins?
-
-* Everyone
-* Cordova device integration provided by **core** plugins
-* Two categories
-  1. Core
-  2. Community
 
 ---
 
@@ -108,7 +108,7 @@ Core Cordova features (used to be built-in)
  device-orientation  | dialogs         | file
  file-transfer       | geolocation     | globalization
  inappbrowser        | media           | media-capture
- network-information | splashscreen^?^ | statusbar
+ network-information | ~~splashscreen~~ | statusbar
  vibration           | whitelist
 
 ---
@@ -149,7 +149,9 @@ $ cordova plugin rm --save cordova-plugin-device # or remove
 
 ---
 
-# GitHub
+# Github
+
+Plugins can also be installed from a Github repository.
 
 ```bash
 $ cordova plugin add --save \ 
@@ -157,6 +159,13 @@ $ cordova plugin add --save \
 
 $ cordova plugin rm --save cordova-plugin-device
 ```
+
+Can specify a branch, too (useful for testing pre-release plugins):
+```bash
+$ cordova plugin add --save \
+    http://github.com/apache/cordova-plugin-device#branch
+```
+
 <hr>
 
 **Note:** Use the plugin's identifier when removing &mdash; not the URL.
@@ -164,6 +173,8 @@ $ cordova plugin rm --save cordova-plugin-device
 ---
 
 # Local Filesystem
+
+Or, install from the local file system:
 
 ```bash
 $ cordova plugin add --save [--link] \
@@ -173,9 +184,12 @@ $ cordova plugin rm --save cordova-plugin-device
 ```
 
 * Use `--link` when developing plugins
-	* Changes are reflected automatically!
-	* No need to `rm` and `add` again.
-	* Automatically linked if a parent (`../`)
+	* Changes are reflected automatically &mdash; no `rm` & `add` flow
+	* Automatically symlinked if a parent (`../`)
+
+<hr>
+
+**Note:** Careful with parent plugins and child projects &mdash; easy to get circular references in the file system (borks **cp**)
 
 ---
 
@@ -246,7 +260,7 @@ All plugins have metadata and settings in `plugin.xml`
 * Native headers, source files, resources, JavaScript files
 * Configuration preferences, permissions 
 * JavaScript API (if exposed to webview)
-* Hooks
+* Hook scripts and when to run them
 
 ---
 
@@ -280,6 +294,14 @@ In `cordova-plugin-device`'s `plugin.xml`:
 </js-module>
 ```
 
+Examples: Multiple `clobbers` ^1^, `runs`^2^, `merges` ^3^
+
+<hr>
+
+1. [clobbers, in app browser](https://github.com/apache/cordova-plugin-inappbrowser/blob/92ca973b3da3c79fd4bba1e1ca8a12c75a1b6260/plugin.xml#L38)
+2. [runs, file transfer](https://github.com/apache/cordova-plugin-file-transfer/blob/master/plugin.xml#L148)
+3. [merges, vibration](https://github.com/apache/cordova-plugin-vibration/blob/92bf1132b31ccbc247921020c38c05e3d02af9e3/plugin.xml#L33)
+
 ---
 
 ## Indicating Platform Support
@@ -287,11 +309,18 @@ In `cordova-plugin-device`'s `plugin.xml`:
 In `cordova-plugin-device`'s `plugin.xml`:
 
 ```xml
-<platform name="firefoxos">...</platform>
-<platform name="tizen">...</platform>
-<platform name="android">...</platform>
-<platform name="ios">...</platform>
-...
+<platform name="firefoxos">
+    ...
+</platform>
+<platform name="tizen">
+    ...
+</platform>
+<platform name="android">
+    ...
+</platform>
+<platform name="ios">
+    ...
+</platform>
 ```
 
 ---
@@ -302,11 +331,24 @@ In `cordova-plugin-device`'s `plugin.xml`:
 <platform name="android">
     <config-file target="res/xml/config.xml" parent="/*">
         <feature name="Device" >
-            <param name="android-package" value="org.apache.cordova.device.Device"/>
+            <param name="android-package" 
+                  value="org.apache.cordova.device.Device"/>
         </feature>
     </config-file>
-    <source-file src="src/android/Device.java" target-dir="src/org/apache/cordova/device" />
+    <source-file src="src/android/Device.java" 
+          target-dir="src/org/apache/cordova/device" />
 </platform>
+```
+
+<hr>
+
+**Note:** Can include third-party libraries too.
+
+---
+
+## Specifying headers, frameworks, etc. (2)
+
+```xml
 <platform name="ios">
     <config-file target="config.xml" parent="/*">
         <feature name="Device">
@@ -318,11 +360,24 @@ In `cordova-plugin-device`'s `plugin.xml`:
     <framework src="libz.tbd" />
 </platform>    
 ```
-<!-- {style='font-size:60%'} -->
 
 <hr>
 
 **Note:** Can include third-party libraries too. iOS supports Cocoapods too!
+
+---
+
+## Manifest modifications
+
+* `config-file`^1^
+    * Adds elements to manifest
+* `edit-config`^2^
+    * Edits attributes of existing elements
+
+<hr>
+
+1. [android, file transfer](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L50); [ios, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L103); [windows UAP, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L218)
+2. TODO
 
 ---
 
@@ -378,6 +433,28 @@ Plugins need npm metadata too, so they can be published.
 
 ---
 
+# Dependencies
+
+```xml
+<!-- plugin.xml -->
+<dependency id="cordova-plugin-device" />
+<dependency id="cordova-plugin-console" version="^1.0.0" />
+```
+```javascript
+// or in package.json
+"engines": {
+    "cordovaDependencies": {
+        "2.0.0": { //plugin version (applies to any ver 2+)
+            "cordova-plugin-console": "> 1.0.0"
+}   }   }
+```
+<hr>
+
+1. [engine, in app browser](https://github.com/apache/cordova-plugin-inappbrowser/blob/92ca973b3da3c79fd4bba1e1ca8a12c75a1b6260/plugin.xml#L32)
+2. [dependency, file transfer](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L32)
+---
+
+
 # Creating and Publishing Plugins
 
 ## or, the &ldquo;making&rdquo; bit of the title...
@@ -387,81 +464,61 @@ Plugins need npm metadata too, so they can be published.
 
 ---
 
-# Who has used "plugman"?
+# Say "hello" to "plugman"
 
-* Everyone! You just might not know it.
-* `plugman` is a `node` library that manages plugins in your projects
-* `cordova-cli`, `phonegap-cli`, etc., use `plugman` internally
+`plugman` is a `node` library that manages plugins in your projects. `cordova-cli`, `phonegap-cli`, etc., use `plugman` internally.
+* But it can also create plugins:
 
 ```bash
 $ npm install -g plugman
-
-$ plugman install --plugin cordova-plugin-device \
-    --platform ios --project .
-```
-
----
-
-# "plugman" can create plugins, too!
-
-```bash
 $ plugman create --name PluginName \
                  --plugin_id cordova-plugin-plugin-name \
                  --plugin_version 0.0.1 \
                  --path .
-
-# or, if you have created a repo already:
-$ plugman create --name plugin-directory \
-                 --plugin_id cordova-plugin-plugin-name 
-                 --plugin_version 0.0.1
-                 --path .. # <-- parent directory! ;-)
 ```
 
 * Can pass `--variable-name=value` pair string to define additional data like author, etc.
 
 ---
 
-# Dependencies
+# phonegap-plugin-template
 
-* Plugins can depend upon other plugins (and platforms, too)
+Or, use PhoneGap's plugin template: https://github.com/phonegap/phonegap-plugin-template
 
-    ```xml
-    <!-- plugin.xml -->
-    <dependency id="cordova-plugin-device" />
-    <dependency id="cordova-plugin-console" version="^1.0.0" />
-    ```
-    ```javascript
-    // or in package.json
-    "engines": {
-        "cordovaDependencies": {
-            "2.0.0": { //plugin version (applies to any ver 2+)
-                "cordova-plugin-console": "> 1.0.0"
-            }
-        }
-    }
-    ```
+```bash
+$ npm install -g \
+      https://github.com/phonegap/phonegap-plugin-template
+
+# phonegap-plugin-create path name plugin-id
+$ phonegap-plugin-create ./abracadabra Abracadabra \
+      cordova-plugin-abracadabra
+```
 
 ---
 
 # Wiring it all up...
 
+:page_facing_up: `www/<plugin>.js` (consumer API)
 ```javascript
-// in plugin.js
 cordova.exec(successFn, failureFn, "PluginName", 
              "pluginMethod", args<Array>); 
 ```
 
+:page_facing_up: `plugin.xml`: (class mapping)
 ```xml
-<!-- in plugin.xml -->
 <feature name="PluginName">
-    <param name="ios-package" value="CDVPluginClass" />
+    <param name="ios-package" value="CDV<PluginClass>" />
     <param name="onload" value="true" />
 </feature>
 ```
 
+---
+
+# Wiring it all up... (2)
+
+:page_facing_up: `src/ios/CDV<PluginClass>.m` (native code)
 ```objc
-// in CDVPluginClass.m
-- (void) pluginMethod:(CDVInvokedUrlCommand*)command {
+- (void) <pluginMethod>:(CDVInvokedUrlCommand*)command {
     // do something useful and optionally 
     // return results across the "bridge"
 }
@@ -471,26 +528,43 @@ cordova.exec(successFn, failureFn, "PluginName",
 
 # StatusBar Example
 
+:page_facing_up: `www/statusbar.js` (consumer API)
 ```javascript
-// in statusbar.js
-cordova.exec(null, null, "StatusBar", "styleDefault", []);
+function setStyleDefault() {
+    cordova.exec(null, null, "StatusBar", "styleDefault", []);
+}
 ```
 
+:page_facing_up: `plugin.xml`
 ```xml
-<!-- in plugin.xml -->
 <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" />
     <param name="onload" value="true" />
 </feature>
 ```
 
+---
+
+# StatusBar Example (2)
+
+:page_facing_up: `src/ios/CDVStatusBar.m` (native code)
 ```objc
-// in CDVStatusBar.m
 - (void) styleDefault:(CDVInvokedUrlCommand*)command {
     [self setStyleForStatusBar:UIStatusBarStyleDefault];
 }
 ```
 
+Remember the API's call to `cordova.exec`?
+
+```javascript
+cordova.exec(null, null, "StatusBar", "styleDefault", []);
+```
+```text
+"StatusBar"     --> <feature name="StatusBar"> (plugin.xml)
+                --> <param ... value="CDVStatusBar"/>
+                --> src/ios/CDVStatusBar.m
+"styleDefault"` --> -styleDefault:command (CDVStatusBar.m)
+```
 ---
 
 # Returning data back to JavaScript
@@ -540,12 +614,12 @@ cordova.exec(null, null, "StatusBar", "styleDefault", []);
 * `npm` is the home of all core Cordova plugins
 * If you want to publish to `npm`, you'll need a `package.json`
 * `plugman` can do that for you too!
-
+*
     ```bash
     $ plugman createpackagejson .
 
     $ npm publish
-    ```
+*    ```
 
 ---
 
@@ -577,8 +651,13 @@ cordova.exec(null, null, "StatusBar", "styleDefault", []);
 > n. *provides advanced levels of care at the point of illness or injury, including out-of-hospital treatment, and diagnostic services*
 
 ```bash
+$ npm install -g cordova-paramedic
+
 $ cordova-paramedic --platform ios --plugin .
 ```
+
+Repo &amp; docs: https://github.com/apache/cordova-paramedic
+
 
 ---
 
@@ -622,18 +701,20 @@ $ cordova-paramedic --platform /path/to/cordova-ios --plugin .
 ## or, mastering the dark art of reading your computer's mind
 
 --- 
+
 # Debugging
 
-* Debugging native code in Xcode
-* Debugging native code in Android Studio
-* Debugging Windows JS Code in Visual Studio
-  * (note to self: start your VM!)
+* Xcode (macOS) / Safari
+    * But not concurrently!
+* Android Studio / Google Chrome
+* Visual Studio (Windows)
 
 ---
 
 # Docs
 
-* You should include documentation so that users know how to use your plugin
+You should include documentation so that users know how to use your plugin
+
 * Look at any of the &ldquo;core&rdquo; plugins for best practices
 * Convention:
     * English docs in the root `README.md` file
@@ -643,14 +724,18 @@ $ cordova-paramedic --platform /path/to/cordova-ios --plugin .
 
 # Hooks
 
-*noun* A piece of code that hooks into a Cordova process in order to perform some action on behalf of the plugin; see [Documentation](https://cordova.apache.org/docs/en/latest/guide/appdev/hooks/).
+*noun* A piece of code that hooks into a Cordova process in order to perform some action on behalf of the plugin; see [dev guide](https://cordova.apache.org/docs/en/latest/guide/appdev/hooks/).
 
 Possibilities:
 
 * Create entitlements as needed
-* Code transformations
+* Transform code (transpile, version # replacement, etc.)
 * Create launch images and icons
 * Check plugin versions and warn if out-of-date
+
+<hr>
+
+Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpack-transpiler)?
 
 ---
 
@@ -677,7 +762,7 @@ Possibilities:
 
 ---
 
-# Tips & Tricks
+# Tips &amp; Tricks
 
 ## or, wisdom from those who have gone before
 
@@ -691,7 +776,7 @@ Possibilities:
   * Preprocess arguments in JavaScript
     * convert to appropriate types
     * throw type-mistmatch errors, etc.
-  * Transpile ES2015+ to ES5 if you want to use ES2015
+  * Transpile ES2015+ to ES5
     * not all targets understand native ES2015 yet
 
 ---
@@ -706,12 +791,21 @@ Possibilities:
 
 ---
 
+# Miscellany
+
+* Don't forget the `browser` platform!
+    * Useful when testing on the desktop
+        * May need to mock results if no equivalent browser support
+
+---
+
 # Homework
 
+* Create a new plugin and publish it to the Cordova plugin repo
 * Extend and/or improve a plugin
-* For example, the globalization plugin's API is asynchronous, which is really irritating.
-  * All the formatting / globalization information could be determined up-front, and then the API could be synchronous!
-  * https://github.com/apache/cordova-plugin-globalization
+    * For example, the globalization plugin's API is asynchronous, which is really irritating.
+        * All the formatting / globalization information could be determined up-front instead
+        * Go for it: https://github.com/apache/cordova-plugin-globalization
 * The sky's the limit!
 
 ---
