@@ -42,7 +42,7 @@ _noun_ A mystical collection of machine incantations which grant access to amazi
 
 ## ahem... <!-- {style='text-align: center'} -->
 
-_noun_ A module consisting of code and settings extending the essential functionality of Cordova with the goal of providing access to device capabilities, enhancing existing capabilities, and/or improving the developer's workflow
+_noun_ A module consisting of code and settings extending the essential functionality of Cordova with the goal of providing access to device capabilities, enhancing existing capabilities, or improving the developer's workflow
 
 ---
 
@@ -52,10 +52,9 @@ _noun_ A module consisting of code and settings extending the essential function
     * run time
     * build time
     * install time
-* Cordova device integration provided by **core** plugins
 * Two categories
-  * Core
-  * Community
+  * Core &mdash; used to be built in
+  * Community &mdash; people like you!
 
 ---
 
@@ -155,15 +154,15 @@ Plugins can also be installed from a Github repository.
 
 ```bash
 $ cordova plugin add --save \ 
-    http://github.com/apache/cordova-plugin-device
+      http://github.com/apache/cordova-plugin-device
 
 $ cordova plugin rm --save cordova-plugin-device
 ```
 
 Can specify a branch, too (useful for testing pre-release plugins):
-```bash
+```text
 $ cordova plugin add --save \
-    http://github.com/apache/cordova-plugin-device#branch
+      http://github.com/apache/cordova-plugin-device#branch
 ```
 
 <hr>
@@ -277,10 +276,10 @@ All plugins have metadata and settings in `plugin.xml`
     <description>Cordova Device Plugin</description>
     <license>Apache 2.0</license>
     <keywords>cordova,device</keywords>
-    <repo>https://git-wip-us.apache.org/repos/asf/cordova-plugin-device.git</repo>
-    <issue>https://issues.apache.org/jira/browse/CB/component/12320648</issue>
+    <repo>https://link/to/git/repository.git</repo>
+    <issue>https://link/to/issue/reporter.html</issue>
 ```
-<!-- {style='font-size:67%'} -->
+<!-- {style='font-size:89%'} -->
 
 ---
 
@@ -294,7 +293,7 @@ In `cordova-plugin-device`'s `plugin.xml`:
 </js-module>
 ```
 
-Examples: Multiple `clobbers` ^1^, `runs`^2^, `merges` ^3^
+Examples: Multiple `clobbers` ^1^,`runs`^2^, `merges`^3^
 
 <hr>
 
@@ -304,17 +303,11 @@ Examples: Multiple `clobbers` ^1^, `runs`^2^, `merges` ^3^
 
 ---
 
-## Indicating Platform Support
+## Indicate Platform Support
 
-In `cordova-plugin-device`'s `plugin.xml`:
+Using `<platform>` tags:
 
 ```xml
-<platform name="firefoxos">
-    ...
-</platform>
-<platform name="tizen">
-    ...
-</platform>
 <platform name="android">
     ...
 </platform>
@@ -329,32 +322,10 @@ In `cordova-plugin-device`'s `plugin.xml`:
 
 ```xml
 <platform name="android">
-    <config-file target="res/xml/config.xml" parent="/*">
-        <feature name="Device" >
-            <param name="android-package" 
-                  value="org.apache.cordova.device.Device"/>
-        </feature>
-    </config-file>
-    <source-file src="src/android/Device.java" 
-          target-dir="src/org/apache/cordova/device" />
+  <source-file src="src/android/Device.java" 
+               target-dir="src/org/apache/cordova/device" />
 </platform>
-```
-
-<hr>
-
-**Note:** Can include third-party libraries too.
-
----
-
-## Specifying headers, frameworks, etc. (2)
-
-```xml
 <platform name="ios">
-    <config-file target="config.xml" parent="/*">
-        <feature name="Device">
-            <param name="ios-package" value="CDVDevice"/>
-        </feature>
-    </config-file>
     <header-file src="src/ios/CDVDevice.h" />
     <source-file src="src/ios/CDVDevice.m" />
     <framework src="libz.tbd" />
@@ -383,8 +354,6 @@ In `cordova-plugin-device`'s `plugin.xml`:
 
 # npm Metadata Example
 
-Plugins need npm metadata too, so they can be published.
-
 ```javascript
 {
   "name": "cordova-plugin-device",
@@ -395,41 +364,14 @@ Plugins need npm metadata too, so they can be published.
   "types": "./types/index.d.ts",
   "cordova": {
     "id": "cordova-plugin-device",
-    "platforms": ["firefoxos", "tizen", "android", ... ]
+    "platforms": ["android", "ios", "windows", "wp8", ... ]
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/apache/cordova-plugin-device"
-  },
-  "keywords": ["cordova", "device", "ecosystem:cordova", ... ],
+  "repository": { "type": "git". "url": "https://..." },
+  "keywords": ["cordova", "device", 
+               "ecosystem:cordova", "cordova-ios", "cordova-android", 
+               ... ],
 ```
-<!-- {style='font-size:65%'} -->
-
----
-
-# npm Metadata Example (2)
-
-```javascript
-  ...
-  "scripts": {
-    "test": "npm run jshint",
-    "jshint": "node node_modules/jshint/bin/jshint www && node node_modules/jshint/bin/jshint src && node node_modules/jshint/bin/jshint tests"
-  },
-  "engines": {
-    "cordovaDependencies": {
-      "2.0.0": {             // plugin version (applies to any ver 2+)
-        "cordova": "> 1.0.0" // cordova-cli above version 1
-                             // could be Cordova platform (cordova-ios,...)
-                             // or another plugin (eg cordova-plugin-%)
-      }
-    }
-  },
-  "devDependencies": {
-    "jshint": "^2.6.0"
-  }
-}
-```
-<!-- {style='font-size:65%'} -->
+<!-- {style='font-size:80%'} -->
 
 ---
 
@@ -445,34 +387,38 @@ Plugins need npm metadata too, so they can be published.
 "engines": {
     "cordovaDependencies": {
         "2.0.0": { //plugin version (applies to any ver 2+)
-            "cordova-plugin-console": "> 1.0.0"
+            "cordova-plugin-console": "> 1.0.0",
+        "cordova": "> 1.0.0" // cordova-cli above version 1
 }   }   }
 ```
 <hr>
 
-1. [engine, in app browser](https://github.com/apache/cordova-plugin-inappbrowser/blob/92ca973b3da3c79fd4bba1e1ca8a12c75a1b6260/plugin.xml#L32)
-2. [dependency, file transfer](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L32)
+**Note**: don't forget about XML entities! So `<` === `lt;`
+Ex 1: [engine, in app browser](https://github.com/apache/cordova-plugin-inappbrowser/blob/92ca973b3da3c79fd4bba1e1ca8a12c75a1b6260/plugin.xml#L32)
+Ex 2: [dependency, file transfer](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L32)
+
 ---
 
 
 # Creating and Publishing Plugins
 
-## or, the &ldquo;making&rdquo; bit of the title...
+## or, the art of crafting plugins
 
 ###### :euro: And getting rich, maybe? :euro: 
 ###### Or maybe not...
 
 ---
 
-# Say "hello" to "plugman"
+# plugman
 
 `plugman` is a `node` library that manages plugins in your projects. `cordova-cli`, `phonegap-cli`, etc., use `plugman` internally.
-* But it can also create plugins:
+
+* It can also _create_ plugins:
 
 ```bash
 $ npm install -g plugman
-$ plugman create --name PluginName \
-                 --plugin_id cordova-plugin-plugin-name \
+$ plugman create --name Abracadabra \
+                 --plugin_id cordova-plugin-abracadabra \
                  --plugin_version 0.0.1 \
                  --path .
 ```
@@ -598,11 +544,13 @@ cordova.exec(null, null, "StatusBar", "styleDefault", []);
 
 # Lots of bridges
 
+A bridge is used to cross the gap between the native code context and the web view context.
+
 * iOS
 
 * Android
 
-* Windows
+* Windows is an exception...
   * Careful, the bridge is a **mirage**! :desert:
   * JavaScript is **native** :fireworks:
   * `cordova.exec` uses a proxy
@@ -611,15 +559,20 @@ cordova.exec(null, null, "StatusBar", "styleDefault", []);
 
 # Publishing your plugin
 
-* `npm` is the home of all core Cordova plugins
 * If you want to publish to `npm`, you'll need a `package.json`
+
 * `plugman` can do that for you too!
+
 *
     ```bash
     $ plugman createpackagejson .
 
     $ npm publish
-*    ```
+    ```
+
+* Don't panic if the repo doesn't immediately show your plugin
+
+   * wait a while &mdash; the underlying index has to catch up 
 
 ---
 
@@ -632,6 +585,7 @@ cordova.exec(null, null, "StatusBar", "styleDefault", []);
 ## or, the art of making sure it works like it should
 
 ###### and improving the lives of developers who use your plugin :smile:
+
 ---
 
 # Testing plugins
@@ -673,18 +627,9 @@ Repo &amp; docs: https://github.com/apache/cordova-paramedic
 * Exits with success/fail based on results
 <!-- {ul:style='font-size:90%'} -->
 
-<!-- ---
+<hr>
 
-# Caveats
-
-* Only supports npm-published platforms
-
-```bash
-# this is going to fail at the moment
-$ cordova-paramedic --platform /path/to/cordova-ios --plugin .
-```
-
--->
+**Note**: Only supports npm-published platforms
 
 ---
 
@@ -713,7 +658,7 @@ $ cordova-paramedic --platform /path/to/cordova-ios --plugin .
 
 # Docs
 
-You should include documentation so that users know how to use your plugin
+You should include documentation so that users know how to use your plugin; **good documentation is paramount**
 
 * Look at any of the &ldquo;core&rdquo; plugins for best practices
 * Convention:
@@ -773,11 +718,35 @@ Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpa
 # JS API
 
   * Promisify your API
-  * Preprocess arguments in JavaScript
+
+    ```javascript
+    function _promisifyMeMaybe(fn, thisArg) {
+      if (typeof Promise === "undefined") { return fn.bind(thisArg); }
+      return function _wrapper() {
+        return new Promise(function (resolve, reject) {
+          fn.apply(thisArg ? thisArg : this,
+            [resolve, reject].concat([].slice.call(arguments, 2)));
+        }
+      }
+    }
+    function doSomething(successCB, errorCB, options) {
+        return (_promisifyMeMaybe(cordova.exec, cordova) 
+            (successCB, errorCB, "Abracadabra", "doSomething",
+            [arguments.length <= 1 ? successCB : options]));
+    }
+    ```
+    <!-- {style='font-size: 80%'} -->
+
+---
+
+# JS API (2)
+
+* Preprocess arguments in JavaScript
     * convert to appropriate types
     * throw type-mistmatch errors, etc.
-  * Transpile ES2015+ to ES5
+* Transpile ES2015+ to ES5
     * not all targets understand native ES2015 yet
+* Oh, and unless you're creating a polyfill, try sticking to the `cordova.plugins` namespace. `window` gets awfully crowded!
 
 ---
 
@@ -796,6 +765,18 @@ Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpa
 * Don't forget the `browser` platform!
     * Useful when testing on the desktop
         * May need to mock results if no equivalent browser support
+
+* Be kind when using hooks!
+    * Your hook runs on your consumer's machine!
+    * Don't be evil!
+    * `before_prepare` hooks may not always be run when you expect; run the `cordova` command again
+
+---
+
+# Miscellany (2)
+
+* `events.emit("verbose", ...)` and `--verbose` are your friends when troubleshooting hooks
+* Likewise, return useful error messages to error callbacks
 
 ---
 
