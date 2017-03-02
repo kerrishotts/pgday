@@ -152,7 +152,7 @@ Extensions provided by the community &mdash; like you!
 
 Plugins are typically downloaded from npm:
 
-```sh cli output=2,4-5,7-8 host=dev
+```sh <!-- cli output=2,4-5,7-8 host=dev -->
 cordova plugin add --save cordova-plugin-device
 
 cordova plugin ls                     # or list
@@ -173,7 +173,7 @@ cordova plugin rm --save \
 
 Plugins can also be installed from a Github repository.
 
-```sh cli output=2,4  host=dev
+```sh <!-- cli output=2,4  host=dev -->
 cordova plugin add --save \ 
   http://github.com/apache/cordova-plugin-device
 cordova plugin rm --save cordova-plugin-device
@@ -182,7 +182,7 @@ cordova plugin rm --save cordova-plugin-device
 
 Can specify a branch, too (useful for testing pre-release plugins):
 
-```sh cli output=2-3 host=dev
+```sh <!-- cli output=2-3 host=dev -->
 cordova plugin add --save \
   http://github.com/apache/cordova-plugin-device#branch
 ```
@@ -196,7 +196,7 @@ cordova plugin add --save \
 
 # Local Filesystem
 
-```sh cli host=dev output=2,3
+```sh <!-- cli host=dev output=2,3 -->
 cordova plugin add --save [--link] \
   path/to/cordova-plugin-device
 
@@ -220,7 +220,7 @@ cordova plugin rm --save cordova-plugin-device
 * npm: https://www.npmjs.com/search?q=ecosystem:cordova
 * Or, if the CLI is more your thing:
 
-    ```sh cli host=dev output=3-9
+    ```sh <!-- cli host=dev output=3-9 -->
     npm install -g npms-cli
     npms search cordova-plugin device --size=5
     ┌────────────────────────────────────────────────────────────────────────────────
@@ -343,7 +343,7 @@ Using `<platform>` tags:
 
 ## Specifying headers, frameworks, etc.
 
-```xml highlight=2-3,6-8 number
+```xml <!-- highlight=2-3,6-8 number -->
 <platform name="android">
   <source-file src="src/android/Device.java" 
                target-dir="src/org/apache/cordova/device" />
@@ -442,7 +442,7 @@ Ex 2: [dependency, file transfer](https://github.com/apache/cordova-plugin-file-
 
 * It can also _create_ plugins:
 
-```sh cli host=dev output=3-5
+```sh <!-- cli host=dev output=3-5 -->
 npm install -g plugman
 plugman create --name Abracadabra \
                --plugin_id cordova-plugin-abracadabra \
@@ -459,7 +459,7 @@ plugman create --name Abracadabra \
 
 Or, use PhoneGap's plugin template: https://github.com/phonegap/phonegap-plugin-template
 
-```sh host=dev cli output=2-4,6
+```sh <!-- host=dev cli output=2-4,6 -->
 npm install -g \
   https://github.com/phonegap/phonegap-plugin-template
 
@@ -531,7 +531,7 @@ function setStyleDefault() {
     [self setStyleForStatusBar:UIStatusBarStyleDefault];
 }
 ```
-<!-- {style='font-size:90%'} -->
+<!-- {style='font-size:75%'} -->
 
 
 Remember the API's call to `cordova.exec`?
@@ -539,7 +539,7 @@ Remember the API's call to `cordova.exec`?
 ```javascript
 cordova.exec(null, null, "StatusBar", "styleDefault", []);
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:75%'} -->
 
 ```text
 "StatusBar"     --> <feature name="StatusBar"> (plugin.xml)
@@ -547,7 +547,7 @@ cordova.exec(null, null, "StatusBar", "styleDefault", []);
                 --> src/ios/CDVStatusBar.m
 "styleDefault"  --> -styleDefault:command (CDVStatusBar.m)
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:75%'} -->
 
 ---
 
@@ -601,7 +601,7 @@ A bridge is used to cross the gap between the native code context and the web vi
 
 * `plugman` can do that for you too!
 
-    ```sh cli host=dev output=1,4
+    ```sh <!-- cli host=dev output=1,4 -->
     
     plugman createpackagejson .
     npm publish
@@ -642,10 +642,10 @@ A bridge is used to cross the gap between the native code context and the web vi
 
 > n. *provides advanced levels of care at the point of illness or injury, including out-of-hospital treatment, and diagnostic services*
 
-```sh cli host=dev output=2
-$ npm install -g cordova-paramedic
+```sh <!-- cli host=dev output=2 -->
+npm install -g cordova-paramedic
 
-$ cordova-paramedic --platform ios --plugin .
+cordova-paramedic --platform ios --plugin .
 ```
 <!-- {style='font-size:90%'} -->
 
@@ -759,7 +759,7 @@ Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpa
   * Promisify your API
     <div style='font-size:65%'>
     
-    ```javascript number highlight=4,6,11,13
+    ```javascript <!-- number highlight=4,6,11,13 -->
     function _promisifyMeMaybe(fn, thisArg) {
       if (typeof Promise === "undefined") { return fn.bind(thisArg); }
       return function _wrapper() {

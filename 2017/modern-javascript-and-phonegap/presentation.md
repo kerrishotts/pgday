@@ -112,6 +112,7 @@ Version| Feature                               | Feature <!-- {tr:style='display
         color: white !important;
     }
 </style>
+
 <table style="font-size:82%; text-align: center">
   <thead>
     <tr>
@@ -130,7 +131,6 @@ Version| Feature                               | Feature <!-- {tr:style='display
     <tr><th align="right">rest             </th><td class="good">+1.3x</td><td class="great">+14x</td><td class="abysmal">-33x</td></tr>
     <tr><th align="right">spread           </th><td class="abysmal">-22x</td><td class="bad">-1.7x</td><td class="bad">-5x</td></tr>
     <tr><th align="right">Template string  </th><td class="bad">-1.2x</td><td class="good">+1.4x</td><td class="abysmal">-18x</td></tr>
-
   </tbody>
 </table>
 
@@ -184,7 +184,7 @@ MacBook Pro: Late 2014, 2.2GHz i7 16GB RAM; _GB4_ = Geekbench 4 single-core scor
 
 <div style='font-size:95%'>
 
-```javascript highlight=3,6 number
+```javascript <!-- highlight=3,6 number -->
 var app = {
   text: "Hello, PhoneGap Day Attendees!",
   sayHi: function() { alert(this.text); },
@@ -211,7 +211,7 @@ app.start();
 
 <div style='font-size:75%'>
 
-```javascript number highlight=7,9
+```javascript <!-- number highlight=7,9 -->
 class App {
   constructor({text = "Hello, world!"} = {}) {
     this.text = text;
@@ -808,7 +808,7 @@ Note: if using _sibling_ layout, you might want to delete the duplicate code in 
 
 # Webpack Transpiler Plugin :grin:
 
-```sh host=dev output=2 cli
+```sh <!-- host=dev output=2 cli -->
 cordova plugin add cordova-plugin-webpack-transpiler \
   --variable CONFIG=typescript|babel --save
 ```
@@ -839,7 +839,7 @@ Fork, translate, and/or improve it: https://github.com/kerrishotts/cordova-plugi
 
 # Tests
 
-```sh cli host=dev
+```sh <!-- cli host=dev -->
 npm install --save-dev mocha chai
 npm install --save-dev ts-node        # for TypeScript
 npm install --save-dev babel-register # for Babel
@@ -866,6 +866,7 @@ Then `npm test`
 # Code coverage (Babel)
 
 `npm install --save-dev instanbul`, then in `.babelrc`:
+
 ```javascript
 { 
   "presets": ["es2015", ...],
@@ -908,7 +909,7 @@ And create a `npm run` script:
 
 `eslint` works just fine with ES2015. It's up to you how strict you want `eslint` to be with regard to mixing ES5 and ES2015.
 
-```sh cli host=dev
+```sh <!-- cli host=dev -->
 npm install --save-dev eslint
 ```
 <!-- {style='font-size:90%'} -->
@@ -921,7 +922,7 @@ npm install --save-dev eslint
 ```
 <!-- {style='font-size:90%'} -->
 
-```sh host=dev cli output=2
+```sh <!-- host=dev cli output=2 -->
 $ npm run lint    # or, write a plugin /
                   # platform hook! ;-)
 ```
