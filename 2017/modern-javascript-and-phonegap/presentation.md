@@ -2,6 +2,17 @@
 <!-- page_number: true -->
 <!-- $theme: evening -->
 
+
+![bg](assets/bg.jpg)
+
+<style>
+h1, h2, h3, h4, h5, h6 {
+    text-shadow: 0 0 10px black;
+}
+</style>
+
+<!-- footer: Image by Pete Linforth (https://pixabay.com/en/users/PeteLinforth-202249/), courtesy of Pixabay.com -->
+
 # Modern JavaScript and PhoneGap
 
 ## PhoneGap Day EU 2017
@@ -9,6 +20,8 @@
 ###### Kerri Shotts &bullet; [@kerrishotts](https://www.twitter.com/kerrishotts)
 
 ---
+
+<!-- footer: https://github.com/kerrishotts/pgday/2017/modern-javascript-and-phonegap -->
 
 # Hi!
 
@@ -169,32 +182,22 @@ MacBook Pro: Late 2014, 2.2GHz i7 16GB RAM; _GB4_ = Geekbench 4 single-core scor
 
 # Dang it, _this!_
 
-```javascript
+<div style='font-size:95%'>
+
+```javascript highlight=3,6 number
 var app = {
   text: "Hello, PhoneGap Day Attendees!",
-```
-
-```javascript
   sayHi: function() { alert(this.text); },
-```
-<!-- {style='background-color: hsl(120, 25%, 25%)'} -->
-
-```javascript
   start: function() {
     document.getElementById("clickme")
-```
-
-```javascript
-        .addEventListener("click", this.sayHi, false);
-```
-<!-- {style='background-color: hsl(120, 25%, 25%)'} -->
-
-```javascript
+      .addEventListener("click", this.sayHi, false);
   }
 }
 
 app.start();
 ```
+
+</div>
 
 ---
 
@@ -206,28 +209,24 @@ app.start();
 
 # Arrow functions (=>)
 
-```javascript
+<div style='font-size:75%'>
+
+```javascript number highlight=7,9
 class App {
   constructor({text = "Hello, world!"} = {}) {
     this.text = text;
   }
   start() {
     document.getElementById("clickme")
-```
-<!-- {style='font-size:80%'} -->
-```javascript
         .addEventListener("click", () => this.sayHi(), false);
-```
-<!-- {style='font-size:80%; background-color: hsl(120, 25%, 25%)'} -->
-
-```javascript
   }
   sayHi() { alert(this.text); }
 }
 const app = new App({text: "Hello, PhoneGap Day Attendees!"});
 app.start();
 ```
-<!-- {style='font-size:80%'} -->
+
+</div>
 
 <hr>
 
@@ -324,10 +323,10 @@ class Button {
         this.bounds = {x: 0, y: 0, w, h};
     }
 }
-
 let button = new Button ({type: "round", text: "Click me",
                           x: 100, y: 100});
 ```
+<!-- {style='font-size:90%'} -->
 
 ---
 
@@ -381,6 +380,7 @@ function requestFileSystem({type = window.PERSISTENT,
     });
 }
 ```
+<!-- {style='font-size:90%'} -->
 
 But ES2017 has something nice in store...
 
@@ -405,7 +405,7 @@ async function start() {
     }
 }
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:69%'} -->
 
 <!--
     async declares that a function is asynchronous -- that it will use await.
@@ -435,6 +435,7 @@ class Button extends Widget {
     }
 }
 ```
+<!-- {style='font-size:75%'} -->
 
 
 ---
@@ -483,7 +484,7 @@ async function start() {
   }
 }
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:69%'} -->
 
 ---
 
@@ -507,7 +508,7 @@ async function start() {
   } catch (err) { /* do something with the error */ }
 }
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:69%'} -->
 
 ---
 
@@ -528,6 +529,7 @@ function promisify(fn, thisArg = this, {split = 0} = {}) {
   }
 }
 ```
+<!-- {style='font-size:80%'} -->
 
 ---
 
@@ -546,6 +548,7 @@ const ft = new FileTransfer();
 const uploadFile = promisify(ft.upload, ft, {split: 2});
 const r = await uploadFile(url, to, options);
 ```
+<!-- {style='font-size:85%'} -->
 
 <hr>
 
@@ -632,6 +635,8 @@ Bundler                              | Babel | Bubl&eacute; | Coffee | Typescrip
     * `npm run` scripts &larr; great if you are already comfortable with npm and node
     * Plugin hooks &larr; _this is really fun! :grin:_
     * Project-level hooks work too
+<!-- {ul^2:style='font-size: 90%'} -->
+
 ---
 
 # Setting up (npm scripts)
@@ -685,24 +690,25 @@ Bundler                              | Babel | Bubl&eacute; | Coffee | Typescrip
 
 # Install Webpack & Transpiler
 
-```bash
-$ npm install --save-dev webpack
- ```
+```sh cli host=dev
+npm install --save-dev webpack
+```
+<!-- {style='font-size:90%'} -->
 
 Typescript:
-```bash
-$ npm install --save-dev ts-loader typescript core-js
+``` sh cli host=dev output=2
+npm install --save-dev ts-loader typescript core-js
 ```
+<!-- {style='font-size:80%'} -->
 
 Babel:
 
-```bash
-$ npm install --save-dev babel-loader babel-core babel-polyfill \
+```sh cli host=dev output=2,3
+npm install --save-dev babel-loader babel-core babel-polyfill \
   babel-preset-es2015 babel-preset-es2016 babel-preset-es2017 \ 
   babel-preset-react babel-plugin-transform-runtime
 ```
-
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:69%'} -->
 
 <hr> 
 
@@ -727,7 +733,7 @@ Create `tsconfig.json`:
     ]
 }
 ```
-<!-- {style="font-size:90%"} -->
+<!-- {style="font-size:79%"} -->
 
 ---
 
@@ -748,7 +754,7 @@ Create `.babelrc`:
                                      // output files
 }
 ```
-<!-- {style="font-size:90%"} -->
+<!-- {style="font-size:79%"} -->
 
 ---
 
@@ -770,10 +776,9 @@ module.exports = {
                 loader: 'ts-loader',             // or babel-loader
                 exclude: /node_modules/,
                 options: { entryFileIsJs: true } // only for js with typescript
-            } ] }
-}
+            } ] } }
 ```
-<!-- {style='font-size:70%;'} -->
+<!-- {style='font-size:59%;'} -->
 
 ---
 
@@ -788,11 +793,13 @@ module.exports = {
          "npm run webpack && npm run cordova -- build ios"
 }
 ```
-<br>
+<!-- {style='font-size:90%'} -->
 
-```bash
-$ npm run build:ios
+```sh host=dev cli
+npm run build:ios
 ```
+<!-- {style='font-size:90%'} -->
+
 <hr> 
 
 Note: if using _sibling_ layout, you might want to delete the duplicate code in the platform `www/es` folders. Otherwise, you'll end up copying your ES2015+ code _and_ the resulting bundle to the app bundle.
@@ -801,10 +808,11 @@ Note: if using _sibling_ layout, you might want to delete the duplicate code in 
 
 # Webpack Transpiler Plugin :grin:
 
-```bash
-$ cordova plugin add cordova-plugin-webpack-transpiler \
+```sh host=dev output=2 cli
+cordova plugin add cordova-plugin-webpack-transpiler \
   --variable CONFIG=typescript|babel --save
 ```
+<!-- {style='font-size:80%'} -->
 
 * Create your project structure (sibling or external supported)
 * Then `cordova prepare`
@@ -831,11 +839,12 @@ Fork, translate, and/or improve it: https://github.com/kerrishotts/cordova-plugi
 
 # Tests
 
-```bash
-$ npm install --save-dev mocha chai
-$ npm install --save-dev ts-node        # for TypeScript
-$ npm install --save-dev babel-register # for Babel
+```sh cli host=dev
+npm install --save-dev mocha chai
+npm install --save-dev ts-node        # for TypeScript
+npm install --save-dev babel-register # for Babel
 ```
+<!-- {style='font-size:80%'} -->
 
 Add `test` to `package.json:scripts`\*
 
@@ -843,6 +852,7 @@ Add `test` to `package.json:scripts`\*
 "test": "mocha" // TypeScript (need ./test/_bootstrap.js)
 "test": "mocha --compilers js:babel-register"   // Babel
 ```
+<!-- {style='font-size:90%'} -->
 
 Then `npm test`
 
@@ -867,6 +877,7 @@ Then `npm test`
   } 
 }
 ```
+<!-- {style='font-size:90%'} -->
 
 ---
 
@@ -882,12 +893,14 @@ Then `npm test`
   "instrument": false // instanbul instrumented already
 }
 ```
+<!-- {style='font-size:75%'} -->
 
 And create a `npm run` script:
 
 ```javascript
 "cover": "cross-env NODE_ENV=test nyc npm test"
 ```
+<!-- {style='font-size:80%'} -->
 
 ---
 
@@ -895,20 +908,24 @@ And create a `npm run` script:
 
 `eslint` works just fine with ES2015. It's up to you how strict you want `eslint` to be with regard to mixing ES5 and ES2015.
 
-```bash
-$ npm install --save-dev eslint
+```sh cli host=dev
+npm install --save-dev eslint
 ```
+<!-- {style='font-size:90%'} -->
+
 :page_facing_up: `package.json`:
 ```json5
 "scripts": {
     "lint": "eslint src test"
 }
 ```
-<br>
+<!-- {style='font-size:90%'} -->
 
-```bash
-$ npm run lint    # or, write a plugin/platform hook! ;-)
+```sh host=dev cli output=2
+$ npm run lint    # or, write a plugin /
+                  # platform hook! ;-)
 ```
+<!-- {style='font-size:90%'} -->
 
 ---
 
@@ -978,3 +995,7 @@ $ npm run lint    # or, write a plugin/platform hook! ;-)
 ###### https://github.com/kerrishotts/pgday/2017/modern-javascript-and-phonegap
 
 ###### [@kerrishotts](https://www.twitter.com/kerrishotts)
+
+---
+
+# This slide intentionally left blank

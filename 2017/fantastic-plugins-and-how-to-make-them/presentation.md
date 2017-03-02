@@ -2,8 +2,20 @@
 <!-- page_number: true -->
 <!-- $theme: evening -->
 
+![bg](assets/bg.jpg)
+
+<style>
+h1, h2, h3, h4, h5, h6 {
+    text-shadow: 0 0 10px black;
+}
+</style>
+
+<!-- footer: Photo by AlexanderStein (https://pixabay.com/en/users/AlexanderStein-45237/), courtesy of Pixabay.com-->
+
 # Fantastic Plugins & 
 # How to Make Them
+
+---
 
 ###### Kerri Shotts (@kerrishotts)
 
@@ -16,7 +28,13 @@
 
 ---
 
+<!-- footer: https://github.com/kerrishotts/pgday/2017/fantastic-plugins-and-how-to-make-them -->
+
+
 # About Kerri
+
+![50%](./assets/kerri.jpg) <!-- {style='float: right'} -->
+
 
 * Used PhoneGap for six+ years
 * Author of five books about PhoneGap
@@ -134,14 +152,17 @@ Extensions provided by the community &mdash; like you!
 
 Plugins are typically downloaded from npm:
 
-```bash
-$ cordova plugin add --save cordova-plugin-device
+```sh cli output=2,4-5,7-8 host=dev
+cordova plugin add --save cordova-plugin-device
 
-$ cordova plugin ls                              # or list
+cordova plugin ls                     # or list
 cordova-plugin-device 1.1.1 "Device"
 
-$ cordova plugin rm --save cordova-plugin-device # or remove
+cordova plugin rm --save \
+        cordova-plugin-device         # or remove
 ```
+<!-- {style='font-size:80%'} -->
+
 <hr>
 
 **Note:** `--save` persists the plugin to `config.xml` so that plugins can be easily restored (done at `prepare`-time) 
@@ -152,18 +173,20 @@ $ cordova plugin rm --save cordova-plugin-device # or remove
 
 Plugins can also be installed from a Github repository.
 
-```bash
-$ cordova plugin add --save \ 
-      http://github.com/apache/cordova-plugin-device
-
-$ cordova plugin rm --save cordova-plugin-device
+```sh cli output=2,4  host=dev
+cordova plugin add --save \ 
+  http://github.com/apache/cordova-plugin-device
+cordova plugin rm --save cordova-plugin-device
 ```
+<!-- {style='font-size:80%'} -->
 
 Can specify a branch, too (useful for testing pre-release plugins):
-```text
-$ cordova plugin add --save \
-      http://github.com/apache/cordova-plugin-device#branch
+
+```sh cli output=2-3 host=dev
+cordova plugin add --save \
+  http://github.com/apache/cordova-plugin-device#branch
 ```
+<!-- {style='font-size:79%'} -->
 
 <hr>
 
@@ -173,14 +196,13 @@ $ cordova plugin add --save \
 
 # Local Filesystem
 
-Or, install from the local file system:
+```sh cli host=dev output=2,3
+cordova plugin add --save [--link] \
+  path/to/cordova-plugin-device
 
-```bash
-$ cordova plugin add --save [--link] \
-    path/to/cordova-plugin-device
-
-$ cordova plugin rm --save cordova-plugin-device
+cordova plugin rm --save cordova-plugin-device
 ```
+<!-- {style='font-size:90%'} -->
 
 * Use `--link` when developing plugins
 	* Changes are reflected automatically &mdash; no `rm` & `add` flow
@@ -198,9 +220,9 @@ $ cordova plugin rm --save cordova-plugin-device
 * npm: https://www.npmjs.com/search?q=ecosystem:cordova
 * Or, if the CLI is more your thing:
 
-    ```bash
-    $ npm install -g npms-cli
-    $ npms search cordova-plugin device --size=5
+    ```sh cli host=dev output=3-9
+    npm install -g npms-cli
+    npms search cordova-plugin device --size=5
     ┌────────────────────────────────────────────────────────────────────────────────
     │ Package                                                                        
     ├────────────────────────────────────────────────────────────────────────────────
@@ -209,6 +231,7 @@ $ cordova plugin rm --save cordova-plugin-device
     │ updated 2 months ago by shazron                                                
     ├────────────────────────────────────────────────────────────────────────────────
     ```
+<!-- {style='font-size:75%'} -->
 
 ---
 
@@ -240,7 +263,7 @@ cordova-plugin-device/        # plugin root
     plugin.xml                # plugin metadata and configuration
     README.md                 # English documentation
 ```
-<!-- {style='font-size:64%'} -->
+<!-- {style='font-size:55%'} -->
 
 <hr> 
 
@@ -279,7 +302,7 @@ All plugins have metadata and settings in `plugin.xml`
     <repo>https://link/to/git/repository.git</repo>
     <issue>https://link/to/issue/reporter.html</issue>
 ```
-<!-- {style='font-size:89%'} -->
+<!-- {style='font-size:80%'} -->
 
 ---
 
@@ -320,7 +343,7 @@ Using `<platform>` tags:
 
 ## Specifying headers, frameworks, etc.
 
-```xml
+```xml highlight=2-3,6-8 number
 <platform name="android">
   <source-file src="src/android/Device.java" 
                target-dir="src/org/apache/cordova/device" />
@@ -371,7 +394,7 @@ Using `<platform>` tags:
                "ecosystem:cordova", "cordova-ios", "cordova-android", 
                ... ],
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:69%'} -->
 
 ---
 
@@ -382,6 +405,8 @@ Using `<platform>` tags:
 <dependency id="cordova-plugin-device" />
 <dependency id="cordova-plugin-console" version="^1.0.0" />
 ```
+<!-- {style='font-size:80%'} -->
+
 ```javascript
 // or in package.json
 "engines": {
@@ -391,6 +416,8 @@ Using `<platform>` tags:
         "cordova": "> 1.0.0" // cordova-cli above version 1
 }   }   }
 ```
+<!-- {style='font-size:80%'} -->
+
 <hr>
 
 **Note**: don't forget about XML entities! So `<` === `lt;`
@@ -415,13 +442,14 @@ Ex 2: [dependency, file transfer](https://github.com/apache/cordova-plugin-file-
 
 * It can also _create_ plugins:
 
-```bash
-$ npm install -g plugman
-$ plugman create --name Abracadabra \
-                 --plugin_id cordova-plugin-abracadabra \
-                 --plugin_version 0.0.1 \
-                 --path .
+```sh cli host=dev output=3-5
+npm install -g plugman
+plugman create --name Abracadabra \
+               --plugin_id cordova-plugin-abracadabra \
+               --plugin_version 0.0.1 \
+               --path .
 ```
+<!-- {style='font-size:75%'} -->
 
 * Can pass `--variable-name=value` pair string to define additional data like author, etc.
 
@@ -431,14 +459,15 @@ $ plugman create --name Abracadabra \
 
 Or, use PhoneGap's plugin template: https://github.com/phonegap/phonegap-plugin-template
 
-```bash
-$ npm install -g \
-      https://github.com/phonegap/phonegap-plugin-template
+```sh host=dev cli output=2-4,6
+npm install -g \
+  https://github.com/phonegap/phonegap-plugin-template
 
 # phonegap-plugin-create path name plugin-id
-$ phonegap-plugin-create ./abracadabra Abracadabra \
-      cordova-plugin-abracadabra
+phonegap-plugin-create ./abracadabra Abracadabra \
+  cordova-plugin-abracadabra
 ```
+<!-- {style='font-size:80%'} -->
 
 ---
 
@@ -463,12 +492,13 @@ cordova.exec(successFn, failureFn, "PluginName",
 # Wiring it all up... (2)
 
 :page_facing_up: `src/ios/CDV<PluginClass>.m` (native code)
-```objc
+```objectivec
 - (void) <pluginMethod>:(CDVInvokedUrlCommand*)command {
     // do something useful and optionally 
     // return results across the "bridge"
 }
 ```
+<!-- {style='font-size:95%'} -->
 
 ---
 
@@ -480,6 +510,7 @@ function setStyleDefault() {
     cordova.exec(null, null, "StatusBar", "styleDefault", []);
 }
 ```
+<!-- {style='font-size:85%'} -->
 
 :page_facing_up: `plugin.xml`
 ```xml
@@ -488,34 +519,41 @@ function setStyleDefault() {
     <param name="onload" value="true" />
 </feature>
 ```
+<!-- {style='font-size:85%'} -->
 
 ---
 
 # StatusBar Example (2)
 
 :page_facing_up: `src/ios/CDVStatusBar.m` (native code)
-```objc
+```objectivec
 - (void) styleDefault:(CDVInvokedUrlCommand*)command {
     [self setStyleForStatusBar:UIStatusBarStyleDefault];
 }
 ```
+<!-- {style='font-size:90%'} -->
+
 
 Remember the API's call to `cordova.exec`?
 
 ```javascript
 cordova.exec(null, null, "StatusBar", "styleDefault", []);
 ```
+<!-- {style='font-size:80%'} -->
+
 ```text
 "StatusBar"     --> <feature name="StatusBar"> (plugin.xml)
                 --> <param ... value="CDVStatusBar"/>
                 --> src/ios/CDVStatusBar.m
-"styleDefault"` --> -styleDefault:command (CDVStatusBar.m)
+"styleDefault"  --> -styleDefault:command (CDVStatusBar.m)
 ```
+<!-- {style='font-size:80%'} -->
+
 ---
 
 # Returning data back to JavaScript
 
-```objc
+```objectivec
 // in CDVStatusBar.m
 (void)fireTappedEvent {
     if (_eventsCallbackId == nil) { return; }
@@ -532,7 +570,7 @@ cordova.exec(null, null, "StatusBar", "styleDefault", []);
         callbackId:_eventsCallbackId];
 }
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:69%'} -->
 
 ---
 
@@ -563,11 +601,11 @@ A bridge is used to cross the gap between the native code context and the web vi
 
 * `plugman` can do that for you too!
 
-*
-    ```bash
-    $ plugman createpackagejson .
-
-    $ npm publish
+    ```sh cli host=dev output=1,4
+    
+    plugman createpackagejson .
+    npm publish
+    
     ```
 
 * Don't panic if the repo doesn't immediately show your plugin
@@ -604,11 +642,12 @@ A bridge is used to cross the gap between the native code context and the web vi
 
 > n. *provides advanced levels of care at the point of illness or injury, including out-of-hospital treatment, and diagnostic services*
 
-```bash
+```sh cli host=dev output=2
 $ npm install -g cordova-paramedic
 
 $ cordova-paramedic --platform ios --plugin .
 ```
+<!-- {style='font-size:90%'} -->
 
 Repo &amp; docs: https://github.com/apache/cordova-paramedic
 
@@ -718,8 +757,9 @@ Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpa
 # JS API
 
   * Promisify your API
-
-    ```javascript
+    <div style='font-size:65%'>
+    
+    ```javascript number highlight=4,6,11,13
     function _promisifyMeMaybe(fn, thisArg) {
       if (typeof Promise === "undefined") { return fn.bind(thisArg); }
       return function _wrapper() {
@@ -735,7 +775,8 @@ Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpa
             [arguments.length <= 1 ? successCB : options]));
     }
     ```
-    <!-- {style='font-size: 80%'} -->
+    
+    </div>
 
 ---
 
@@ -803,3 +844,7 @@ Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpa
 
 ###### Based in part on http://purplecabbage.github.io/slides/pgd16Plugins/index.html 
 <!--{h6:style='font-size:80% !important'}-->
+
+---
+
+# This slide intentionally left blank
