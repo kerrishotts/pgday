@@ -1,21 +1,15 @@
 <!-- $size: 16:9 -->
 <!-- page_number: true -->
-<!-- $theme: evening -->
+<!-- $theme: elegant -->
+<!-- template: dark -->
+<!-- $prism: okaidia -->
 
 ![bg](assets/bg.jpg)
-
-<style>
-h1, h2, h3, h4, h5, h6 {
-    text-shadow: 0 0 10px black;
-}
-</style>
 
 <!-- footer: Photo by AlexanderStein (https://pixabay.com/en/users/AlexanderStein-45237/), courtesy of Pixabay.com-->
 
 # Fantastic Plugins & 
 # How to Make Them
-
----
 
 ###### Kerri Shotts (@kerrishotts)
 
@@ -38,9 +32,11 @@ h1, h2, h3, h4, h5, h6 {
 
 * Used PhoneGap for six+ years
 * Author of five books about PhoneGap
-* Working on several video series about PhoneGap
 * IT Consultant for eight years
 * Apache Cordova comitter
+* One of many moderators:
+    * [Adobe PhoneGap Forums](http://forums.adobe.com/community/phonegap)
+    * [Google Cordova Group](https://groups.google.com/forum/#!forum/phonegap)
 * [@kerrishotts](https://www.twitter.com/kerrishotts)
 
 ---
@@ -66,7 +62,7 @@ _noun_ A module consisting of code and settings extending the essential function
 
 # What can plugins do?
 
-* Anything you can do with native code in various contexts:
+* Anything native at these times:
     * run time
     * build time
     * install time
@@ -161,7 +157,7 @@ cordova-plugin-device 1.1.1 "Device"
 cordova plugin rm --save \
         cordova-plugin-device         # or remove
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:85%'} -->
 
 <hr>
 
@@ -243,6 +239,10 @@ cordova plugin rm --save cordova-plugin-device
 
 ---
 
+![bg original fit](./assets/building-blocks.png)
+
+---
+
 # Plugin Structure
 
 ```text
@@ -272,6 +272,10 @@ cordova-plugin-device/        # plugin root
 
 ---
 
+
+![bg original fit](./assets/metadata-block.png)
+
+<!--
 # Metadata
 
 All plugins have metadata and settings in `plugin.xml`
@@ -283,6 +287,7 @@ All plugins have metadata and settings in `plugin.xml`
 * Configuration preferences, permissions 
 * JavaScript API (if exposed to webview)
 * Hook scripts and when to run them
+-->
 
 ---
 
@@ -471,34 +476,49 @@ phonegap-plugin-create ./abracadabra Abracadabra \
 
 ---
 
+![bg original fit](./assets/javascript-block.png)
+
+---
+
 # Wiring it all up...
 
 :page_facing_up: `www/<plugin>.js` (consumer API)
 ```javascript
-cordova.exec(successFn, failureFn, "PluginName", 
-             "pluginMethod", args<Array>); 
+function doSomething(successFn, failureFn, ...args) {
+  if (typeof successFn !== "function") {
+    throw new Error ("Success callback not function!");
+  }
+  /* ... */
+  cordova.exec(successFn, failureFn, "PluginName", 
+               "pluginMethod", args); 
+}
 ```
 
-:page_facing_up: `plugin.xml`: (class mapping)
+---
+
+![bg original fit](./assets/native-block.png)
+
+---
+
+# Wiring it all up... (2)
+
+:page_facing_up: `plugin.xml` (class mapping)
 ```xml
 <feature name="PluginName">
     <param name="ios-package" value="CDV<PluginClass>" />
     <param name="onload" value="true" />
 </feature>
 ```
+<!-- {style='font-size:90%'} -->
 
----
-
-# Wiring it all up... (2)
 
 :page_facing_up: `src/ios/CDV<PluginClass>.m` (native code)
 ```objectivec
 - (void) <pluginMethod>:(CDVInvokedUrlCommand*)command {
-    // do something useful and optionally 
-    // return results across the "bridge"
+    // do something useful and optionally return results
 }
 ```
-<!-- {style='font-size:95%'} -->
+<!-- {style='font-size:90%'} -->
 
 ---
 
@@ -506,11 +526,18 @@ cordova.exec(successFn, failureFn, "PluginName",
 
 :page_facing_up: `www/statusbar.js` (consumer API)
 ```javascript
+// this example has no success/failure callbacks and no
+// parameters that need to be passed.
+
 function setStyleDefault() {
     cordova.exec(null, null, "StatusBar", "styleDefault", []);
 }
 ```
 <!-- {style='font-size:85%'} -->
+
+---
+
+# StatusBar Example (2)
 
 :page_facing_up: `plugin.xml`
 ```xml
@@ -521,9 +548,6 @@ function setStyleDefault() {
 ```
 <!-- {style='font-size:85%'} -->
 
----
-
-# StatusBar Example (2)
 
 :page_facing_up: `src/ios/CDVStatusBar.m` (native code)
 ```objectivec
@@ -531,46 +555,47 @@ function setStyleDefault() {
     [self setStyleForStatusBar:UIStatusBarStyleDefault];
 }
 ```
-<!-- {style='font-size:75%'} -->
+<!-- {style='font-size:85%'} -->
 
+---
+
+# StatusBar Example (3)
 
 Remember the API's call to `cordova.exec`?
 
 ```javascript
 cordova.exec(null, null, "StatusBar", "styleDefault", []);
 ```
-<!-- {style='font-size:75%'} -->
+<!-- {style='font-size:90%'} -->
 
 ```text
+
 "StatusBar"     --> <feature name="StatusBar"> (plugin.xml)
-                --> <param ... value="CDVStatusBar"/>
-                --> src/ios/CDVStatusBar.m
-"styleDefault"  --> -styleDefault:command (CDVStatusBar.m)
+                --> <param name="ios-package" 
+                           value="CDVStatusBar"/>
+                --> CDVStatusBar interface & implementation
+"styleDefault"  --> - styleDefault: command (CDVStatusBar.m)
 ```
-<!-- {style='font-size:75%'} -->
+<!-- {style='font-size:90%'} -->
 
 ---
 
 # Returning data back to JavaScript
 
-```objectivec
+```clike
 // in CDVStatusBar.m
-(void)fireTappedEvent {
+- (void) fireTappedEvent {
     if (_eventsCallbackId == nil) { return; }
-
     NSDictionary* payload = @{@"type": @"tap"};
-
     CDVPluginResult* result = [CDVPluginResult 
         resultWithStatus:CDVCommandStatus_OK  
         messageAsDictionary:payload];
-
     [result setKeepCallbackAsBool:YES]; // default is NO
-
     [self.commandDelegate sendPluginResult:result 
         callbackId:_eventsCallbackId];
 }
 ```
-<!-- {style='font-size:69%'} -->
+<!-- {style='font-size:90%'} -->
 
 ---
 
@@ -594,6 +619,15 @@ A bridge is used to cross the gap between the native code context and the web vi
   * `cordova.exec` uses a proxy
 
 ---
+
+<!-- footer: -->
+
+![bg fit original center](assets/ios-bridge.png?a)
+
+---
+
+<!-- footer: https://github.com/kerrishotts/pgday/2017/fantastic-plugins-and-how-to-make-them -->
+
 
 # Publishing your plugin
 
@@ -623,6 +657,10 @@ A bridge is used to cross the gap between the native code context and the web vi
 ## or, the art of making sure it works like it should
 
 ###### and improving the lives of developers who use your plugin :smile:
+
+---
+
+![bg original fit](./assets/tests-block.png)
 
 ---
 
@@ -695,6 +733,9 @@ Repo &amp; docs: https://github.com/apache/cordova-paramedic
 
 ---
 
+![ original bg fit](./assets/documentation-block.png)
+
+<!--
 # Docs
 
 You should include documentation so that users know how to use your plugin; **good documentation is paramount**
@@ -703,6 +744,12 @@ You should include documentation so that users know how to use your plugin; **go
 * Convention:
     * English docs in the root `README.md` file
     * Translations in the `docs/` folder
+
+-->
+
+---
+
+![ original bg fit ](./assets/hooks-block.png)
 
 ---
 

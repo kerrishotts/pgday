@@ -1,15 +1,10 @@
 <!-- $size: 16:9 -->
 <!-- page_number: true -->
-<!-- $theme: evening -->
+<!-- $theme: elegant -->
+<!-- $prism: default -->
 
 
 ![bg](assets/bg.jpg)
-
-<style>
-h1, h2, h3, h4, h5, h6 {
-    text-shadow: 0 0 10px black;
-}
-</style>
 
 <!-- footer: Image by Pete Linforth (https://pixabay.com/en/users/PeteLinforth-202249/), courtesy of Pixabay.com -->
 
@@ -20,6 +15,7 @@ h1, h2, h3, h4, h5, h6 {
 ###### Kerri Shotts &bullet; [@kerrishotts](https://www.twitter.com/kerrishotts)
 
 ---
+<!-- template: light -->
 
 <!-- footer: https://github.com/kerrishotts/pgday/2017/modern-javascript-and-phonegap -->
 
@@ -27,11 +23,12 @@ h1, h2, h3, h4, h5, h6 {
 
 ![50%](./assets/portrait.jpg) <!-- {style='float: right'} -->
 
-* I've Used PhoneGap for over six years
-* I've written five books about PhoneGap
-* I work with clients to create various kinds of apps
-* I'm an Apache Cordova committer
-* I'm one of several moderators on the [Cordova Google Group](https://groups.google.com/forum/#!forum/phonegap) and [PhoneGap Adobe Forums](http://forums.adobe.com/community/phonegap) &mdash; If you haven't checked out the latter, you should!
+* Used PhoneGap for over six years
+* Authored Five books about PhoneGap
+* Apache Cordova committer
+* One of many moderators:
+    * [Cordova Google Group](https://groups.google.com/forum/#!forum/phonegap)
+    * [PhoneGap Adobe Forums](http://forums.adobe.com/community/phonegap)
 * I love retro technology! :-)
 
 ---
@@ -44,7 +41,7 @@ h1, h2, h3, h4, h5, h6 {
 
 Release year: 2009
 
-* The version of JavaScript we all know and love (~ish?)
+* The version we all know and love (~ish?)
 * Supported by all modern mobile web views^1^
     * iOS 6+, IE 10+, Edge (forever), Android 4.4+
 * Reasonably modern (`map`, `reduce`, getters/setters, etc.)
@@ -85,12 +82,12 @@ Version| Feature                               | Feature <!-- {tr:style='display
 
 # Caveats
 
-* May need training to use / read effictively
+* May need training to use / read effectively
 * **Not** a performance optimization
 * Adds a built step
 * Debugging can be difficult
-   * Source maps _help_, but they can be quirky
-   * Getting better all the time
+   * Source maps _help_, but sometimes quirky
+   * Getting better
 * Best iOS performance requires `WKWebView`
    * `UIWebView` performance is _abysmal_
 
@@ -98,17 +95,17 @@ Version| Feature                               | Feature <!-- {tr:style='display
 
 <style>
     td.bad {
-        background-color: hsl(45, 50%, 25%) !important;
+        background-color: hsl(45, 75%, 50%) !important;
     }
     td.abysmal {
-        background-color: hsl(350, 50%, 50%) !important;
+        background-color: hsl(350, 75%, 50%) !important;
         color: white !important;
     }
     td.good {
-        background-color: hsl(140, 50%, 25%) !important;
+        background-color: hsl(140, 100%, 33%) !important;
     }
     td.great {
-        background-color: hsl(140, 50%, 50%) !important;
+        background-color: hsl(140, 75%, 50%) !important;
         color: white !important;
     }
 </style>
@@ -144,10 +141,10 @@ Source: https://kpdecker.github.io/six-speed/ (2017/01/04) | N/C: "no change"
 
 Don't let those numbers scare you!
 
-* Performance will improve as engines improve &mdash; ES2015+ is new!
+* Performance is improving
 * Outside of tight loops, not that much of a performance penalty
     * ... and ES5 works just fine in tight loops
-* Fully capable of running an emulator at full tilt
+* Cpable of running an emulator at full tilt
     * ... on modern devices
     * ... on iOS using `WKWebView` (JIT compilation FTW)
 
@@ -203,7 +200,14 @@ app.start();
 
 # Wah wah :no_entry_sign:
 
+<div style="position: absolute; top: 20vh; width: 90vw; height: 25vh; left: 5vw; right: vw; background-color: white; border-radius: 0.5em; border: 1px solid rgba(0,0,0,0.25); display: flex; flex-direction: column;">
+  <div style="padding: 0.5em; margin: auto; width: 100%;">undefined</div>
+  <div style="border-top: 1px solid rgba(0,0,0,0.25); color: hsl(220, 75%, 60%); text-align: right; padding: 0.5em">Close</div>
+</div>
+
+<!--
 # ![center 250%](./assets/alert-undefined.png)
+-->
 
 ---
 
@@ -236,13 +240,20 @@ ES5 equivalent: `(function() { this.sayHi(); }).bind(this)`
 
 # Hi! :tada:
 
+<div style="position: absolute; top: 20vh; width: 90vw; height: 25vh; left: 5vw; right: vw; background-color: white; border-radius: 0.5em; border: 1px solid rgba(0,0,0,0.25); display: flex; flex-direction: column;">
+  <div style="padding: 0.5em; margin: auto; width: 100%;">Hello, PhoneGap Day Attendees!</div>
+  <div style="border-top: 1px solid rgba(0,0,0,0.25); color: hsl(220, 75%, 60%); text-align: right; padding: 0.5em">Close</div>
+</div>
+
+<!--
 # ![center 250%](./assets/alert-correct.png)
+-->
 
 ---
 
 # Array.from
 
-Remember doing this?
+Converting from an array like requires `slice`:
 
 ```javascript
 var elList = document.querySelectorAll("a"),
@@ -270,9 +281,8 @@ Easy variadic arguments:
 function sum(...nums) {
     return nums.reduce((a, v) => a + v, 0);
 }
-console.log(sum(1, 5, 10, 99));
+console.log(sum(1, 5, 10, 99)); /* 115 */
 ```
-&rArr; 115
 
 ---
 
@@ -333,14 +343,13 @@ let button = new Button ({type: "round", text: "Click me",
 # Template Strings
 
 ```javascript
-let x = 4;
-let y = 10;
+let x = 4, y = 10;
 console.log(`x + y => ${x} + ${y} => ${x + y}`); 
 ```
 
 &rArr; x + y => 4 + 10 => 14
 
-Allows multi-line strings (preserving &crarr;):
+Multi-line strings (preserving &crarr;):
 
 ```javascript
 let template=`<ul>
@@ -359,9 +368,8 @@ function dedup (arr = []) {
     return Array.from(new Set(arr));
 }
 
-let arr = dedup([ 1,  4,  9,  3,  4,  9, 12, 
-                 20, 12, 32, 94,  9, 12, 
-                 94, 34,  1]);
+let arr = dedup([ 1,  4,  9,  3,  4,  9, 12, 20, 
+                 12, 32, 94,  9, 12, 94, 34,  1]);
 
 ```
 
@@ -382,7 +390,7 @@ function requestFileSystem({type = window.PERSISTENT,
 ```
 <!-- {style='font-size:90%'} -->
 
-But ES2017 has something nice in store...
+But ES2017 has something better...
 
 ---
 
@@ -392,8 +400,7 @@ But ES2017 has something nice in store...
 async function readFile(name) {
     const fs = await requestFileSystem({
         type: window.PERSISTENT, quota: 10 * 1024 * 1024});
-    const fileEntry = await getFile(name);
-    const contents = await readFile(fileEntry);
+    const contents = await readFile(await getFile(name));
     return contents;
 }
 async function start() {
@@ -405,7 +412,7 @@ async function start() {
     }
 }
 ```
-<!-- {style='font-size:69%'} -->
+<!-- {style='font-size:75%'} -->
 
 <!--
     async declares that a function is asynchronous -- that it will use await.
@@ -421,17 +428,17 @@ async function start() {
 # Classes
 
 ```javascript
-const BUTTON_TYPE = Symbol("Button Type");
+const _BUTTON_TYPE = Symbol("Button Type");
 class Button extends Widget {
     constructor({type = "rounded", frame} = {}) {
         super({frame});
-        this[BUTTON_TYPE] = type;
+        this[_BUTTON_TYPE] = type;
     }
     get buttonType() {
-        return this[BUTTON_TYPE];
+        return this[_BUTTON_TYPE];
     }
     set buttonType(type) {
-        this[BUTTON_TYPE] = type;
+        this[_BUTTON_TYPE] = type;
     }
 }
 ```
@@ -453,10 +460,8 @@ export function add(a, b) {
 :page_facing_up: index.js:
 ```javascript
 import {add} from "math.js";
-console.log(add(4, 3));
+console.log(add(4, 3)); /* 7 */
 ```
-
-&rArr; 7
 
 ---
 
@@ -578,16 +583,6 @@ const r = await uploadFile(url, to, options);
 
 ---
 
-# Remember Module syntax?
-
-_No implementation!_ :scream: <!-- {p^0:style='font-size:300%; text-align: center'} --> 
-
-> Supporting the syntax doesn't always mean that there is an implementation, or that it is a fully-compliant implementation.
-
-## But we can fix that... <!-- {h2^0:style='font-size:200%; text-align: center'} --> 
-
----
-
 ## But, I want it everywhere!
 
 # ES2015+ &rArr; ES5!
@@ -613,6 +608,15 @@ These can all transpile ES2015\* (feature support may vary)
 
 ---
 
+# Remember Module syntax?
+
+_No implementation!_ :scream: <!-- {p^0:style='font-size:300%; text-align: center'} --> 
+
+
+## But we can fix that... <!-- {h2^0:style='font-size:200%; text-align: center'} --> 
+
+---
+
 # Module support using Bundling :shopping:
 
 Dependency management & `import`/`export` (and CommonJS, AMD, etc.) support
@@ -627,12 +631,12 @@ Bundler                              | Babel | Bubl&eacute; | Coffee | Typescrip
 
 # PhoneGap Integration
 
-* You can always do it manually, right?
+* Manual
     * Just run each tool's CLI... _every time_...
     * Error prone &mdash; you might forget!
-* Developers like automation, right? :robot:
+* Automatic
     * `gulp` / `grunt` task runners
-    * `npm run` scripts &larr; great if you are already comfortable with npm and node
+    * `npm run` scripts &larr; great if already comfortable with npm &amp; node
     * Plugin hooks &larr; _this is really fun! :grin:_
     * Project-level hooks work too
 <!-- {ul^2:style='font-size: 90%'} -->
@@ -641,7 +645,7 @@ Bundler                              | Babel | Bubl&eacute; | Coffee | Typescrip
 
 # Setting up (npm scripts)
 
-* Where to put your ES2015+ code?
+* ES2015+ code location?
     * Sibling (sibling of `www/js`)
     * External (sibling of `www`)
 
@@ -674,7 +678,7 @@ Bundler                              | Babel | Bubl&eacute; | Coffee | Typescrip
     * :page_facing_up: `config.xml`
     * :file_folder: `www.src/`
         * :page_facing_up: `index.html`
-        * :file_folder: `(ts|js)/`
+        * :file_folder: `(ts|es)/`
             * :page_facing_up: `index.(ts|js)`
     * :file_folder: `www/`
         * :page_facing_up: `index.html` &larr; (copied)
@@ -693,20 +697,20 @@ Bundler                              | Babel | Bubl&eacute; | Coffee | Typescrip
 ```sh cli host=dev
 npm install --save-dev webpack
 ```
-<!-- {style='font-size:90%'} -->
+<!-- {style='font-size:69%'} -->
 
 Typescript:
 ``` sh cli host=dev output=2
 npm install --save-dev ts-loader typescript core-js
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:69%'} -->
 
 Babel:
 
 ```sh cli host=dev output=2,3
 npm install --save-dev babel-loader babel-core babel-polyfill \
   babel-preset-es2015 babel-preset-es2016 babel-preset-es2017 \ 
-  babel-preset-react babel-plugin-transform-runtime
+  babel-plugin-transform-runtime
 ```
 <!-- {style='font-size:69%'} -->
 
@@ -745,10 +749,10 @@ Create `.babelrc`:
 {
     "presets": [ 
         ["es2015", { 
-            "loose": true,    // best performance
-             "modules": false // required for tree shaking
+            "loose": true,   // best performance
+            "modules": false // required for tree shaking
         }],
-        "es2016", "es2017", "react"
+        "es2016", "es2017"
     ],
     "plugins": ["transform-runtime"] // reduces repetition in
                                      // output files
@@ -763,22 +767,22 @@ Create `.babelrc`:
 Create `webpack.config.js`:
 
 ```javascript
-var path = require("path");
 module.exports = {
     devtool: "inline-source-map",
-    // if sibling, use   __dirname, "www"
-    context: path.resolve(__dirname, "www.src"),
+    context: path.resolve(__dirname, "www.src"), // if sibling, use   __dirname, "www"
     entry: "./" + path.join("es", "index.js"),   // will fail without ./!
     output: { filename: "bundle.js",
               path: path.resolve(__dirname, "www", "js") },
-    module: { loaders: [ {
+    module: { loaders: [{
                 test: /\.(ts|js|jsx)$/,          // remove ts for babel
                 loader: 'ts-loader',             // or babel-loader
                 exclude: /node_modules/,
                 options: { entryFileIsJs: true } // only for js with typescript
-            } ] } }
+            }] 
+    } 
+}
 ```
-<!-- {style='font-size:59%;'} -->
+<!-- {style='font-size:62%;'} -->
 
 ---
 
@@ -806,7 +810,7 @@ Note: if using _sibling_ layout, you might want to delete the duplicate code in 
 
 ---
 
-# Webpack Transpiler Plugin :grin:
+# OR: Webpack Transpiler Plugin :grin:
 
 ```sh <!-- host=dev output=2 cli -->
 cordova plugin add cordova-plugin-webpack-transpiler \
@@ -907,7 +911,7 @@ And create a `npm run` script:
 
 # Linting
 
-`eslint` works just fine with ES2015. It's up to you how strict you want `eslint` to be with regard to mixing ES5 and ES2015.
+`eslint` works just fine with ES2015!
 
 ```sh <!-- cli host=dev -->
 npm install --save-dev eslint
@@ -917,7 +921,7 @@ npm install --save-dev eslint
 :page_facing_up: `package.json`:
 ```json5
 "scripts": {
-    "lint": "eslint src test"
+    "lint": "eslint www.src test"
 }
 ```
 <!-- {style='font-size:90%'} -->
@@ -937,8 +941,8 @@ $ npm run lint    # or, write a plugin /
 # Tips
 
 * Don't assume `=>` functions are drop-in replacements
-* Be careful passing arrow functions to `describe` & `it` in your tests
-* Use `var` instead of `let` in tight nested loops where performance is critical
+* Careful using arrow functions with `describe` & `it` in your tests
+* Use `var` instead of `let` in tight, nested loops where performance is critical
 * ***Do*** minify & tree shake &mdash; reduces file size and startup time
 * But, don't count on minified code as a performance optimization (results highly variable)
 
@@ -946,12 +950,12 @@ $ npm run lint    # or, write a plugin /
 
 # Tips (2)
 
-* Don't get carried away &mdash; some of the syntax can cause terrible headaches if overused!
-    * True especially with descructuring and template strings.
-* You don't have to convert overnight &mdash; ES5 still works fine.
-* **Do** use `const` to identify unchanging _references_.
-    * But don't think of the variable as _immutable_ &mdash; it isn't.
-* `var` hasn't gone away; it still works just fine!
+* Don't get carried away &mdash; eye-strain alert!
+    * True especially with descructuring and template strings
+* You don't have to convert overnight &mdash; ES5 works fine
+* **Do** use `const` to identify unchanging _references_
+    * But don't think of the variable as _immutable_ &mdash; it isn't
+* `var` hasn't gone away
 * Use `for...of` instead of `for...in & hasOwnProperty()`
 
 ---
