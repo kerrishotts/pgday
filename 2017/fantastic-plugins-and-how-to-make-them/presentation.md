@@ -74,27 +74,35 @@ _noun_ A module consisting of code and settings extending the essential function
 
 # Plugins at run time
 
-Full access to the native SDK and device features. Some ideas:
+Full access to the native SDK and device features. Some examples:
 
-* Faster computations (compared to JS)
+* Push Notifications: [PhoneGap](https://github.com/phonegap/phonegap-plugin-push), [Pushwoosh](https://github.com/Pushwoosh/pushwoosh-phonegap-3.0-plugin), [AeroGear](https://github.com/aerogear/aerogear-cordova-push), [OneSignal](https://github.com/onesignal/OneSignal-Cordova-SDK)
+* Storage Plugins: [Native Storage](https://github.com/TheCocoaProject/cordova-plugin-nativestorage), [SQLite](https://github.com/litehelpers/Cordova-sqlite-storage), [SQLite 2](https://github.com/nolanlawson/cordova-plugin-sqlite-2)
+* Social Plugins: [Email](https://github.com/hypery2k/cordova-email-plugin), [X SocialSharing](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
+* Audio Plugins: [DBMeter](https://github.com/akofman/cordova-plugin-dbmeter), [Native Audio](https://github.com/floatinghotpot/cordova-plugin-nativeaudio), [Media Picker](https://github.com/an-rahulpandey/cordova-plugin-mediapicker)
+* Misc: [Barcode Scanner](https://github.com/phonegap/phonegap-plugin-barcodescanner), [In App Purchase](https://github.com/j3k0/cordova-plugin-purchase), [Google Maps](https://github.com/mapsplugin/cordova-plugin-googlemaps), [Vuforia](https://github.com/mattrayner/cordova-plugin-vuforia), [Microsoft ACE](https://github.com/Microsoft/ace) (native controls)
+* Creative Cloud: [Auth](https://github.com/CreativeSDK/phonegap-plugin-csdk-user-auth), [Asset Browser](https://github.com/CreativeSDK/phonegap-plugin-csdk-asset-browser), [Image Editor](https://github.com/CreativeSDK/phonegap-plugin-csdk-image-editor), [Send to Desktop](https://github.com/CreativeSDK/phonegap-template-csdk-send-to-desktop)
+
+<!--
+* * Faster computations (compared to JS)
 * Expose native device features
     * push notifications, native social network sharing 
 * Use native widgets
     * [Microsoft ACE](https://github.com/Microsoft/ace)
 * Quality assurance, logging, etc.
 * Analytics
+-->
 
 ---
 
 # Plugins at build time
 
-Full access to the build-time environment and Cordova project. Some ideas:
+Full access to the build-time environment and Cordova project. Some examples:
 
-* Transpile ES2015+, TypeScript, etc. to ES5
-* Bundle dependencies (webpack, browserify, jspm)
+* Transpile and Bundle ES2015+: [Webpack & Transpiler](https://github.com/kerrishotts/cordova-plugin-webpack-transpiler) (Me!)
 * Pre-process CSS files (SASS, less, auto-prefixer)
 * Check code quality (eslint, tslint, jshint)
-* Run tests, create code coverage reports
+* Etc.
 
 ---
 
@@ -105,6 +113,7 @@ Full access to the Cordova project and environment at install time. Some ideas:
 * Could bundle other plugins
 * Could configure the project environment
 * Or, could provide tests for another plugin...
+    * [Cordova Plugin Test Harness](https://github.com/apache/cordova-plugin-test-framework)
 
 ## *Plugin-ception :fireworks:* <!-- {h2:style='text-align:center'} -->
 
@@ -162,6 +171,7 @@ cordova plugin rm --save \
 <hr>
 
 **Note:** `--save` persists the plugin to `config.xml` so that plugins can be easily restored (done at `prepare`-time) 
+**Note:** `--save` should be on by default in `cordova@7.0.0`
 
 ---
 
@@ -231,7 +241,7 @@ cordova plugin rm --save cordova-plugin-device
 
 ---
 
-# Plugin Autopsy :coffin:
+# Plugin X-ray :hospital:
 
 ## or, what's inside these things?
 
@@ -267,7 +277,7 @@ cordova-plugin-device/        # plugin root
 
 <hr> 
 
-(representational only; not every file is included here)
+(representational only; not every file is included here); [Device Plugin Code](https://github.com/apache/cordova-plugin-devicehttps://github.com/apache/cordova-plugin-device)
 
 
 ---
@@ -298,8 +308,7 @@ All plugins have metadata and settings in `plugin.xml`
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    id="cordova-plugin-device"
-    version="1.1.5-dev">
+    id="cordova-plugin-device" version="1.1.5-dev">
     <name>Device</name>
     <description>Cordova Device Plugin</description>
     <license>Apache 2.0</license>
@@ -308,6 +317,11 @@ All plugins have metadata and settings in `plugin.xml`
     <issue>https://link/to/issue/reporter.html</issue>
 ```
 <!-- {style='font-size:80%'} -->
+
+<hr>
+
+[Device Metadata](https://github.com/apache/cordova-plugin-device/blob/master/plugin.xml)
+
 
 ---
 
@@ -375,8 +389,8 @@ Using `<platform>` tags:
 
 <hr>
 
-1. [android, file transfer](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L50); [ios, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L103); [windows UAP, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L218)
-2. TODO
+1. [android, file transfer](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L50); [ios, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L103); [windows, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L218)
+2. [android, transparent status bar](https://github.com/manugando/cordova-plugin-transparent-status-bar/blob/25c0f913260334ac0d518077c9efd1f66447b107/plugin.xml#L26)
 
 ---
 
@@ -390,16 +404,17 @@ Using `<platform>` tags:
   "version": "1.1.5-dev",
   "description": "Cordova Device Plugin",
   "types": "./types/index.d.ts",
-  "cordova": {
-    "id": "cordova-plugin-device",
-    "platforms": ["android", "ios", "windows", "wp8", ... ]
-  },
+  "cordova": { "id": "cordova-plugin-device",
+    "platforms": ["android", "ios", "windows", "wp8", ... ] },
   "repository": { "type": "git". "url": "https://..." },
-  "keywords": ["cordova", "device", 
-               "ecosystem:cordova", "cordova-ios", "cordova-android", 
-               ... ],
+  "keywords": ["cordova", "device", "ecosystem:cordova", "cordova-ios", 
+               "cordova-android", ... ],
 ```
 <!-- {style='font-size:69%'} -->
+
+<hr>
+
+[Device Plugin package.json](https://github.com/apache/cordova-plugin-device/blob/master/package.json)
 
 ---
 
@@ -425,7 +440,7 @@ Using `<platform>` tags:
 
 <hr>
 
-**Note**: don't forget about XML entities! So `<` === `lt;`
+**Note**: don't forget about XML entities! So "`<`" becomes "`lt;`"
 Ex 1: [engine, in app browser](https://github.com/apache/cordova-plugin-inappbrowser/blob/92ca973b3da3c79fd4bba1e1ca8a12c75a1b6260/plugin.xml#L32)
 Ex 2: [dependency, file transfer](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L32)
 
@@ -443,9 +458,9 @@ Ex 2: [dependency, file transfer](https://github.com/apache/cordova-plugin-file-
 
 # plugman
 
-`plugman` is a `node` library that manages plugins in your projects. `cordova-cli`, `phonegap-cli`, etc., use `plugman` internally.
+[plugman](https://github.com/apache/cordova-plugman) is a `node` library that manages plugins in your projects. `cordova-cli`, `phonegap-cli`, etc., use `plugman` internally.
 
-* It can also _create_ plugins:
+* It can also create plugins:
 
 ```sh <!-- cli host=dev output=3-5 -->
 npm install -g plugman
@@ -456,13 +471,12 @@ plugman create --name Abracadabra \
 ```
 <!-- {style='font-size:75%'} -->
 
-* Can pass `--variable-name=value` pair string to define additional data like author, etc.
-
+* Pass `--variable-name=value` strings to supply extra config
 ---
 
 # phonegap-plugin-template
 
-Or, use PhoneGap's plugin template: https://github.com/phonegap/phonegap-plugin-template
+Or, use PhoneGap's plugin template to create a plugin: https://github.com/phonegap/phonegap-plugin-template
 
 ```sh <!-- host=dev cli output=2-4,6 -->
 npm install -g \
@@ -529,39 +543,47 @@ function doSomething(successFn, failureFn, ...args) {
 // this example has no success/failure callbacks and no
 // parameters that need to be passed.
 
-function setStyleDefault() {
+function styleDefault() {
     cordova.exec(null, null, "StatusBar", "styleDefault", []);
 }
 ```
 <!-- {style='font-size:85%'} -->
 
+<hr>
+
+[Ref](https://github.com/apache/cordova-plugin-statusbar/blob/95eb824d0ac37b542ffc2dad38d00c11dd1f660b/www/statusbar.js#L51)
+
 ---
 
 # StatusBar Example (2)
 
-:page_facing_up: `plugin.xml`
 ```xml
-<feature name="StatusBar">
+<!-- plugin.xml -->
+<config-file target="config.xml" parent="/*">
+  <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" />
-    <param name="onload" value="true" />
-</feature>
+    <param name="onload" value="true" /> <!-- ... -->
 ```
 <!-- {style='font-size:85%'} -->
+<br />
 
-
-:page_facing_up: `src/ios/CDVStatusBar.m` (native code)
-```objectivec
+```clike
+// src/ios/CDVStatusBar.m (native code)
 - (void) styleDefault:(CDVInvokedUrlCommand*)command {
     [self setStyleForStatusBar:UIStatusBarStyleDefault];
 }
 ```
 <!-- {style='font-size:85%'} -->
 
+<hr>
+
+Refs: [plugin.xml](https://github.com/apache/cordova-plugin-statusbar/blob/95eb824d0ac37b542ffc2dad38d00c11dd1f660b/plugin.xml#L59), [CDVStatusBar.m](https://github.com/apache/cordova-plugin-statusbar/blob/95eb824d0ac37b542ffc2dad38d00c11dd1f660b/src/ios/CDVStatusBar.m#L301)
+
 ---
 
 # StatusBar Example (3)
 
-Remember the API's call to `cordova.exec`?
+Remember the JS API's call to `cordova.exec`?
 
 ```javascript
 cordova.exec(null, null, "StatusBar", "styleDefault", []);
@@ -595,7 +617,11 @@ cordova.exec(null, null, "StatusBar", "styleDefault", []);
         callbackId:_eventsCallbackId];
 }
 ```
-<!-- {style='font-size:90%'} -->
+<!-- {style='font-size:80%'} -->
+
+<hr>
+
+[Ref](https://github.com/apache/cordova-plugin-statusbar/blob/95eb824d0ac37b542ffc2dad38d00c11dd1f660b/src/ios/CDVStatusBar.m#L157)
 
 ---
 
@@ -623,7 +649,7 @@ A bridge is used to cross the gap between the native code context and the web vi
 <!-- footer: -->
 
 ![bg fit original center](assets/ios-bridge.png?a)
-
+  
 ---
 
 <!-- footer: https://github.com/kerrishotts/pgday/2017/fantastic-plugins-and-how-to-make-them -->
@@ -633,7 +659,7 @@ A bridge is used to cross the gap between the native code context and the web vi
 
 * If you want to publish to `npm`, you'll need a `package.json`
 
-* `plugman` can do that for you too!
+* `plugman` can fill create it based on `plugin.xml` for you:
 
     ```sh <!-- cli host=dev output=1,4 -->
     
@@ -714,7 +740,20 @@ Repo &amp; docs: https://github.com/apache/cordova-paramedic
 
 * Copy a core plugin's tests – we all do it!
 * Create a `tests` folder in your plugin's repository
-* Add a `plugin.xml` file (doesn't need to be complex)
+* Add a `plugin.xml` file (doesn't need to be complex) [^eg^](https://github.com/apache/cordova-plugin-statusbar/blob/95eb824d0ac37b542ffc2dad38d00c11dd1f660b/tests/plugin.xml)
+
+    ```xml
+    <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    id="cordova-plugin-statusbar-tests" version="2.2.3-dev">
+      <name>Cordova StatusBar Plugin Tests</name>
+      <license>Apache 2.0</license>
+      <js-module src="tests.js" name="tests"></js-module>
+    </plugin>
+    ```
+
+<!--{style='font-size:80%'}-->
 
 ---
 
@@ -763,10 +802,6 @@ Possibilities:
 * Transform code (transpile, version # replacement, etc.)
 * Create launch images and icons
 * Check plugin versions and warn if out-of-date
-
-<hr>
-
-Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpack-transpiler)?
 
 ---
 
@@ -834,7 +869,7 @@ Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpa
     * throw type-mistmatch errors, etc.
 * Transpile ES2015+ to ES5
     * not all targets understand native ES2015 yet
-* Oh, and unless you're creating a polyfill, try sticking to the `cordova.plugins` namespace. `window` gets awfully crowded!
+* Unless creating a polyfill, stick to the `cordova.plugins` namespace. `window` is getting crowded!
 
 ---
 
@@ -843,8 +878,8 @@ Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpa
   * Return useful error information
   * Use background threads!
   * Be respectful of other plugins
-  * Lazy load?
-  * Init events?
+  * TODO: Lazy load?
+  * TODO: Init events?
 
 ---
 
@@ -857,7 +892,7 @@ Want to see something [cool](https://github.com/kerrishotts/cordova-plugin-webpa
 * Be kind when using hooks!
     * Your hook runs on your consumer's machine!
     * Don't be evil!
-    * `before_prepare` hooks may not always be run when you expect; run the `cordova` command again
+    * `before_prepare` plugin hooks not run on discovery; run the `cordova` command again
 
 ---
 
