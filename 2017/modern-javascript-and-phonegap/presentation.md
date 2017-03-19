@@ -49,10 +49,6 @@
 * I love retro technology and ST:TNG :wink:
 ---
 
-# Modern JavaScript Versions
-
----
-
 # Remember ECMAScript 5?
 
 Release year: 2009
@@ -60,7 +56,8 @@ Release year: 2009
 * The version we all know and love (~ish?)
 * Supported by all modern mobile web views^1^
     * iOS 6+, IE 10+, Edge (forever), Android 4.4+
-* Reasonably modern (`map`, `reduce`, getters/setters, etc.)
+* Lots of good things:
+    * `map`, `reduce`, getters/setters, etc.
 
 <hr>
 
@@ -68,13 +65,9 @@ Release year: 2009
 
 ---
 
-## Things have changed a lot since then...
-
 # ES2015 and beyond
 
----
-
-<div style='font-size:125%'>
+<div style='font-size:110%'>
 
 Version| Feature                               | Feature <!-- {tr:style='display:none'} -->
 ------:|:--------------------------------------|:-----------
@@ -92,9 +85,8 @@ Version| Feature                               | Feature <!-- {tr:style='display
 
 <hr>
 
-1. https://github.com/lukehoban/es6features#readme; the list here is not a complete representation of _all_ features
-2. http://www.2ality.com/2016/01/ecmascript-2016.html
-3. http://www.2ality.com/2016/02/ecmascript-2017.html
+1: https://github.com/lukehoban/es6features#readme; the list here is not a complete representation of _all_ features
+2: http://www.2ality.com/2016/01/ecmascript-2016.html; 3: http://www.2ality.com/2016/02/ecmascript-2017.html
 
 ---
 
@@ -203,7 +195,7 @@ Source: https://kpdecker.github.io/six-speed/ (2017/01/04)
 
 ![bg original](../../_common/assets/picard/double-wtf.jpg)
 
-> #### UIWebView strikes again <!--{style='text-align:center; color: white; position: absolute; left: 1in; right: 1in; top: 2in;'}-->
+> #### UIWebView strikes again <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
 
 ---
 
@@ -244,11 +236,6 @@ Source: https://kpdecker.github.io/six-speed/ (2017/01/04)
 
 ---
 
-
-# A whirlwind tour
-
----
-
 # Dang it, _this!_
 
 <div style='font-size:95%'>
@@ -283,7 +270,7 @@ app.start();
 
 ---
 
-# Arrow functions (=>) & Classes
+# Arrow functions
 
 <div style='font-size:85%'>
 
@@ -318,6 +305,87 @@ Line 6 ES5 equivalent: `.addEventListener("click", (function() { this.sayHi(); }
 <!--
 # ![center 250%](./assets/alert-correct.png)
 -->
+
+
+---
+
+# Template Strings
+
+```javascript
+function sayHello(name) {
+  return `Hello, ${name}!`;
+}
+sayHello("World");  // Hello, World!
+```
+
+Complex expressions (*use with care*):
+
+```javascript
+function sayComplexHello(name) {
+  return `Hello, ${name ? name : "Jane Doe"}!`;
+}
+```
+
+---
+
+# Promises, Promises
+
+Now with arrow functions:
+
+```javascript
+function getPos(options) {
+  return new Promise((resolve, reject) => {
+    navigator.geolocation.getCurrentPosition(
+      resolve, reject, options);
+  });
+}
+```
+<!-- {style='font-size:90%'} -->
+
+---
+
+# Destructuring
+
+```javascript
+function gotPos(data) {
+  const {timestamp, coords:{latitude, longitude}} = data;
+  console.log(`At ${latitude},${longitude} on ${timestamp}`);
+}
+function gotError(err) {
+    console.log(`Error ${err.code}: ${err.message}`);
+}
+getPos().then(gotPos).catch(gotError);
+```
+<!-- {style='font-size:90%'} -->
+
+
+```javascript
+
+// Arrays work too:
+[a, b] = [b, a]  // swap!
+```
+<!-- {style='font-size:90%'} -->
+
+---
+
+# async / await (ES2017)
+
+```javascript
+async function start() {
+  try {
+    const pos = await getPos();
+    const {timestamp, coords:{latitude, longitude}} = pos;
+    console.log(`At ${latitude},${longitude} on ${timestamp}`);
+  } catch(err) {
+    console.log(`Error ${err.code}: ${err.message}`);
+  }
+}
+```
+<!-- {style='font-size:87%'} -->
+
+<hr>
+
+**Note**: `async` poisons the call tree; all callers must also be `async` or treat the response like a `promise`.
 
 ---
 
@@ -380,28 +448,6 @@ console.log(sprintf ("%1, %0", "world", "hello"));
 
 ---
 
-# Destructuring
-
-```javascript
-[a, b] = [b, a]  // swap!
-```
-<!-- {style='font-size:90%'} -->
-
-"Multiple return values":
-
-```javascript
-function duplicate(str) {
-  return {result: str + str, 
-          error: !str ? "no string" : null};
-}
-let {result, error} = someFunction("abc");
-let {result:r, error:err} = someFunction("acb"); // you can rename
-let {result} = someFunction("abc");              // or even ignore!
-```
-<!-- {style='font-size:82.5%'} -->
-
----
-
 # Named Parameters & Defaults
 
 ```javascript
@@ -418,38 +464,6 @@ getPicture({height: 1024, width: 1024}).then(/*...*/)
 ```
 <!-- {style='font-size:90%'} -->
 
----
-
-# Template Strings
-
-```javascript
-function sayHello(name) {
-  return `Hello, ${name}!`;
-}
-sayHello("World");  // Hello, World!
-```
-
-Complex expressions (use with care!):
-
-```javascript
-function sayComplexHello(name) {
-  return `Hello, ${name ? name : "Jane Doe"}!`;
-}
-```
-
-<!--
-Multi-line strings (preserving &crarr;):
-
-```javascript
-let template=`<ul>
-    <li><span></span></li>
-</ul>`;
-```
-
--->
-
----
-
 <!--
 
 # Sets and Maps
@@ -464,97 +478,7 @@ function dedup (arr = []) {
 
 ---
 
--->
 
-# Promises, promises
-
-Hopefully already familiar to you...
-
-```javascript
-function requestFileSystem({type = window.PERSISTENT, 
-                            quota = 5 * 1024 * 1024} = {}) {
-  return new Promise((resolve, reject) => {
-    window.requestFileSystem(type, quota, resolve, reject);
-  });
-}
-```
-<!-- {style='font-size:90%'} -->
-
----
-
-# async / await (ES2017)
-
-```javascript
-async function getFile(name) {
-  const fs = await requestFileSystem();
-  return await fs.getFile(name);
-}
-
-async function start() {
-  try {
-    const file = await getFile("poem.txt"));
-  } catch (err) { 
-    alert (`Error: ${err}`); 
-  }
-}
-```
-<!-- {style='font-size:85%'} -->
-
-<!--
-    async declares that a function is asynchronous -- that it will use await.
-    note: async does tend to poison the call chain -- all functions in the call
-          stack MUST be async or treat return value as a promise.
-    await waits for a promise to resolve
-    return value of async function IS a promise
-    errors and rejections can be handled with try/catch
--->
-
-<!--
-
----
-
-# Classes
-
-```javascript
-const _BUTTON_TYPE = Symbol("Button Type");
-class Button extends Widget {
-    constructor({type = "rounded", frame} = {}) {
-        super({frame});
-        this[_BUTTON_TYPE] = type;
-    }
-    get buttonType() {
-        return this[_BUTTON_TYPE];
-    }
-    set buttonType(type) {
-        this[_BUTTON_TYPE] = type;
-    }
-}
-```
-
--->
-
----
-
-### Geolocation (ES2017)
-
-```javascript
-function getPos(opts) {
-  return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(resolve, reject, opts);
-  });
-}
-async function start() {
-  try {
-    const {timestamp, coords:{latitude, longitude}} = await getPos();
-    console.log(`At ${latitude}, ${longitude} on ${timestamp}`);
-  } catch(err) {
-    console.log(`Error ${err.code}: ${err.message}`);
-  }
-}
-```
-<!-- {style='font-size:80%'} -->
-
----
 
 ### File Transfer (ES2017)
 
@@ -578,9 +502,6 @@ async function start() {
 ```
 
 </div>
-
-
-<!--
 
 ---
 
@@ -655,8 +576,6 @@ console.log(add(4, 3));      // 7
 
 # Native support is a moving target
 
-<div style='font-size: 125%'>
-
 |     OS             |   ES2015   |   ES2016   |   ES2017   |
 |-------------------:|-----------:|-----------:|-----------:|
 | Android (Chrome)   |  97% (51+) | 100% (55+) |  53% (56+) |
@@ -666,8 +585,6 @@ console.log(add(4, 3));      // 7
 |            iOS 10  |      100%  |       61%  |       42%  |
 |            iOS  9  |       54%  |         -  |         -  |
 
-</div>
-
 <hr>
 
 \* Based on current status in Safari Technological Preview 11
@@ -675,13 +592,7 @@ console.log(add(4, 3));      // 7
 
 ---
 
-## But, I want it everywhere!
-
-# *ES2015: The Rise of the Transpilers*
-
----
-
-# Common Transpilers
+# ES2015: The Rise of the Transpilers
 
 These can all transpile ES2015\* (feature support may vary)
 
@@ -923,20 +834,34 @@ cordova plugin add --save              \
 ```
 <!-- {style='font-size:90%'} -->
 
-Or, some useful templates (using project-level hooks):
+Executes when `prepare` is called: `build`, `run`, `emulate`, etc.
 
-* [cordova-template-webpack-ts-scss](https://github.com/kerrishotts/cordova-template-webpack-ts-scss)
-* [cordova-template-webpack-babel-scss](https://github.com/kerrishotts/cordova-template-webpack-babel-scss)
+```sh <!-- host=dev cli -->
+cordova build ios             # debug mode
+cordova build ios --release   # production mode
+cordova run ios --notransform # don't transform
+```
+<!-- {style='font-size:89%'} -->
 
 ---
 
-# What about...
+# Automating with Templates
 
-* ... linting?
+<div style="font-size:97%">
 
-* ... tests?
+ Template | Author | Bundler | Transpiler | Frameworks | Automation
+---------:|:-------|:-------:|:----------:|:----------:|:----------:
+[cordova-template-webpack-ts-scss](https://github.com/kerrishotts/cordova-template-webpack-ts-scss)| Me | Webpack | TypeScript | Vanilla | `cordova`
+[cordova-template-webpack-babel-scss](https://github.com/kerrishotts/cordova-template-webpack-babel-scss)| Me | Webpack | Babel | Vanilla | `cordova`
+[cordova-template-framework7-vue-webpack](https://www.npmjs.com/package/cordova-template-framework7-vue-webpack)| centrual | Webpack | Babel | Vue, F7 | `cordova`
+[phonegap-template-react-hot-loader](https://www.npmjs.com/package/phonegap-template-react-hot-loader)| devgeeks | Webpack | Babel | React | `npm`
+[phonegap-vueify](https://www.npmjs.com/package/phonegap-vueify)| lemaur | Browserify | Babel | Vue | `npm`
 
-* ... code coverage?
+</div>
+
+<hr>
+
+Automation: "cordova" = Cordova hooks; "npm" = npm scripts
 
 ---
 
@@ -1026,10 +951,6 @@ First, `npm install --save-dev instanbul cross-env nyc`
 }
 ```
 <!-- {style='font-size:90%'} -->
-
----
-
-# Tips
 
 ---
 
