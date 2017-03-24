@@ -8,16 +8,15 @@
 
 <!-- footer: Photo by AlexanderStein (https://pixabay.com/en/users/AlexanderStein-45237/), courtesy of Pixabay.com-->
 
-# Fantastic Plugins & 
-# How to Make Them
+# Fantastic Plugins & How to Make Them
 
 ###### Kerri Shotts (@kerrishotts)
 
 ###### Jesse MacFadyen (@purplecabbage)
 
-###### https://github.com/kerrishotts/pgday/2017/fantastic-plugins-and-how-to-make-them <!--{style='font-size:90%'}-->
+###### https://github.com/kerrishotts/pgday/blob/master/2017/fantastic-plugins-and-how-to-make-them <!--{style='font-size:90%'}-->
 
-###### Based in part on http://purplecabbage.github.io/slides/pgd16Plugins/index.html 
+###### Based on http://purplecabbage.github.io/slides/pgd16Plugins/index.html by Jesse
 <!--{h6:style='font-size:80% !important'}-->
 
 ---
@@ -66,7 +65,7 @@ _noun_ A module consisting of code and settings extending the essential function
     * run time
     * build time
     * install time
-* Two categories
+* Two sources
   * Core &mdash; used to be built in
   * Community &mdash; people like you!
 
@@ -132,8 +131,8 @@ Devoloped and supported by the community &mdash; like you!
 
 |                         Repository | Plugins                 |
 |-----------------------------------:|:------------------------|
-| https://cordova.apache.org/plugins | ~2,066 plugins &amp; templates (&minus; core) |
-| http://www.plugreg.com             | ~1,592 plugins (&minus; core) |
+| https://cordova.apache.org/plugins | ~2,066 plugins &amp; templates (excl. core) |
+| http://www.plugreg.com             | ~1,592 plugins (excl. core) |
 | http://plugins.telerik.com/cordova | ~77 plugins             |
 
 ---
@@ -199,12 +198,12 @@ cordova plugin rm --save cordova-plugin-device
 ```
 <!-- {style='font-size:90%'} -->
 
-`--link` is most useful when developing plugins
+`--link` is useful when developing plugins
 
 <hr>
 
-**Important:** Adding a plugin to a child project automatically symlinks the plugin
-**Note:** Careful with parent plugins and child projects &mdash; easy to get circular references in the file system (borks **cp**)
+**Important:** Adding a plugin to a child project (relative to the plugin) automatically symlinks the plugin
+**Note:** Careful with parent plugins and child projects &mdash; easy to get circular references in the file system
 
 ---
 
@@ -656,6 +655,7 @@ A bridge is used to cross the gap between the native code context and the web vi
 * Don't panic if the repo doesn't immediately show your plugin
 
    * wait a while &mdash; the underlying index has to catch up 
+   * (TODO: check; this is getting fixed)
 
 ---
 
@@ -819,7 +819,6 @@ Possibilities:
 
 # Some more cool plugin ideas
 
-* Optical Character Recognition using Tesseract
 * Game controller support
 * Apple Pencil, anyone?
 * iOS Storage providers
@@ -864,7 +863,7 @@ Possibilities:
 * Promisify your API
 * Preprocess arguments in JavaScript
     * convert to appropriate types
-    * throw type-mistmatch errors, etc.
+    * throw type-mismatch errors, etc.
 * Transpile ES2015+ to ES5
 * Stick to the `cordova.plugins` namespace
     * Unless creating a polyfill; **window** is crowded!
@@ -877,8 +876,6 @@ Possibilities:
   * Return useful error information
   * Use background threads!
   * Be respectful of other plugins
-  * TODO: Lazy load?
-  * TODO: Init events?
 
 ---
 
@@ -895,14 +892,9 @@ Possibilities:
 
 ---
 
-# Miscellany (2)
-
-
----
-
 # Homework
 
-* Create a new plugin and publish it to the Cordova plugin repo
+* Create a new plugin and add it to a Cordova project
 * Extend and/or improve a plugin
     * For example, the globalization plugin's API is asynchronous, which is really irritating.
         * All the formatting / globalization information could be determined up-front instead
@@ -926,4 +918,4 @@ Possibilities:
 
 ---
 
-# This slide intentionally left blank
+###### This slide intentionally left blank
