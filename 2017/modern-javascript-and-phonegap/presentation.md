@@ -3,28 +3,12 @@
 <!-- $theme: elegant -->
 <!-- $prism: default -->
 
-<style>
-  .slide_bg_img:not([data-alt~="original"]) {
-      opacity: 0.3 !important;
-  }
-  .only-headings .slide_bg_img:not([data-alt~="original"]) {
-      opacity: 0.6 !important;
-  }
-  .slide_wrapper {
-    --text-font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;;
-    --title-font-family: "Impact", 'Playball', serif !important;
-    --heading-font-family: 'Helvetica Neue', serif !important;
-    --quote-font-family: var(--text-font-family);
-    --big-quote-font-family: 'Playball', serif;
-    --code-font-family: 'Fira Mono', 'Roboto Mono', 'Menlo', 'Courier New', Courier, monospace;
-  }
-</style>
 
 ![brighter bg](assets/bg.jpg)
 
 <!-- footer: Image by Pete Linforth (https://pixabay.com/en/users/PeteLinforth-202249/), courtesy of Pixabay.com -->
 
-# Modern JavaScript and PhoneGap <!--{style="color:white"}-->
+# Modern JavaScript<br/> and PhoneGap <!--{style="color:white"}-->
 
 ## PhoneGap Day EU 2017 <!--{style="color:white"}-->
 
@@ -94,7 +78,6 @@ Version| Feature                               | Feature <!-- {tr:style='display
 
 ![bg original](../../_common/assets/picard/pouting.jpg)
 
-## Before we go any further...
 
 # Some Very Important Caveats!
 
@@ -623,7 +606,7 @@ These can all transpile ES2015\* (feature support may vary)
 
 ![bg original](../../_common/assets/picard/yay.jpg)
 
-> ### But we can fix that... <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in; text-shadow: 0 0 10px black'}-->
+> ### But we can fix that... <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
 
 
 ---
