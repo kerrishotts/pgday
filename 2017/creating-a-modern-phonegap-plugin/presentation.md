@@ -13,7 +13,7 @@
 #### Kerri Shotts ([@kerrishotts](https://www.twitter.com/kerrishotts))
 #### Jesse MacFadyen ([@purplecabbage](https://www.twitter.com/purplecabbage))
 
-###### Slides at https://goo.gl/fl2nh0
+###### Slides at https://goo.gl/2xVAwZ
 ###### Based on [PGDay EU 2016 plugin workshop](http://purplecabbage.github.io/slides/pgd16Plugins/index.html) by Jesse
 
 ---
@@ -1123,7 +1123,7 @@ Possibilities:
 
 #### Jesse ([@purplecabbage](https://www.twitter.com/purplecabbage)) &bullet; Kerri ([@kerrishotts](https://www.twitter.com/kerrishotts))
 
-###### Slides available at: https://goo.gl/fl2nh0
+###### Slides available at: https://goo.gl/2xVAwZ
 
 ###### Based on Jesse's [PG Day 2016 EU plugin workshop](http://purplecabbage.github.io/slides/pgd16Plugins/index.html)
 
