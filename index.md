@@ -17,6 +17,7 @@ This repository includes slides and source material for presentations and worksh
 * One of many moderators at:
     * [Cordova Google Group](https://groups.google.com/forum/#!forum/phonegap)
     * [PhoneGap Adobe Forums](http://forums.adobe.com/community/phonegap)
+
 ## Presentations
 
 * Common PhoneGap Gotchas (2016)
