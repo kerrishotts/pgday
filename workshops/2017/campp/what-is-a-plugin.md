@@ -3,8 +3,8 @@ title: Creating a Modern PhoneGap Plugin
 description: PhoneGap Day EU 2017 Workshop
 layout: page
 links:
-    Up: ../
-    Continue: managing-plugins.md
+    Up: index.html
+    Continue: managing-plugins.html
 ---
 
 Let's start with a definition:

@@ -3,9 +3,9 @@ title: Creating a Modern PhoneGap Plugin
 description: PhoneGap Day EU 2017 Workshop
 layout: page
 links:
-    Up: ../
-    Previous: managing-plugins.md
-    Continue: plugin-x-ray.md
+    Up: index.html
+    Previous: managing-plugins.html
+    Continue: plugin-x-ray.html
 ---
 
 Whether you are using a core or community plugin or you're developing your own, the commands for adding plugins to your projects remain the same. In order to support various workflows and local development, plugins can be installed from a variety of sources.
@@ -82,4 +82,3 @@ There are several ways you can find plugins:
     │ updated 2 months ago by shazron
     ├────────────────────────────────────────────────────────────────────────────────
     ```
-

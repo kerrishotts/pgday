@@ -3,7 +3,7 @@ title: Creating a Modern PhoneGap Plugin
 description: PhoneGap Day EU 2017 Workshop
 layout: page
 links:
-    Start: what-is-a-plugin.md
+    Start: what-is-a-plugin.html
 ---
 
 Creating a PhoneGap plugin doesn’t have to be scary, and it isn’t all that difficult! In this workshop you’ll learn how to create a simple plugin, how to structure your plugin for multi-platform support, how to add it to your projects, and how to test it thoroughly using Cordova’s plugin testing framework.
