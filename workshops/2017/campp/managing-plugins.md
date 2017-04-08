@@ -4,7 +4,7 @@ description: Creating a Modern PhoneGap Plugin Workshop
 layout: page
 links:
     Up: index.html
-    Previous: managing-plugins.html
+    Previous: what-is-a-plugin.html
     Continue: plugin-x-ray.html
 ---
 
