@@ -1,15 +1,12 @@
 ---
 layout: default
 ---
-# PhoneGap Day Presentations and Workshops
 
 This repository includes slides and source material for presentations and workshops that I have given at PhoneGap Day.
 
 ## About Me
 
-<div style="float: right">
-![Kerri Shotts](./assets/portrait.png)
-</div>
+<img style="float: right; width: 50%" src="./assets/img/portrait.jpg">
 
 * Used PhoneGap for over six years
 * Authored Five books about PhoneGap

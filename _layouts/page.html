@@ -13,6 +13,10 @@
     <section class="page-header">
       <h1 class="project-name">{{ page.title | default: site.title | default: site.github.repository_name }}</h1>
       <h2 class="project-tagline">{{ page.description | default: site.description | default: site.github.project_tagline }}</h2>
+      <a href="/" class="btn">Home</a>
+      {% for link in page.links %}
+        <a href="{{ link[1] }}" class="btn">{{ link[0] }}</a>
+      {% endfor %}
     </section>
 
     <section class="main-content">
