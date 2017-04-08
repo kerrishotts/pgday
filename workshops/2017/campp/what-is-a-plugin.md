@@ -1,6 +1,6 @@
 ---
-title: Creating a Modern PhoneGap Plugin
-description: PhoneGap Day EU 2017 Workshop
+title: What is a Plugin?
+description: Creating a Modern PhoneGap Plugin Workshop
 layout: page
 links:
     Up: index.html
