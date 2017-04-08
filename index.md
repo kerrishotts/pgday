@@ -6,7 +6,7 @@ This repository includes slides and source material for presentations and worksh
 
 ## About Me
 
-<img style="float: right; width: 50%" src="./assets/img/portrait.jpg">
+<img style="float: right; width: 20%" src="./assets/img/portrait.jpg">
 
 * Used PhoneGap for over six years
 * Authored Five books about PhoneGap
