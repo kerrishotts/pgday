@@ -102,7 +102,7 @@ With the preamble out of the way, the plugin's metadata typically moves on to de
 
 Typically run-time plugins will provide some sort of JavaScript API that the consumer's app can interact with. This isn't a hard-and-fast rule, however, since some plugins can operate independently and don't return data to the app's webview. [(docs)](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#js-module)
 
-To specify a module, the following is used:
+To specify a module, the following pattern is used (note the path to the source file, and a unique name for the file):
 ```xml
 <js-module src="www/device.js" name="device">
   [<children/>]
@@ -177,7 +177,7 @@ Often times you'll need to modify the consumer app's configuration files. Someti
 
 There are two types of modifications: insertion of elements to the manifest via `config-file`, or additions of attributes to existing elements via `edit-config`. For example:
 
-    <!--[windows, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L218) -->
+<!--[windows, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L218) -->
 
 * `config-file` [(docs)](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#config-file)
   * From [File Transfer plugin for Android](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L50):
@@ -195,15 +195,15 @@ There are two types of modifications: insertion of elements to the manifest via 
     </config-file>
     ```
 * `edit-config` [(docs)](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#edit-config)
-  * From [Transparent Status Bar plugin for Android](https://github.com/manugando/cordova-plugin-transparent-status-bar/blob/25c0f913260334ac0d518077c9efd1f66447b107/plugin.xml#L26)
-  ```xml
-  <edit-config file="AndroidManifest.xml"
-    target="/manifest/application/activity     \
-      [@android:name='MainActivity']"
-    mode="merge">
-    <activity android:theme="@style/AppTheme" />
-  </edit-config>
-  ```
+  * From [Transparent Status Bar plugin for Android](https://github.com/manugando/cordova-plugin-transparent-status-bar/blob/25c0f913260334ac0d518077c9efd1f66447b107/plugin.xml#L26):
+    ```xml
+    <edit-config file="AndroidManifest.xml"
+        target="/manifest/application/activity     \
+        [@android:name='MainActivity']"
+        mode="merge">
+        <activity android:theme="@style/AppTheme" />
+    </edit-config>
+    ```
 
 ## Dependencies
 
