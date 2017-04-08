@@ -198,8 +198,7 @@ There are two types of modifications: insertion of elements to the manifest via 
   * From [Transparent Status Bar plugin for Android](https://github.com/manugando/cordova-plugin-transparent-status-bar/blob/25c0f913260334ac0d518077c9efd1f66447b107/plugin.xml#L26):
     ```xml
     <edit-config file="AndroidManifest.xml"
-        target="/manifest/application/activity     \
-        [@android:name='MainActivity']"
+        target="/manifest/application/activity[@android:name='MainActivity']"
         mode="merge">
         <activity android:theme="@style/AppTheme" />
     </edit-config>
