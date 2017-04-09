@@ -222,4 +222,130 @@ Now we may be getting into some unfamiliar territory &mdash; especially if you a
     5. Confused by the `@()`? It's shorthand for boxing a primitive into an object &mdash; `NSDictionary` requires its contents to be objects. And yes, the booleans are strange ("YES" means true, and "NO" means false).
     6. We report progress roughly every second; reporting too often slows our progress (and can make it worse than the browser version!)
 
+# Android Native Code
+
+We're using Java for our Android plugin, so the code should be pretty easy to follow. It is located under `src/android/IsPrime.java`.
+
+1. Like each platform, let's start with the boilerplate:
+
+    ```java
+    package com.kerrishotts.example.isprime;
+
+    import java.util.Calendar;
+    import java.util.GregorianCalendar;
+
+    import org.apache.cordova.CallbackContext;
+    import org.apache.cordova.CordovaPlugin;
+    import org.apache.cordova.PluginResult;
+    import org.json.JSONArray;
+    import org.json.JSONException;
+    import org.json.JSONObject;
+
+    import android.annotation.SuppressLint;
+    import android.util.Base64;
+
+    public class IsPrime extends CordovaPlugin {
+
+        @SuppressLint("NewApi")
+        @Override
+        public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
+            if ("isPrime".equals(action)) {
+                this.isPrime(args.getJSONObject(0), callbackContext);
+            } else {
+                return false;
+            }
+            return false;
+        }
+    }
+    ```
+
+    * That's a lot of imports! The calendar imports are there because we need to track time since last progress report. But in most plugins you'll need the remaining `org.apache.cordova` imports as well as the `org.json.*` imports.
+    * As with iOS, our class is named `IsPrime` and extends the `CordovaPlugin` class provided by Cordova.
+    * When we call `cordova.exec` in JavaScript, `execute` here is what eventually is called. Unlike iOS, Android does not automatically call a method with the same name as the "action". Instead, we have to do that work ourselves.
+    * Notice the call to `this.isPrime()` &mdash; we'll write that next. Of note is that we extract the arguments passed to us now. There are various `get%` methods for any types you might need.
+    * `execute` expects us to return `true` if an action is valid and `false` if it isn't. The `return` order may seem strange here, but it makes sense if you have multiple actions.
+
+2. Next we need to create the `isPrime` method we're using in the boilerplate. Like with iOS, we'll jump straight to using background threads.
+
+    ```java
+    private void isPrime(final JSONObject result, final CallbackContext callbackContext) throws JSONException {
+        cordova.getThreadPool().execute(new Runnable() {
+            public void run() {
+                try {
+                    /* our algorithm goes here */
+                } catch (JSONException e) {
+                    callbackContext.error("JSON Exception; check that the JS API is passing the right result object");
+                }
+            }
+        });
+    }
+    ```
+
+    * There's not much exciting here, except how we can pass errors back to JavaScript. We do this by calling `callbackContext.error()`.
+
+3. We need to extract our factors array and set up some variables:
+
+    ```java
+        JSONArray factors = result.getJSONArray("factors");
+        long candidate = result.getLong("candidate");
+        long half = candidate / 2;
+        long now = (new GregorianCalendar()).getTimeInMillis();
+        long cur = now;
+    ```
+
+    * We're using `long` to ensure that the variables are large enough to support JavaScript's integer size.
+    * The `now` and `cur` variables are there to track how long it has been since we've last reported progress.
+    * Unlike iOS, we don't have to worry about immutability &mdash; everything's mutable by default.
+
+4. Now we can focus on our algorithm:
+
+    ```java
+        if (candidate == 2) { // [1]
+            result.put("progress", 100);
+            result.put("complete", true);
+            result.put("isPrime", true);
+        } else {
+            factors.put(1); // [2a]
+            for (long i = 2; i<=half; i++) {
+                if (i % 1000 == 0) {
+                    result.put("progress", ((double)i / (double)half) * 100);
+                    cur = (new GregorianCalendar()).getTimeInMillis();
+                    if (cur - now > 1000) { // [3]
+                        now = cur;
+                        // [4]
+                        PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
+                        // [5]
+                        pluginResult.setKeepCallback(true);
+                        // [6]
+                        callbackContext.sendPluginResult(pluginResult);
+                    }
+                }
+                if ((candidate % i) == 0) {
+                    factors.put(i);
+                }
+            }
+            if (factors.length() == 1) {
+                result.put("isPrime", true);
+                factors.remove(0); // [2b]
+            } else {
+                factors.put(candidate);
+            }
+        }
+        result.put("progress", 100);
+        result.put("complete", true);
+        // [4]
+        PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
+        // [6]
+        callbackContext.sendPluginResult(pluginResult);
+    ```
+
+    1. The algorithm is mostly the same as the iOS version. If the candidate is 2, we can bail early, otherwise we continue the calculation.
+    2. The only real difference is that we add `1` as the first factor before determining if the number is prime or not; other versions of this would insert it at the end. Should the number be prime, this value is removed in 2b.
+    3. If it's been more than a second since our last report, send a progress update.
+    4. We can create a result to send back to the JavaScript side by creating a new `PluginResult`.
+        * The status determines if the success or failure callback is triggered. `PluginResult.Status.ERROR`, along with several other status types, will call the failure callback. (See <https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/PluginResult.java#L186> for all the codes).
+        * `callbackContext.success()` and `callbackContext.error()` are shortcuts if you don't need to do anything to the `PluginResult`... like keeping it alive.
+    5. As with iOS, we need to tell Android to keep the callback alive until we're done. We do this by calling `pluginResult.setKeepCallback(true)`.
+    6. `callbackContext.sendPluginResult` is what actually sends the message back to JavaScript.
+
 
