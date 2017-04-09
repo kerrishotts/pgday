@@ -116,5 +116,109 @@ The code for the `browser` platform is located at `src/browser/isPrimeProxy.js`.
 
     * This method is a _lot_ slower, but the browser remains responsive during the calculation.
     * As a benefit, our progress reporting works correctly too (the prior code would never have actually issued visible progress reports).
-    * This method of batching is extremely naive. A better way would be to use `requestAnimationFrame` and execute as many calculations as possible in, say, 10 - 12 milliseconds. I live this as an exercise for you.
+    * This method of batching is extremely naive. A better way would be to use `requestAnimationFrame` and execute as many calculations as possible in, say, 10 - 12 milliseconds. I leave this as an exercise for you.
+
+# iOS Native Code
+
+Now we may be getting into some unfamiliar territory &mdash; especially if you aren't familiar with Objective-C. Our file will be in `src/ios/CDVIsPrime.m`.
+
+> **Tip:** It is the iOS convention to use three-letter prefixes when using Objective-C. `CDV` here stands for "Cordova".
+
+> **Note:** You can also write plugins using Swift, but as I'm more comfortable with Objective-C, that's what I used.
+
+1. Let's get the preamble out of the way:
+
+    ```objectivec
+    #import <Cordova/CDV.h>
+
+    @interface CDVIsPrime : CDVPlugin
+    @end
+
+    @implementation CDVIsPrime
+    - (void)isPrime:(CDVInvokedUrlCommand*)command
+    {
+    }
+    @end
+    ```
+
+    * We're defining both the interface and the implementation in a single file. You'll often see this split out into two files: a header file (`.h`) and a module file (`.m`). (Note: Swift doesn't have this kind of distinction.)
+    * Our plugin's class is called `CDVIsPrime`, and it extends `CDVPlugin` (provided by Cordova).
+    * Our methods are inside the @implementation, and named to match the "action" we use in our consumer API.
+
+2. Next, we're going to avoid the issue we had with our browser version and we're going to do the calculation in background mode from the beginning. This is really easy to do:
+
+    ```objectivec
+    - (void)isPrime:(CDVInvokedUrlCommand*)command
+    {
+        [self.commandDelegate runInBackground:^{
+            /* our algorithm goes here */
+        }];
+    }
+    ```
+3. We're going to need to extract our incoming result object, and set up some local variables:
+
+    ```objectivec
+        NSMutableDictionary* result = [[command argumentAtIndex: 0] mutableCopy];
+        NSMutableArray* factors = result[@"factors"];
+        int64_t candidate = [result[@"candidate"] longLongValue];
+        int64_t half = candidate / 2;
+        NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+        NSTimeInterval cur = now;
+    ```
+
+    * The `command` passed to us contains all the arguments provided to our consumer API. We extract these by calling `argumentAtIndex`.
+    * JSON objects are passed as `NSDictionary` objects, but these are immutable by default. We need it to be mutable, so we call `mutableCopy` and store the result in an `NSMutableDictionary`.
+    * The syntax `@"key"` is a peculiar quirk of Objective-C. It's an `NSString` literal.
+    * We need an integer type that will support JavaScript's integers &mdash; `int64_t` fits that bill. `longLongValue` is used to retrieve the candidate from the JSON object.
+    * The `NSTimeInterval` variables are so we can track how long it has been since we last reported our calculation's progress.
+
+4.  Now we can focus on our algorithm:
+
+    ```objectivec
+        if (candidate == 2) { // [1]
+            result[@"progress"] = @(100); // [5]
+            result[@"complete"] = @(YES); // [5]
+            result[@"isPrime"] = @(YES);
+        } else {
+            for (int64_t i = 2; i<=half; i++) {
+                result[@"progress"] = @(((double)i / (double)half)*100);
+                if ((candidate % i) == 0) {
+                    [factors addObject:@(i)];
+                }
+                if (i % 1000 == 0) {
+                    cur = [[NSDate date] timeIntervalSince1970];
+                    if (cur - now > 1) {
+                        now = cur;
+                        // [2]
+                        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
+                        // [3]
+                        [pluginResult setKeepCallbackAsBool:YES];
+                        // [4]
+                        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+                    }
+                }
+            }
+            result[@"progress"] = @(100);
+            result[@"complete"] = @(YES);
+            if (factors.count == 0) {
+                result[@"isPrime"] = @(YES);
+            } else {
+                [factors insertObject:@(1) atIndex:0];
+                [factors addObject:@(candidate)];
+            }
+        }
+        // [2]
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
+        // [4]
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+    ```
+
+    1. First, if the candidate is `2`, we just bail and say, yes, it's prime. Otherwise the logic is identical to the browser and Windows version.
+    2. We can prepare a result by calling `[CDVPluginResult resultWithStatus: messageAsDictionary:]` (there are overloads for other types if you need them).
+        * The status indicates if the success or failure callback will be called. `CDVCommandStatus_ERROR` will trigger the failure callback instead.
+        * For more info, [see the documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/plugin.html#ios-cdvpluginresult-message-types).
+    3. Like the browser version, we have to tell Cordova to keep the callback alive if we're not done with it yet.
+    4. We pass the result back by calling `sendPluginResult: callbackId:`.
+    5. Confused by the `@()`? It's shorthand for boxing a primitive into an object &mdash; `NSDictionary` requires its contents to be objects. And yes, the booleans are strange ("YES" means true, and "NO" means false).
+
 
