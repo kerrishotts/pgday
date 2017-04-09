@@ -14,3 +14,15 @@ $code-text-color: #202830;
 
 
 @import "{{ site.theme }}";
+
+.main-content table {
+    display: table;
+}
+
+.main-content li {
+    margin-bottom: 1em;
+}
+
+.main-content li ul {
+    margin-top: 1em !important;
+}
