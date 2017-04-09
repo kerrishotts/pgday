@@ -71,7 +71,7 @@ There are many, many more community plugins:
 
 |                         Repository | Plugins                 |
 |-----------------------------------:|:------------------------|
-| https://cordova.apache.org/plugins | ~2,066 plugins &amp; templates (excl. core) |
-| http://www.plugreg.com             | ~1,592 plugins (excl. core) |
-| http://plugins.telerik.com/cordova | ~77 plugins             |
+|<https://cordova.apache.org/plugins>| ~2,066 plugins &amp; templates (excl. core) |
+|<http://www.plugreg.com>            | ~1,592 plugins (excl. core) |
+|<http://plugins.telerik.com/cordova>| ~77 plugins             |
 
