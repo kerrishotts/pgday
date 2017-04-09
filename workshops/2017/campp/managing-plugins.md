@@ -67,8 +67,8 @@ The `--link` switch is most useful when developing plugins &mdash; it will link 
 
 There are several ways you can find plugins:
 
-* Cordova Plugin Search: https://cordova.apache.org/plugins
-* npm: https://www.npmjs.com/search?q=ecosystem:cordova
+* Cordova Plugin Search: <https://cordova.apache.org/plugins>
+* npm: <https://www.npmjs.com/search?q=ecosystem:cordova>
 * Or, if the CLI is more your thing:
 
     ```sh
