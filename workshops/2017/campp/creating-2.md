@@ -4,7 +4,7 @@ description: Creating a Modern PhoneGap Plugin Workshop
 layout: page
 links:
     Up: index.html
-    Previous: creating-1.html
+    Previous: creating.html
     Continue: creating-3.html
 ---
 
@@ -187,7 +187,7 @@ Now we may be getting into some unfamiliar territory &mdash; especially if you a
                 }
                 if (i % 1000 == 0) {
                     cur = [[NSDate date] timeIntervalSince1970];
-                    if (cur - now > 1) {
+                    if (cur - now > 1) { // [6]
                         now = cur;
                         // [2]
                         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:result];
@@ -220,5 +220,6 @@ Now we may be getting into some unfamiliar territory &mdash; especially if you a
     3. Like the browser version, we have to tell Cordova to keep the callback alive if we're not done with it yet.
     4. We pass the result back by calling `sendPluginResult: callbackId:`.
     5. Confused by the `@()`? It's shorthand for boxing a primitive into an object &mdash; `NSDictionary` requires its contents to be objects. And yes, the booleans are strange ("YES" means true, and "NO" means false).
+    6. We report progress roughly every second; reporting too often slows our progress (and can make it worse than the browser version!)
 
 
