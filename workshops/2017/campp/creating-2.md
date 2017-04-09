@@ -128,7 +128,7 @@ Now we may be getting into some unfamiliar territory &mdash; especially if you a
 
 1. Let's get the preamble out of the way:
 
-    ```objectivec
+    ```objc
     #import <Cordova/CDV.h>
 
     @interface CDVIsPrime : CDVPlugin
@@ -147,7 +147,7 @@ Now we may be getting into some unfamiliar territory &mdash; especially if you a
 
 2. Next, we're going to avoid the issue we had with our browser version and we're going to do the calculation in background mode from the beginning. This is really easy to do:
 
-    ```objectivec
+    ```objc
     - (void)isPrime:(CDVInvokedUrlCommand*)command
     {
         [self.commandDelegate runInBackground:^{
@@ -157,7 +157,7 @@ Now we may be getting into some unfamiliar territory &mdash; especially if you a
     ```
 3. We're going to need to extract our incoming result object, and set up some local variables:
 
-    ```objectivec
+    ```objc
         NSMutableDictionary* result = [[command argumentAtIndex: 0] mutableCopy];
         NSMutableArray* factors = result[@"factors"];
         int64_t candidate = [result[@"candidate"] longLongValue];
@@ -174,7 +174,7 @@ Now we may be getting into some unfamiliar territory &mdash; especially if you a
 
 4.  Now we can focus on our algorithm:
 
-    ```objectivec
+    ```objc
         if (candidate == 2) { // [1]
             result[@"progress"] = @(100); // [5]
             result[@"complete"] = @(YES); // [5]
