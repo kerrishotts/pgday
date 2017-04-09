@@ -61,90 +61,125 @@ We need to build our metadata for our plugin. Oftentimes this will be done in st
 
 ## Plugin metadata
 
-In `plugin.xml` [(complete file)](https://github.com/kerrishotts/cordova-plugin-example-isprime/blob/master/plugin.xml)
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<plugin xmlns="http://cordova.apache.org/ns/plugins/1.0" id="cordova-plugin-example-isprime" version="0.0.1">
-    <name>IsPrime</name>
-    <author>Kerri Shotts</author>
-    <description>
-        Checks if a number is prime, and if not, returns the corresponding factors.
-        Used for PhoneGap Day EU 2017 "Creating Modern PhoneGap Plugins" workshop;
-        not intended for production use (there are better ways to find primes!)
-    </description>
-    <license>MIT</license>
-    <repo>https://github.com/kerrishotts/cordova-plugin-isprime.git</repo>
-    <issue>https://github.com/kerrishotts/cordova-plugin-isprime/issues</issue>
-    <keywords>
-      prime, pgday, eu, 2017, example, cordova, phonegap, cordova:ecosystem, phonegap:ecosystem
-    </keywords>
+Let's go over `plugin.xml` [(complete file)](https://github.com/kerrishotts/cordova-plugin-example-isprime/blob/master/plugin.xml).
 
-    <js-module src="www/isPrime.js" name="isPrime">
-        <clobbers target="cordova.plugins.kas.isPrime" />
-    </js-module>
+* First, we have the typical preamble that you would expect in a plugin -- we define the name, description, links to repositories, etc.
 
-    <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="IsPrime" >
-                <param name="android-package" value="com.kerrishotts.example.isprime.IsPrime"/>
-            </feature>
-        </config-file>
-        <source-file src="src/android/IsPrime.java" target-dir="src/com/kerrishotts/example/isprime" />
-    </platform>
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <plugin xmlns="http://cordova.apache.org/ns/plugins/1.0" id="cordova-plugin-example-isprime" version="0.0.1">
+        <name>IsPrime</name>
+        <author>Kerri Shotts</author>
+        <description>
+            Checks if a number is prime, and if not, returns the corresponding factors.
+            Used for PhoneGap Day EU 2017 "Creating Modern PhoneGap Plugins" workshop;
+            not intended for production use (there are better ways to find primes!)
+        </description>
+        <license>MIT</license>
+        <repo>https://github.com/kerrishotts/cordova-plugin-example-isprime.git</repo>
+        <issue>https://github.com/kerrishotts/cordova-plugin-example-isprime/issues</issue>
+        <keywords>
+        prime, pgday, eu, 2017, example, cordova, phonegap, cordova:ecosystem, phonegap:ecosystem
+        </keywords>
+    ```
 
-    <platform name="ios">
-        <config-file target="config.xml" parent="/*">
-            <feature name="IsPrime">
-                <param name="ios-package" value="CDVIsPrime"/>
-            </feature>
-        </config-file>
-        <source-file src="src/ios/CDVIsPrime.m" />
-    </platform>
+* Next we define the JavaScript module that our consumers will use when interfacing with our plugin.
 
-    <platform name="browser">
-        <js-module src="src/browser/IsPrimeProxy.js" name="IsPrimeProxy">
-            <runs />
+    ```xml
+        <js-module src="www/isPrime.js" name="isPrime">
+            <clobbers target="cordova.plugins.kas.isPrime" />
         </js-module>
-    </platform>
+    ```
 
-    <platform name="windows">
-        <js-module src="src/windows/IsPrimeProxy.js" name="IsPrimeProxy">
-            <runs />
-        </js-module>
-    </platform>
-</plugin>
-```
+    * Our JavaScript code will be located at `www/isPrime.js`
+    * The unique name for the module will be `isPrime` (this doesn't really matter unless you include multiple modules and need to reference them using `cordova.require`)
+    * Our module will _clobber_ `cordova.plugins.kas.isPrime`. This is where our public JavaScript API will be exposed.
+        * There is no official standard for this; some plugins will pollute the global namespace, while others will use `phonegap.plugins` or something else.
+        * I do suggest keeping to the `cordova.plugins.*` space unless you are writing a polyfill or writing a plugin that conforms to a standard that uses a different space.
+        * I used my initials solely to avoid conflicts with other plugins. This is solely up to you.
+
+* Our plugin will also consist of native code, so we need to specify where those files are, and how they map. Don't worry too much about the mapping process yet &mdash; we'll cover that in a little bit. For now, just pay attention to the source file paths, since this is where we'll need to place our native code.
+
+    ```xml
+        <platform name="android">
+            <config-file target="res/xml/config.xml" parent="/*">
+                <feature name="IsPrime" >
+                    <param name="android-package" value="com.kerrishotts.example.isprime.IsPrime"/>
+                </feature>
+            </config-file>
+            <source-file src="src/android/IsPrime.java" target-dir="src/com/kerrishotts/example/isprime" />
+        </platform>
+
+        <platform name="ios">
+            <config-file target="config.xml" parent="/*">
+                <feature name="IsPrime">
+                    <param name="ios-package" value="CDVIsPrime"/>
+                </feature>
+            </config-file>
+            <source-file src="src/ios/CDVIsPrime.m" />
+        </platform>
+
+        <platform name="browser">
+            <js-module src="src/browser/IsPrimeProxy.js" name="IsPrimeProxy">
+                <runs />
+            </js-module>
+        </platform>
+
+        <platform name="windows">
+            <js-module src="src/windows/IsPrimeProxy.js" name="IsPrimeProxy">
+                <runs />
+            </js-module>
+        </platform>
+    </plugin>
+    ```
 
 ## npm metadata
 
-`package.json` [(complete file)](https://github.com/kerrishotts/cordova-plugin-example-isprime/blob/master/package.json)
+Let's go over `package.json` [(complete file)](https://github.com/kerrishotts/cordova-plugin-example-isprime/blob/master/package.json):
 
-```json
-{
-  "name": "cordova-plugin-example-isprime",
-  "description": "Checks if a number is prime, and if not, returns the corresponding factors. Used for PhoneGap Day EU 2017 'Creating Modern PhoneGap Plugins' workshop; not intended for production use (there are better ways to find primes!)",
-  "version": "0.0.1",
-  "homepage": "https://github.com/kerrishotts/cordova-plugin-isprime",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kerrishotts/cordova-plugin-isprime.git"
-  },
-  "bugs": {
-    "url": "https://github.com/kerrishotts/cordova-plugin-isprime/issues"
-  },
-  "cordova": {
-    "id": "cordova-plugin-isprime",
-    "platforms": [ "ios", "android", "windows" ]
-  },
-  "keywords": [ "ecosystem:cordova", "ecosystem:phonegap", "cordova",
-    "phonegap", "pgday", "eu", "2017", "example", "prime" ],
-  "engines": {
-    "cordova": ">=6.0.0"
-  },
-  "author": "Kerri Shotts",
-  "license": "MIT",
-}
-```
+* First you have the typical preamble, just like with `plugin.xml`:
+
+    ```json
+    {
+    "name": "cordova-plugin-example-isprime",
+    "description": "Checks if a number is prime, and if not, returns the corresponding factors. Used for PhoneGap Day EU 2017 'Creating Modern PhoneGap Plugins' workshop; not intended for production use (there are better ways to find primes!)",
+    "author": "Kerri Shotts",
+    "license": "MIT"
+    "version": "0.0.1",
+    "homepage": "https://github.com/kerrishotts/cordova-plugin-example-isprime",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kerrishotts/cordova-plugin-example-isprime.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kerrishotts/cordova-plugin-example-isprime/issues"
+    },
+    ```
+
+* Next we specify the plugin's ID and what platforms it supports:
+
+    ```json
+    "cordova": {
+        "id": "cordova-plugin-example-isprime",
+        "platforms": [ "browser", "ios", "android", "windows" ]
+    },
+    ```
+
+* The keywords specified indicate that the plugin is part of the Cordova and PhoneGap ecosystems, and also include other keywords that users might search for.
+
+    ```json
+    "keywords": [ "ecosystem:cordova", "ecosystem:phonegap", "cordova",
+        "phonegap", "pgday", "eu", "2017", "example", "prime" ],
+    ```
+
+* The plugin requires `cordova-cli@6.0.0` or better
+
+    ```json
+    "engines": {
+        "cordova": ">=6.0.0"
+    }
+    }
+    ```
 
 # Documentation
 
