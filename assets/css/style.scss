@@ -5,7 +5,7 @@ $header-heading-color: #FFFFFF;
 $header-bg-color: #101418;
 $header-bg-color-secondary: #101418;
 
-$section-headings-color: #304060;
+$section-headings-color: #b81e6b;
 $body-text-color: #101418;
 $body-link-color: #1e6bb8;
 $blockquote-text-color: #303C48;
@@ -14,7 +14,3 @@ $code-text-color: #202830;
 
 
 @import "{{ site.theme }}";
-
-p {
-    border: 1px solid $header-bg-color;
-}
