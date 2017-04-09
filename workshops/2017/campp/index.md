@@ -54,7 +54,7 @@ Creating a PhoneGap plugin doesn’t have to be scary, and it isn’t all that d
 
 ## Our Final Plugin
 
-You can see code for the final plugin created for this workshop at https://github.com/kerrishotts/cordova-plugin-example-isprime.
+You can see code for the final plugin created for this workshop at <https://github.com/kerrishotts/cordova-plugin-example-isprime>.
 
 ## Sources
 
