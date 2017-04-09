@@ -40,7 +40,7 @@ cordova-plugin-*your-plugin*/                          | Plugin root
 &nbsp;&nbsp; www/                                      | JavaScript code &amp; web assets
 &nbsp;&nbsp;&nbsp;&nbsp; *yourPlugin*.js               | API for JavaScript consumers
 
-> **Note:** the structure abvoe is representational. For a good example, see the [Device Plugin](https://github.com/apache/cordova-plugin-devicehttps://github.com/apache/cordova-plugin-device).
+> **Note:** the structure above is representational. For a good example, see the [Device Plugin](https://github.com/apache/cordova-plugin-devicehttps://github.com/apache/cordova-plugin-device).
 
 When providing documentation, the convention is to provide the English translation in `README.md` in your plugin's root directory. Other translations go in `docs/[local]/README.md`. Be sure to provide examples, constants, errors that can be thrown, etc. so that the user has an idea how to properly utilize your plugin.
 
