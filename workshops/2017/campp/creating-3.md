@@ -5,7 +5,7 @@ layout: page
 links:
     Up: index.html
     Previous: creating-2.html
-    Continue: bridges.html
+    Continue: creating-4.html
 ---
 
 Now that we've written some native code, it's a good idea to cover some of the things that make our plugin even better.
