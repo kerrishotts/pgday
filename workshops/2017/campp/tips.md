@@ -39,7 +39,7 @@ So, we're close to the end &mdash; how about a few sage words of advice?
   * `cordova.requestPermission()` [(code)](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L397)
   * `cordova.hasPermission()` [(code)](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L407)
   * Override `onRequestPermissionResult` [(code)](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L418)
-* Don't forget Android activity lifecycle [(docs)](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#launching-other-activities) [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L143)
+* Don't forget Android activity lifecycle [(docs)](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#launching-other-activities) [(code)](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L143)
 
 # iOS
 
