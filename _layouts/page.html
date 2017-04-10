@@ -22,12 +22,15 @@
     <section class="main-content">
       {{ content }}
 
+      {% if page.links %}
       <hr>
+      <p>Navigation:</p>
       <ul>
       {% for link in page.links %}
         <li><a href="{{ link[1] }}">{{ link[0] }}</a></li>
       {% endfor %}
       </ul>
+      {$ endif %}
 
       <footer class="site-footer">
         {% if site.github.is_project_page %}
