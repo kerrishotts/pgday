@@ -43,6 +43,8 @@ Let's take a look at the tail end of our `plugin.xml` again:
         <js-module src="src/windows/IsPrimeProxy.js" name="IsPrimeProxy">
             <runs />
         </js-module>
+        <!-- if using managed code in prior section -->
+        <framework src="src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Release/IsPrimeRuntimeComponent.winmd" custom="true"/>
     </platform>
 ```
 

@@ -13,7 +13,7 @@ So, we're close to the end &mdash; how about a few sage words of advice?
 # JavaScript API
 
 * Promisify your API
-* Preprocess arguments in JavaScript
+* Pre-process arguments in JavaScript
     * convert to appropriate types
     * throw type-mismatch errors, etc.
 * Transpile ES2015+ to ES5 (not all targets support ES2015 natively, and ES is continuing to evolve yearly, anyway)
@@ -29,7 +29,7 @@ So, we're close to the end &mdash; how about a few sage words of advice?
   * [Android documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#threading)
 * Avoid init at app startup unless necessary
     ```xml
-    <param name="onload" value="false" />
+    <param name="onload" value="false" /> <!-- false is the default -->
     ```
 
 # Android

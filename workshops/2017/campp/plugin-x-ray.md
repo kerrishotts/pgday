@@ -47,13 +47,13 @@ When providing documentation, the convention is to provide the English translati
 
 # Metadata
 
-Metadata controls a lot of aspects of your plugin, including how people find your plugin, but also how your plugin is configured, and how it affects your consumer's app. There are two types of metadata: plugin and npm.
+Metadata controls a lot of aspects of your plugin, including how people find your plugin, but also how your plugin is configured, and how it affects your consumer's app. There are two types of metadata:
 
-Plugin metadata is stored in `plugin.xml`. You can think of this as an analogue to an app's `config.xml`. Plugin metadata controls lots of things, such as id, version, author, license, name, description, repo, issue, keywords, platform (&amp; assets), dependencies, engines, preferences, hooks, info, and more.
+* Plugin metadata is stored in `plugin.xml`. You can think of this as an analogue to an app's `config.xml`. Plugin metadata controls lots of things, such as id, version, author, license, name, description, repo, issue, keywords, platform (&amp; assets), dependencies, engines, preferences, hooks, info, and more.
 
-npm metadata is stored in `package.json`. This is required for publishing your plugin to npm. It is focused mostly on presentation aspects of your plugin, including things such as name, version, author, license, description, repository, issue, keywords, platforms, and dependencies.
+* npm metadata is stored in `package.json`. This is required for publishing your plugin to npm. It is focused mostly on presentation aspects of your plugin, including things such as name, version, author, license, description, repository, issue, keywords, platforms, and dependencies.
 
-> **Note:** The `package.json` file can be automatically generated when it comes time to publish. We'll over this later. Once you have one, though, you'll end up manually modifying this file.
+  > **Note:** The `package.json` file can be automatically generated when it comes time to publish. We'll go over this later. Once you have one, though, you'll end up manually modifying this file.
 
 ## Descriptive metadata
 
@@ -77,7 +77,7 @@ The equivalent `package.json` metadata looks like this:
 
 ```javascript
 {
-   "name": "cordova-plugin-device",
+  "name": "cordova-plugin-device",
   "author": "Apache Software Foundation",
   "license": "Apache-2.0",
   "version": "1.1.5-dev",

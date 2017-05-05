@@ -14,7 +14,7 @@ Let's start with the `browser` and `windows` platforms, since that code will be 
 
 > **Note:** You _can_ use managed code in Windows plugins, but we've not done so for this project. As such, the Windows plugin won't see a calculation benefit over the browser.
 
-# Browser &amp; Windows Code
+# Browser &amp; Windows (JS) Code
 
 The code for the `browser` platform is located at `src/browser/isPrimeProxy.js`. Windows code is located at `src/windows/isPrimeProxy.js`. In our case, the code is identical, but this may not be so for plugins you develop.
 
@@ -34,9 +34,9 @@ The code for the `browser` platform is located at `src/browser/isPrimeProxy.js`.
     require("cordova/exec/proxy").add("IsPrime", module.exports);
     ```
 
-    * Notice that the `isPrime` method takes arguments in the same order as the `exec` call from our public-facing API. The only difference is the missing "service" and "action" arguments.
-    * The method is then exported using `module.exports`.
-    * And here's the reason why we use `Proxy` as a filename suffix: Cordova proxies requests internally so that our public-facing API stays the same for all platforms. But we have to tell Cordova how to proxy our methods, and that's what the `require` line is doing. Note that "IsPrime" matches the `SERVICE` constant in our public API.
+    * Notice that the `isPrime` function takes arguments in the same order as the `exec` call from our public-facing API. The only difference is the missing "service" and "action" arguments.
+    * The function is then exported using `module.exports`.
+    * And here's the reason why we use `Proxy` as a filename suffix: Cordova proxies requests internally so that our public-facing API stays the same for all platforms. But we have to tell Cordova how to proxy our functions, and that's what the `require` line is doing. Note that "IsPrime" matches the `SERVICE` constant in our public API.
 
 2. Next, we can write our algorithm:
 
@@ -65,7 +65,7 @@ The code for the `browser` platform is located at `src/browser/isPrimeProxy.js`.
     }
     ```
 
-    * Arguments to our method are in an array; we have to index it to get the results object that our public API created.
+    * Arguments to our function are in an array; we have to index it to get the results object that our public API created.
     * We directly call a callback to report success or failure to our plugin's consumer.
         * Progress is reported frequently, but it calls the success callback to report the progress. To work, we need to tell Cordova to keep the callback alive using `{keepCallback: true}`.
         * When the calculation is complete, we don't need to keep the callback alive, so just passing the result is sufficient.
@@ -348,4 +348,86 @@ We're using Java for our Android plugin, so the code should be pretty easy to fo
     5. As with iOS, we need to tell Android to keep the callback alive until we're done. We do this by calling `pluginResult.setKeepCallback(true)`.
     6. `callbackContext.sendPluginResult` is what actually sends the message back to JavaScript.
 
+# Windows Managed Code
 
+If you were to use our Windows version of this plugin, you'd find it a little slow &mdash; it's no better than using a straight JavaScript implementation. To do better, we'd need to write some managed code.
+
+Writing some managed code isn't hard, thankfully. In this example, we'll be using C#, but you can use any language supported by the .NET runtime.
+
+1. Create a new managed component in Visual Studio 2017
+    1. **File** | **New** | **New Project...**
+    2. Expand **Installed**, then select **Other Languages** &gt; **Visual C#;** &gt; **Windows Universal**
+    3. Click **Windows Runtime Component (Universal Windows)**
+    4. In **Name**, type "IsPrimeRuntimeComponent"
+    5. In **Location**, choose "src\windows"
+    6. Name the solution "IsPrimeRuntimeComponent"
+    7. Click **OK**
+2. Rename `class1.cs` to `IsPrimeRT.cs`
+3. Add the following code &mdash; we'll comment on it in a moment.
+    ```c#
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    namespace IsPrimeRuntimeComponent
+    {
+        public sealed class IsPrimeRT
+        {
+            static public long[] Batch(long candidate, long startAt, long batchSize, long endAt)
+            {
+                long stopAt = Math.Min(startAt + batchSize - 1, endAt);
+                List<long> results = new List<long>();
+                if (candidate == 2)
+                {
+                    return results.ToArray<long>();
+                }
+                for (long i = startAt; i <= stopAt; i++)
+                {
+                    if ((candidate % i) == 0)
+                    {
+                        results.Add(i);
+                    }
+                }
+                return results.ToArray<long>();
+            }
+        }
+    }
+    ```
+4. Build a release version
+    1. Change the solution configuration to **Release**
+    2. Leave the solution platform as **Any CPU**
+    3. **Build** | **Build Solution**
+5. Add the following to `plugin.xml` under the `windows` platform:
+    ```xml
+    <framework src="src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Release/IsPrimeRuntimeComponent.winmd" custom="true"/>
+    ```
+6. Adjust `.gitignore` and `.npmignore` as needed to eliminate unneeded files(see repository for examples)
+7. Adjust the `src/windows/isPrimeProxy.js` file slightly:
+    1. Remove the `isPrimeBatch` function
+    2. Modify the first lines of the `isPrime` function:
+        ```js
+        function isPrime(successFn, failureFn, args) {
+        var result = args[0],
+            candidate = result.candidate,
+            half = Math.floor(candidate / 2),
+            batchSize = 100000,  // increased by factor of 10
+            cur = 2;
+
+        setTimeout(function runBatch() {
+            // get list of factors in this batch
+            var results = IsPrimeRuntimeComponent.IsPrimeRT.batch(candidate, cur, batchSize, half); // [1]
+            cur = Math.min(half + 1, cur + batchSize);
+            if (results && results.length > 0) {
+                // The return result isn't a real array, so use Array.from()
+                result.factors = result.factors.concat(Array.from(results));
+            }
+            // and calc progress
+            result.progress = (cur / half) * 100;
+
+            if (!cur || cur > half)  {
+                /* no further changes */
+        ```
+
+You may have noticed that the implementation in step 3 nearly exactly duplicates the `isPrimeBatch` JavaScript function we remove in step 7. This is, after all, the majority of the hard work: dividing numbers and finding factors. The rest is rather simple work that doesn't depend on speed. Furthermore, this method illustrates how you can mix and match JavaScript and managed code without having complex bridges between the two &mdash; JavaScript is a first-class language and can communicate directly with managed components (see 7.2, comment 1).
+
+The only thing we've done is increase the `batchSize` since the managed code can perform faster. Of course, in the real world, you'd try and determine the appropriate batch size rather than hard-coding it. And in the real world, you'd use a background thread as well, just like we did with iOS and Android. For an excellent example of this, see Microsoft's excellent documentation on [Threading and async programming / Submit a work item to the thread pool](https://docs.microsoft.com/en-us/windows/uwp/threading-async/submit-a-work-item-to-the-thread-pool)

@@ -26,4 +26,6 @@ $ npm publish
 
 And voil&agrave;! You've published a plugin!
 
+> **Note**: You should review your `.npmignore` file _first_ so that you don't force your users to download unnecessary files.
+
 Now comes the hard part: spreading the word and supporting it!

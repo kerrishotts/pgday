@@ -30,6 +30,9 @@ All of this makes testing your plugins really simple. Before we go any further, 
 
 ```sh
 $ npm install cordova-paramedic
+
+# or, from git (this was required for Windows to work)
+$ npm install https://github.com/apache/cordova-paramedic.git
 ```
 
 In order to use this, though, we need to add some scripts to our `package.json` file. They look like this:
@@ -39,13 +42,26 @@ In order to use this, though, we need to add some scripts to our `package.json` 
     "test:android": "cordova-paramedic --cleanUpAfterRun --verbose --platform android --plugin .",
     "test:browser": "cordova-paramedic --cleanUpAfterRun --verbose --platform browser --plugin .",
     "test:ios": "cordova-paramedic --cleanUpAfterRun --verbose --platform ios --plugin .",
-    "test:windows": "cordova-paramedic --cleanUpAfterRun --verbose --platform windows --plugin ."
+    "test:windows": "cordova-paramedic --config .paramedic.windows.config.js"
   }
 ```
 
 With this in place, we can test a plugin just by executing `npm run test:ios` (or whichever platform you need to test with).
 
 > **Note**: In order to test, you'll to have the SDKs properly installed.
+
+> **Windows Note**: You'll need the following configuration file, named `.paramedic.windows.config.js`:
+    ```js
+    module.exports = {
+        "plugins": [ "." ],
+        "platform": "windows",
+        "action": "run",
+        "args": "--archs=x64 -- --appx=uap",
+        "verbose": true,
+        "cleanUpAfterRun": true,
+        "logMins": 5
+    }
+```
 
 # How to write tests
 
@@ -64,6 +80,7 @@ If you want to write your own from scratch, you need to do the following:
         <js-module src="tests.js" name="tests"></js-module>
     </plugin>
     ```
+* Add a `package.json` file (again, doesn't need to be complex)
 * Add your tests in `tests/tests.js`.
 
 There are two types of tests that you should be familiar with: _automatic_ and _manual_ tests.
@@ -205,7 +222,7 @@ The above example also demonstrates two more useful tips:
                         done();
                     }, Number(key));
                 } catch (err) {
-                    expect("this is embarrasing").toBe(err.message);
+                    expect("this is embarrassing").toBe(err.message);
                     done();
                 }
             }, 120000);

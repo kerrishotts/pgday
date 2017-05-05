@@ -129,6 +129,8 @@ Let's go over `plugin.xml` [(complete file)](https://github.com/kerrishotts/cord
             <js-module src="src/windows/IsPrimeProxy.js" name="IsPrimeProxy">
                 <runs />
             </js-module>
+            <!-- if using managed code in next section -->
+            <framework src="src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Release/IsPrimeRuntimeComponent.winmd" custom="true"/>
         </platform>
     </plugin>
     ```

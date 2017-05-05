@@ -14,8 +14,10 @@ Now's your chance to take what you've learned and put it into practice. Why don'
     * Apple Pencil / Stylus support (pressure, tilt)
     * Audio/video processing
     * Faster computation (compared with JavaScript)
-* Extend and/or improve a plugin
-    * For example, the globalization plugin's API is asynchronous, which is really irritating.
-        * All the formatting / globalization information could be determined up-front instead
-        * Try it: https://github.com/apache/cordova-plugin-globalization
+* Extend and/or improve an existing plugin
+    * Core plugins should adhere to specs when they are available
+    * Translate API docs if you know a language other than English
+    * Correct and clarify existing docs
+    * Add and improve tests
+    * Add and improve examples
 * The sky's the limit!

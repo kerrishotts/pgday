@@ -8,7 +8,7 @@ links:
     Continue: tips.html
 ---
 
-Hooks aren't solely related to plugins &mdash; Cordova projects can have project-level hooks too. Plus, hooks can be pretty advanced, so they're a little beyond our scope in this workshop. Even so, I wanted to mention them so you would be aware of them in case you ever need to add them to your plugin.
+Hooks aren't solely related to plugins &mdash; Cordova projects can have project-level hooks too. That said, hooks can be pretty advanced, so they're a little beyond our scope in this workshop. Even so, I wanted to mention them so you would be aware of them in case you ever need to add them to your plugin.
 
 # What is a hook?
 

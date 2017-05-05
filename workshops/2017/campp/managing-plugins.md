@@ -27,6 +27,8 @@ For Cordova CLI versions prior to 7.0.0, you'll typically want to use the `--sav
 
 For Cordova CLI versions after 7.0.0, plugins are automatically saved to your project's configuration. You'll need to use the `--nosave` switch in order to disable this feature.
 
+> **Note**: As of Cordova 7, plugins are also saved to your app's `package.json` file. If one doesn't exist, it will be created automatically at first `prepare`.
+
 # Installing from Git
 
 Plugins can also be installed from a Git repository:

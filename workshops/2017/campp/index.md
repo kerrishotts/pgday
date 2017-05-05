@@ -38,6 +38,35 @@ Creating a PhoneGap plugin doesn’t have to be scary, and it isn’t all that d
 * Comfortable with terminal and CLI
 * Enough knowledge of the native SDKs to be dangerous
 
+I have tested with:
+
+* iOS
+    * macOS Sierra (10.12.4)
+    * Xcode 8.3.1
+    * Cordova CLI 6.5.0 and 7.0.0
+    * `cordova-ios` 4.3.1
+
+* Android
+    * macOS Sierra (10.12.4)
+    * Java JDK 1.8.0.102
+    * Android Studio 2.3.1
+    * Android API Level 25 (7.1.1 Nougat)
+    * Android SDK Tools 26.0.1
+    * Android Platform-Tools 25.0.5
+    * Android Build-Tools 25
+    * Cordova CLI 6.5.0 and 7.0.0
+    * `cordova-android` 6.2.2
+
+* Windows 10 UWP
+    * Windows 10 Pro (v1703, build 15063.138)
+    * Cordova CLI 6.5.0 and 7.0.0
+    * `cordova-windows` 5.0.0
+
+* Browser
+    * Google Chrome 58.0.3029.81
+    * Cordova CLI 6.5.0 and 7.0.0
+    * `cordova-browser` 4.1.0
+
 ## Let's get started!
 
 1. [What is a plugin?](what-is-a-plugin.md) &mdash; What a plugin is; what plugins can do; plugin categories
@@ -66,9 +95,9 @@ You can see code for the final plugin created for this workshop at <https://gith
     * [cordova-browser](https://github.com/apache/cordova-browser)
     * [cordova-windows](https://github.com/apache/cordova-windows)
 * Various plugins:
-    * [Device Plugin]()
-    * [Geolocation Plugin]()
-    * [File Transfer Plugin]()
-    * [Status Bar Plugin]()
+    * [Device Plugin](https://github.com/apache/cordova-plugin-device)
+    * [Geolocation Plugin](https://github.com/apache/cordova-plugin-geolocation)
+    * [File Transfer Plugin](https://github.com/apache/cordova-plugin-file-transfer)
+    * [Status Bar Plugin](https://github.com/apache/cordova-plugin-statusbar)
 * Templates:
     * [PhoneGap Plugin Template](https://github.com/phonegap/phonegap-plugin-template)
