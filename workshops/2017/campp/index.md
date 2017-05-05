@@ -33,17 +33,19 @@ Creating a PhoneGap plugin doesn’t have to be scary, and it isn’t all that d
 
 ## Prerequisites
 
+The following prerequisites are required. Versions used for testing follow.
+
 * Cordova or PhoneGap CLI installed
 * Native SDKs installed as needed
 * Comfortable with terminal and CLI
 * Enough knowledge of the native SDKs to be dangerous
 
-I have tested with:
+Versions tested with:
 
 * iOS
     * macOS Sierra (10.12.4)
     * Xcode 8.3.1
-    * Cordova CLI 6.5.0 and 7.0.0
+    * Cordova CLI 7.0.0
     * `cordova-ios` 4.3.1
 
 * Android
@@ -54,17 +56,17 @@ I have tested with:
     * Android SDK Tools 26.0.1
     * Android Platform-Tools 25.0.5
     * Android Build-Tools 25
-    * Cordova CLI 6.5.0 and 7.0.0
+    * Cordova CLI 7.0.0
     * `cordova-android` 6.2.2
 
 * Windows 10 UWP
     * Windows 10 Pro (v1703, build 15063.138)
-    * Cordova CLI 6.5.0 and 7.0.0
+    * Cordova CLI 7.0.0
     * `cordova-windows` 5.0.0
 
 * Browser
     * Google Chrome 58.0.3029.81
-    * Cordova CLI 6.5.0 and 7.0.0
+    * Cordova CLI 7.0.0
     * `cordova-browser` 4.1.0
 
 ## Let's get started!
