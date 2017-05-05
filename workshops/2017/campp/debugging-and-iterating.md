@@ -42,34 +42,34 @@ You may also need to debug the JavaScript side of things, in which case, you can
 
 * iOS (see [Enabling Web Inspector](https://developer.apple.com/library/content/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/GettingStarted/GettingStarted.html))
     * On your device:
-        * Settings > Safari > Advanced
-        * Turn Web Inspector to **ON**
+        * **Settings** > **Safari** > **Advanced**
+        * Turn Web Inspector to _ON_
     * On your development machine:
-        * Safari > Preferences... > Advanced
-        * **CHECK** Show Develop menu in menu bar
+        * **Safari** \| **Preferences...** \| **Advanced**
+        * CHECK **Show Develop menu in menu bar**
         * Attach your iPhone or iPad to your computer
             * You may be prompted to trust the machine &mdash; do so.
         * Once a context is available:
-            * Develop > Your device > App
+            * **Develop** \| Your device \| App
 * Android (see [Get Started with Remote Debugging Android Devices](https://developers.google.com/web/tools/chrome-devtools/remote-debugging/))
     * On your device:
         * Enable developer mode (see [Enable developer options](https://developer.android.com/studio/debug/dev-options.html))
-            * Settings > About phone
-            * Tap "Build number" seven times
-            * Go back; "Developer options" should be near the bottom
-        * Settings > Developer Options > Enable USB Debugging
+            * **Settings** > **About phone**
+            * Tap **Build number** seven times
+            * Go back; **Developer options** should be near the bottom
+        * **Settings** > **Developer Options** > **Enable USB Debugging**
     * On your development machine:
         * Launch Chrome (should be v32 or better)
         * Navigate to [chrome://inspect](chrome://inspect)
-        * Ensure "Discover USB Devices" is checked
+        * Ensure **Discover USB Devices** is checked
         * Connect your Android device
-            * You may have to accept "Allow USB Debugging" permission on your device
+            * You may have to accept the "Allow USB Debugging" permission on your device
         * Once a context is available:
             * Click the link under the desired device and app.
 * Windows
     * Use Visual Studio.
 
-So, before we continue, you may be asking just what gets linked? Here's what happens:
+So, before we continue on, you may be asking just what gets linked? Here's what happens:
 
 * app's `plugins/<your-plugin>` is symlinked to your plugin
 * Native code is symlinked in app's `platforms/`

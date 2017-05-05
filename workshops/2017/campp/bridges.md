@@ -8,7 +8,7 @@ links:
     Continue: testing.html
 ---
 
-We've left just how JavaScript and your plugin's native code actually interact. For non-proxy platforms, they interact over something called a "bridge". The implementation of this bridge is different for each platform, but the idea is the same: to facilitate communication between JavaScript and native code.
+We've not really discussed just how JavaScript and your plugin's native code actually interact. For non-proxy platforms, they interact over something called a "bridge". The implementation of this bridge is different for each platform, but the idea is the same: to facilitate communication between JavaScript and native code.
 
 The entire process is complex, and it's not a requirement that you know this by heart. But it is a good idea to have a basic understanding of what's going on under the hood in case you run into any difficulties.
 

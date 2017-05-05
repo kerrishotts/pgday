@@ -255,7 +255,7 @@ module.exports = function isPrime(successFn, failureFn, candidate) { // [1]
 1. If the function's argument types match this pattern, we can assume the user is trying to call us using the `Promise` pattern. If they were using the callback pattern, `successFn` would be a function, and `candidate` would be defined.
 2. All modern webviews support promises, but it never hurts to check.
 3. Our plugin can return progress results while the calculation is ongoing. We can't complete the promise to do that, so if the user passes a function in the `failureFn` argument, we assume that to be a progress handler. Likewise, later, we pass `successFn` to `isPrime` &mdash; which may not initially make sense, _except_ that arguments would be shifted because of the different call pattern.
-4. We don't want the progres handler to be _required_, so make sure it's a function before calling it.
+4. We don't want the progress handler to be _required_, so make sure it's a function before calling it.
 5. We know the calculation is complete when our success callback is called with `result.complete` set to `true`. We can then safely resolve the promise.
 
 ```javascript

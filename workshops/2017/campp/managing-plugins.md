@@ -61,8 +61,6 @@ The `--link` switch is most useful when developing plugins &mdash; it will link 
 
 > **Note:** Not _everything_ is linked; we'll cover this later.
 
-> **Tip:** Adding a plugin to a child project (relative to the plugin) automatically symlinks the plugin
-
 > **Warning:** Careful with parent plugins and child projects &mdash; some tools choke on circular references in the file system
 
 # Finding plugins

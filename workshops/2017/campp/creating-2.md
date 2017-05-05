@@ -12,13 +12,9 @@ Now we need to write some native code for each platform our plugin supports. Our
 
 Let's start with the `browser` and `windows` platforms, since that code will be the most familiar, since it's all JavaScript.
 
-> **Note:** You _can_ use managed code in Windows plugins, but we've not done so for this project. As such, the Windows plugin won't see a calculation benefit over the browser.
-
 # Browser &amp; Windows (JS) Code
 
 The code for the `browser` platform is located at `src/browser/isPrimeProxy.js`. Windows code is located at `src/windows/isPrimeProxy.js`. In our case, the code is identical, but this may not be so for plugins you develop.
-
-> **Note:** There's a good reason these files have a `Proxy` suffix; we'll cover that shortly.
 
 1. First, we need to write some boilerplate code:
 
@@ -283,7 +279,7 @@ We're using Java for our Android plugin, so the code should be pretty easy to fo
 
     * There's not much exciting here, except how we can pass errors back to JavaScript. We do this by calling `callbackContext.error()`.
 
-3. We need to extract our factors array and set up some variables:
+3. We need to extract our `factors` array and set up some variables:
 
     ```java
         JSONArray factors = result.getJSONArray("factors");
@@ -350,16 +346,16 @@ We're using Java for our Android plugin, so the code should be pretty easy to fo
 
 # Windows Managed Code
 
-If you were to use our Windows version of this plugin, you'd find it a little slow &mdash; it's no better than using a straight JavaScript implementation. To do better, we'd need to write some managed code.
+If you were to use the Windows version of this plugin, you'd find it a little slow &mdash; it's no better than using a straight JavaScript implementation. To do better, we'd need to write some managed code.
 
 Writing some managed code isn't hard, thankfully. In this example, we'll be using C#, but you can use any language supported by the .NET runtime.
 
 1. Create a new managed component in Visual Studio 2017
-    1. **File** | **New** | **New Project...**
-    2. Expand **Installed**, then select **Other Languages** &gt; **Visual C#;** &gt; **Windows Universal**
+    1. **File** \| **New** \| **New Project...**
+    2. Expand **Installed**, then select **Other Languages** &gt; **Visual C#** &gt; **Windows Universal**
     3. Click **Windows Runtime Component (Universal Windows)**
     4. In **Name**, type "IsPrimeRuntimeComponent"
-    5. In **Location**, choose "src\windows"
+    5. In **Location**, browse to "_plugin root_\src\windows"
     6. Name the solution "IsPrimeRuntimeComponent"
     7. Click **OK**
 2. Rename `class1.cs` to `IsPrimeRT.cs`
@@ -396,7 +392,7 @@ Writing some managed code isn't hard, thankfully. In this example, we'll be usin
 4. Build a release version
     1. Change the solution configuration to **Release**
     2. Leave the solution platform as **Any CPU**
-    3. **Build** | **Build Solution**
+    3. **Build** \| **Build Solution**
 5. Add the following to `plugin.xml` under the `windows` platform:
     ```xml
     <framework src="src/windows/IsPrimeRuntimeComponent/IsPrimeRuntimeComponent/bin/Release/IsPrimeRuntimeComponent.winmd" custom="true"/>
@@ -407,27 +403,27 @@ Writing some managed code isn't hard, thankfully. In this example, we'll be usin
     2. Modify the first lines of the `isPrime` function:
         ```js
         function isPrime(successFn, failureFn, args) {
-        var result = args[0],
-            candidate = result.candidate,
-            half = Math.floor(candidate / 2),
-            batchSize = 100000,  // increased by factor of 10
-            cur = 2;
+            var result = args[0],
+                candidate = result.candidate,
+                half = Math.floor(candidate / 2),
+                batchSize = 100000,  // increased by factor of 10
+                cur = 2;
 
-        setTimeout(function runBatch() {
-            // get list of factors in this batch
-            var results = IsPrimeRuntimeComponent.IsPrimeRT.batch(candidate, cur, batchSize, half); // [1]
-            cur = Math.min(half + 1, cur + batchSize);
-            if (results && results.length > 0) {
-                // The return result isn't a real array, so use Array.from()
-                result.factors = result.factors.concat(Array.from(results));
-            }
-            // and calc progress
-            result.progress = (cur / half) * 100;
+            setTimeout(function runBatch() {
+                // get list of factors in this batch
+                var results = IsPrimeRuntimeComponent.IsPrimeRT.batch(candidate, cur, batchSize, half); // [1]
+                cur = Math.min(half + 1, cur + batchSize);
+                if (results && results.length > 0) {
+                    // The return result isn't a real array, so use Array.from()
+                    result.factors = result.factors.concat(Array.from(results));
+                }
+                // and calc progress
+                result.progress = (cur / half) * 100;
 
-            if (!cur || cur > half)  {
-                /* no further changes */
+                if (!cur || cur > half)  {
+                    /* no further changes */
         ```
 
 You may have noticed that the implementation in step 3 nearly exactly duplicates the `isPrimeBatch` JavaScript function we remove in step 7. This is, after all, the majority of the hard work: dividing numbers and finding factors. The rest is rather simple work that doesn't depend on speed. Furthermore, this method illustrates how you can mix and match JavaScript and managed code without having complex bridges between the two &mdash; JavaScript is a first-class language and can communicate directly with managed components (see 7.2, comment 1).
 
-The only thing we've done is increase the `batchSize` since the managed code can perform faster. Of course, in the real world, you'd try and determine the appropriate batch size rather than hard-coding it. And in the real world, you'd use a background thread as well, just like we did with iOS and Android. For an excellent example of this, see Microsoft's excellent documentation on [Threading and async programming / Submit a work item to the thread pool](https://docs.microsoft.com/en-us/windows/uwp/threading-async/submit-a-work-item-to-the-thread-pool)
+The only thing we've done is increase the `batchSize` since the managed code can perform faster. Of course, in the real world, you'd try and determine the appropriate batch size rather than hard-coding it. And in the real world, you'd use a background thread as well, just like we did with iOS and Android. For an excellent example of this, see Microsoft's excellent documentation on [Threading and async programming / Submit a work item to the thread pool](https://docs.microsoft.com/en-us/windows/uwp/threading-async/submit-a-work-item-to-the-thread-pool).

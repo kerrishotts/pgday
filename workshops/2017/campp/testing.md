@@ -51,7 +51,7 @@ With this in place, we can test a plugin just by executing `npm run test:ios` (o
 > **Note**: In order to test, you'll to have the SDKs properly installed.
 
 > **Windows Note**: You'll need the following configuration file, named `.paramedic.windows.config.js`:
-    ```js
+>   ```js
     module.exports = {
         "plugins": [ "." ],
         "platform": "windows",
