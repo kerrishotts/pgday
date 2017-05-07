@@ -10,15 +10,15 @@
 
 # Modern JavaScript<br/> and PhoneGap <!--{style="color:white"}-->
 
-## PhoneGap Day EU 2017 <!--{style="color:white"}-->
-
 ##### Kerri Shotts &bullet; [@kerrishotts](https://www.twitter.com/kerrishotts) <!--{style="color:white"}-->
 <!--{h5:style="color:white"}-->
+
+##### https://kerrishotts.github.io/pgday/ <!--{style="color:white"}-->
 
 ---
 <!-- template: light -->
 
-<!-- footer: https://github.com/kerrishotts/pgday/blob/master/2017/modern-javascript-and-phonegap -->
+<!-- footer:  -->
 
 # About Me
 
@@ -30,18 +30,61 @@
 * One of many moderators at:
     * [Cordova Google Group](https://groups.google.com/forum/#!forum/phonegap)
     * [PhoneGap Adobe Forums](http://forums.adobe.com/community/phonegap)
-* I love retro technology and ST:TNG :wink:
+
 ---
 
-# Remember ECMAScript 5?
+> > > **2009**
 
-Release year: 2009
+---
+
+<!-- template: dark -->
+
+![bg fit original](./assets/2009-pres.jpg)
+
+# President of the<br/>United States of America <!--{style='text-align:center; color: white; top: 3em;'}-->
+
+---
+
+<!-- footer: By nvog86 - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=20238837 -->
+
+![bg 50% original](./assets/iphone3gs.jpg)
+
+# iPhone 3GS <!--{style='text-align:center; color: white; top: 3em;'}-->
+
+## iOS 3  <!--{style='text-align:center; color: white; position: relative; top: 2.9em;'}-->
+
+---
+
+<!-- footer: By AlvinPing at English Wikipedia, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=8406455 -->
+
+![bg 50% original](./assets/hero.jpg)
+
+# HTC Hero <!--{style='text-align:center; color: white; top: 3em;'}-->
+
+## Android 1.5  <!--{style='text-align:center; color: white; position: relative; top: 2.9em;'}-->
+
+---
+
+<!-- footer: By Ramaksoud2000 via Chris Williams - Wikipedia via GitHub logo.js, Public Domain, https://commons.wikimedia.org/w/index.php?curid=18434372 -->
+
+![bg 40% original](./assets/JavaScript-logo.png)
+
+# ECMAScript 5 <!--{style='text-align:center; color: white; top: -2.1em;'}-->
+
+---
+
+<!-- template: light -->
+<!-- footer: -->
+
+# ES5
 
 * The version we all know and love (~ish?)
 * Supported by all modern mobile web views^1^
     * iOS 6+, IE 10+, Edge (forever), Android 4.4+
 * Lots of good things:
-    * `map`, `reduce`, getters/setters, etc.
+    * `'use strict';`
+    * `map`, `reduce`, `Object.create`, `Object.freeze`, `trim`!
+    * JSON parsing
 
 <hr>
 
@@ -49,28 +92,126 @@ Release year: 2009
 
 ---
 
-# ES2015 and beyond
+> > > **2015**
 
-<div style='font-size:110%'>
+---
 
-Version| Feature                               | Feature <!-- {tr:style='display:none'} -->
-------:|:--------------------------------------|:-----------
-2015^1^|Block-scoped `let` &amp; `const` <!-- {td:style='width:45%'} --> | Destructuring and named parms
-       |Default parameters                     | Rest and Spread operator (`...`)
-       |`for...of` loops and Iterators         | Arrow functions (`=>`)
-       |Template strings &amp; interpolation   | Improved literals (object, `0b10`)
-       |Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
-       |`class` syntactic sugar &amp; `super`  | Modules (`import`, `export`)
-2016^2^|Exponent (`**`)                        | `Array.prototype.incudes()`
-2017^3^|`async` / `await`                      | String padding :wink:
-       |Shared memory                          | Atomics
+<!-- template: dark -->
 
-</div>
+![bg fit original](./assets/2009-pres.jpg)
+
+# ***Still*** President of the<br/>United States of America <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
+
+---
+
+# Live Long, and Prosper
+
+## R.I.P. Leonard Nimoy
+
+---
+
+# ES2015 / ES6
+
+---
+
+<!-- template: light -->
+
+# ES2015 (ES6)
+
+It had been quite a while, so the list is long...
+
+ Feature                               | Feature <!-- {tr:style='display:none'} -->
+:--------------------------------------|:-----------
+Block-scoped `let` &amp; `const` <!-- {td:style='width:50%'} --> | Destructuring and named parms
+Default parameters                     | Rest and Spread operator (`...`)
+`for...of` loops and Iterators         | Arrow functions (`=>`)
+Template strings &amp; interpolation   | Improved literals (object, `0b10`)
+Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
+`class` syntactic sugar &amp; `super`  | Modules (`import`, `export`)
 
 <hr>
 
-1: https://github.com/lukehoban/es6features#readme; the list here is not a complete representation of _all_ features
-2: http://www.2ality.com/2016/01/ecmascript-2016.html; 3: http://www.2ality.com/2016/02/ecmascript-2017.html
+1: https://github.com/lukehoban/es6features#readme; **not** a complete representation of _all_ features
+
+---
+
+> > > **2016**
+
+---
+
+<!-- template: dark -->
+
+![bg fit original](./assets/2009-pres.jpg)
+
+# We'll miss you! :cry: <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
+
+---
+
+# Brexit
+
+## Wait... what?
+
+---
+
+# ES2016 / ES7
+
+---
+
+<!-- template: light -->
+
+# ES2016 (ES7)
+
+Fewer features, but still important:
+
+|Feature                               <!-- {tr:style='display:none'} -->|
+|:--------------------------------------|
+|Exponent (`**`)                        |
+|`Array.prototype.incudes()`            |
+
+<hr>
+
+Source: http://www.2ality.com/2016/01/ecmascript-2016.html
+
+---
+
+> > > **2017**
+
+---
+
+<!-- template: dark -->
+
+![bg fit original](./assets/2017-pres.jpg)
+
+# W T F ? <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
+
+---
+
+# ES2017
+
+---
+
+<!-- template: light -->
+
+# ES2017
+
+Finally &mdash; proper string padding!
+
+|Feature                               <!-- {tr:style='display:none'} -->|
+|:--------------------------------------|
+|`async` / `await`                      |
+|String padding :wink:                  |
+|Shared memory                          |
+|Atomics                                |
+
+<hr>
+
+Source: http://www.2ality.com/2016/02/ecmascript-2017.html
+
+---
+
+# ES2018 and beyond
+
+## https://esdiscuss.org
 
 ---
 
@@ -78,81 +219,29 @@ Version| Feature                               | Feature <!-- {tr:style='display
 
 ![bg original](../../_common/assets/picard/pouting.jpg)
 
-
-# Some Very Important Caveats!
+# Before we continue...
 
 ---
 
 <!-- template: light -->
 
-
 # Important Caveats
 
 * ES2015+ is **NOT** a performance optimization
-  * See https://kpdecker.github.io/six-speed/
-* Typically requires a build step
-* Debugging can be interesting
-* Some of the syntax is a little _sharp_ &mdash; use with care
+  * See https://kpdecker.github.io/six-speed/ (as of 2017-01-04)
 
-
-   <!--
-   * Source maps _help_, but sometimes quirky
-   * Getting better
-   -->
-
-<!--
-
-* Best iOS performance requires `WKWebView`
-
-   * `UIWebView` performance is _abysmal_
-   -->
-
-
+![ES 2015+ performance](./assets/es6perf.png)
 
 ---
 
-![original fit bg](./assets/es6perf.png)
+**Webview**
+**ES2015+ Perf**
+(Not to scale)
+
+![bg original 80%](./assets/perf1.png?a)
 
 <!--
 
-<hr>
-
-Source: https://kpdecker.github.io/six-speed/ (2017/01/04)
-
--->
-
----
-
-<!--
-## Some unscientific numbers
-
-|     Device               | GB4 | Web View   | Mode  | ES6 IPF (mips) | ES5 IPF (mips) | ES3 IPF (mips) |
-|-------------------------:|----:|:----------:|:-----:|---------------:|---------------:|---------------:|
-| MacBook Pro              | 3574| Safari 10  |  reg  |` 75650 (4.51)` |` 79783 (4.75)` |` 78381 (4.67)` |
-|                          |     |            |  min  |` 72167 (4.30)` |` 80301 (4.77)` |` 72953 (4.35)` |
-| iPad&nbsp;Pro&nbsp;12.9" | 3000| Safari 10  |  reg  |` 81344 (4.88)` |` 81720 (4.89)` |` 83584 (5.01)` |
-|                          |     |            |  min  |` 80542 (4.83)` |` 72315 (4.34)` |` 81182 (4.87)` |
-| iPad Mini 4              | 1638| Safari 10  |  reg  |` 32791 (1.97)` |` 36222 (2.17)` |` 39195 (2.35)` |
-|                          |     |            |  min  |` 36501 (2.19)` |` 38676 (2.32)` |` 36715 (2.20)` |
-| Tab S 8.4"               |  783| Chrome 54  |  reg  |`  2614 (0.13)` |`  3350 (0.17)` |`  2394 (0.11)` |
-|                          |     |            |  min  |`  2847 (0.14)` |`  3557 (0.19)` |`  1950 (0.09)` |
-| iPad&nbsp;Pro&nbsp;12.9" | 3000| UIWebView  |  reg  |`   100 (0.01)` |`   100 (0.01)` |`   100 (0.01)` |
-|                          |     |            |  min  |`   100 (0.01)` |`   100 (0.01)` |`   100 (0.01)` |
--->
-<!-- {table:style='font-size:70%'} -->
-
-<!--
-| iPhone 6s        | 2474| Safari 10  |  reg  |  41 552 (2.49) |  43 811 (2.63) |  42 912 (2.57) |
-|                  |     |            |  min  |  41 773 (2.50) |  41 285 (2.48) |  41 411 (2.47) |
--->
-<!-- template: dark -->
-
-![bg](./assets/rabbit.jpg)
-![bg](./assets/turtle.jpg)
-
-# Webviews &amp; Performance
-
-<div style="columns: 2; font-size: 95%">
 
 * **WKWebView** (iOS) single-core performance is **excellent**
 * Compared to Safari on MBPr\*
@@ -160,17 +249,17 @@ Source: https://kpdecker.github.io/six-speed/ (2017/01/04)
     * iPhone 6s: 2&times; slower
     * iPad Mini 4: 2.5&times; slower
 
-* **Android Webview / Chrome** performance is **slow** <!--{li:style="padding-top:1em"}-->; by roughly an order of magnitude
+* **Android Webview / Chrome** performance is **slow**; by roughly an order of magnitude
 * Compared to Chrome on MBPr:
     * OnePlus One: ~10&times; slower
     * Samsung Tab S 8.4&Prime;: ~33&times; slower
 
-</div>
 
 <hr>
 
-**Note:** Results _highly sensitive_ to the JavaScript features in use. \*MacBook Pro: Late 2014, 2.2GHz i7 16GB RAM <!--; _GB4_ = Geekbench 4 single-core score; _min_ = minified & dead code removed -->
-[Left Picture](https://pixabay.com/en/rabbit-hare-animal-cute-adorable-1903016/) by [TPSDave (Pixabay)](https://pixabay.com/en/users/tpsdave-12019/); [Right Picture](https://pixabay.com/en/turtle-nature-animal-wildlife-702829/) by [leovalente (Pixabay)](https://pixabay.com/en/users/leovalente-203647/)
+**Note:** Results _highly sensitive_ to the JavaScript features in use.
+
+-->
 
 ---
 
@@ -182,40 +271,61 @@ Source: https://kpdecker.github.io/six-speed/ (2017/01/04)
 
 ---
 
+<!-- template: light -->
 
-![bg](./assets/snail.jpg)
+<!-- footer: UIWebView's performance is highly dependent upon language features in use. -->
+
+![bg original 95%](./assets/perf2.png)
+
+<!--
 
 # Webviews &amp; Performance (2)
-
-<div style="font-size:133%"; >
 
 * UIWebView: *ugh*
     * "Slower than molasses in January"
     * e.g: ~75&times; slower on an iPad Pro 12.9&Prime;
     * No JIT :cry:
 
-</div>
+-->
 
+---
 
-<hr>
+<!-- footer: -->
 
-**Note:** Results _highly sensitive_ to the JavaScript features in use. MacBook Pro: Late 2014, 2.2GHz i7 16GB RAM <!--; _GB4_ = Geekbench 4 single-core score; _min_ = minified & dead code removed -->
-[Picture](https://pixabay.com/en/snail-snail-shell-slow-animal-405384/) by [Mhy (Pixabay)](https://pixabay.com/en/users/Mhy-333962/)
+# Important Caveats, continued
+
+* May require a build step
+* Debugging can be "fun"
+* Some of the syntax can be a little _sharp_ &mdash; handle with care
 
 ---
 
 <!-- template: light -->
 
-# Performance Takeaways
+# Euuuuggghhhh!!!
+
+## Way to crush my dreams!
+
+---
+
+# Not really....
 
 * Micro-benchmarks aren't the entire story
-    * Performance is steadily improving
-* Not "News" that most webviews are slow &mdash; true of ES5 too
-    * Expected: iOS `WKWebView` is fast (JIT, faster single-core perf)
-    * Expected: Android webviews aren't (slower single-core perf)
-    * Expected: `UIWebView` is slower than a snail (no JIT)
-* Frameworks are using ES2015 more
-* More expressive &amp; less boilerplate
+	* Engines are continually improving
+
+* Actual performance deltas are highly variable 
+	* Depends on platform and the language features in use
+
+* Lots of benefits:
+	* Expressive and concise
+	* Less boilerplate
+	* `padStart` and `padEnd`! :wink:
+
+---
+
+# What's to like?
+
+## A quick intro to ES2015+
 
 ---
 
@@ -242,7 +352,7 @@ app.start();
 
 ![bg original](../../_common/assets/picard/brain-freeze.jpg)
 
-<div style="position: absolute; top: 60%; width: 90%; height: 40%; left: 5%; right: 5%; background-color: rgba(255,255,255,0.85); border-radius: 0.5em; border: 1px solid rgba(0,0,0,0.25); display: flex; flex-direction: column;">
+<div style="position: absolute; top: 60%; width: 90%; height: 40%; left: 5%; right: 5%; background-color: rgba(255,255,255,1); border-radius: 0.5em; border: 1px solid rgba(0,0,0,0.25); display: flex; flex-direction: column;">
   <div style="line-height: 3.5em; padding: 0.5em; margin: auto; width: 100%;">undefined</div>
   <div style="border-top: 1px solid rgba(0,0,0,0.25); color: hsl(220, 75%, 60%); text-align: right; padding: 0.5em">Close</div>
 </div>
@@ -280,7 +390,7 @@ Line 6 ES5 equivalent: `.addEventListener("click", (function() { this.sayHi(); }
 
 ![bg original](../../_common/assets/picard/picard-day.jpg)
 
-<div style="position: absolute; top: 60%; width: 90%; height: 40%; left: 5%; right: 5%; background-color: rgba(255,255,255,0.85); border-radius: 0.5em; border: 1px solid rgba(0,0,0,0.25); display: flex; flex-direction: column;">
+<div style="position: absolute; top: 60%; width: 90%; height: 40%; left: 5%; right: 5%; background-color: rgba(255,255,255,1); border-radius: 0.5em; border: 1px solid rgba(0,0,0,0.25); display: flex; flex-direction: column;">
   <div style="padding: 0.5em; margin: auto; width: 100%; line-height: 3.5em">Hello, PG Day Attendees!</div>
   <div style="border-top: 1px solid rgba(0,0,0,0.25); color: hsl(220, 75%, 60%); text-align: right; padding: 0.5em">Close</div>
 </div>
@@ -294,12 +404,19 @@ Line 6 ES5 equivalent: `.addEventListener("click", (function() { this.sayHi(); }
 
 # Template Strings
 
+Single quotes, double quotes, and now... backticks!? Just after I remapped underscore to the backtick, no less!
+
 ```javascript
 function sayHello(name) {
   return `Hello, ${name}!`;
 }
+
 sayHello("World");  // Hello, World!
 ```
+
+---
+
+# Template Strings
 
 Complex expressions (*use with care*):
 
@@ -307,13 +424,16 @@ Complex expressions (*use with care*):
 function sayComplexHello(name) {
   return `Hello, ${name ? name : "Jane Doe"}!`;
 }
+
+sayComplexHello("Alex");    // Hello, Alex!
+sayComplexHello();          // Hello, Jane Doe!
 ```
 
 ---
 
 # Promises, Promises
 
-Now with arrow functions:
+More concise with arrow functions:
 
 ```javascript
 function getPos(options) {
@@ -323,31 +443,54 @@ function getPos(options) {
   });
 }
 ```
-<!-- {style='font-size:90%'} -->
+
+---
+
+# Promises, Promises, Promises
+
+Easier-to-read `then` and `catch`:
+
+```javascript
+getPos.then(pos => {
+  console.log(JSON.stringify(pos);
+}).catch(err => {
+  console.error(err);
+});
+```
 
 ---
 
 # Destructuring
 
+Do be careful with how far you nest, though.
+
 ```javascript
 function gotPos(data) {
-  const {timestamp, coords:{latitude, longitude}} = data;
-  console.log(`At ${latitude},${longitude} on ${timestamp}`);
+  let {timestamp, coords:{latitude, longitude}} = data;
+  console.log(`${latitude},${longitude}@${timestamp}`);
 }
 function gotError(err) {
     console.log(`Error ${err.code}: ${err.message}`);
 }
 getPos().then(gotPos).catch(gotError);
 ```
-<!-- {style='font-size:90%'} -->
 
+---
+
+# Destructuring
+
+Not just for objects; arrays work too:
 
 ```javascript
-
-// Arrays work too:
-[a, b] = [b, a]  // swap!
+function divide(a, b) {
+  if (b === 0) {
+    return [undefined, new Error("Divide by zero")];
+  } else {
+    return [a / b, null];
+  }
+}
+let [results, error] = someFunction();
 ```
-<!-- {style='font-size:90%'} -->
 
 ---
 
@@ -356,15 +499,14 @@ getPos().then(gotPos).catch(gotError);
 ```javascript
 async function start() {
   try {
-    const pos = await getPos();
-    const {timestamp, coords:{latitude, longitude}} = pos;
-    console.log(`At ${latitude},${longitude} on ${timestamp}`);
+    let pos = await getPos(),
+        {coords:{latitude, longitude}} = pos;
+    console.log(`${latitude}, ${longitude}`);
   } catch(err) {
     console.log(`Error ${err.code}: ${err.message}`);
   }
 }
 ```
-<!-- {style='font-size:87%'} -->
 
 <hr>
 
@@ -381,28 +523,27 @@ var elList = document.querySelectorAll("a"),
     elArr = [].slice.call(elList, 0);
 ```
 
-ES2015+\*:
+---
+
+# Array-like conversion
+
+Using the standard library:
 
 ```javascript
 let elArr = Array.from(document.querySelectorAll("a"));
 ```
 
-<hr>
-
-\* with the standard library
-
-
----
-
-# Spread/Rest is awesome (...)
-
-Even shorter than `Array.from`:
+Using the spread operator:
 
 ```javascript
 let elArr = [...document.querySelectorAll("a")];
 ```
 
-Easy variadic arguments:
+---
+
+# Rest
+
+Easy variable arguments:
 ```javascript
 function sum(start = 0, ...nums) {
   return nums.reduce((acc, val) => acc + val, start);
@@ -434,103 +575,33 @@ console.log(sprintf ("%1, %0", "world", "hello"));
 # Named Parameters & Defaults
 
 ```javascript
-function getPicture({quality=50, width=512, height=512}={}) {
+function getPicture({quality = 50, width = 512, 
+                     height = 512} = {}) {
   return new Promise((resolve, reject) => {
     navigator.camera.getPicture(resolve, reject, {
-      quality, targetWidth: width, targetHeight: height,
-      allowEdit: false, correctOrientation: true });
+      allowEdit: false,
+      correctOrientation: true,
+      quality, 
+      targetWidth: width, targetHeight: height,      
+    });
   });
 }
+```
+
+---
+
+# Named Parameters & Defaults
+
+```javascript
+// use all the defaults
 getPicture().then(/*...*/);
+
+// specify only quality
 getPicture({quality:75}).then(/*...*/);
+
+// specify only height & width
 getPicture({height: 1024, width: 1024}).then(/*...*/)
 ```
-<!-- {style='font-size:90%'} -->
-
-<!--
-
-# Sets and Maps
-
-Easy Dedup:
-
-```Javascript
-function dedup (arr = []) {
-  return Array.from(new Set(arr));
-}
-```
-
----
-
-
-
-### File Transfer (ES2017)
-
-<div style='font-size:84%'>
-
-
-```javascript
-function uploadFile({source, target, options} = {}) {
-  return new Promise((resolve, reject) => (new FileTransfer()).
-    upload(url, to, resolve, reject, options));
-}
-async function start() {
-  try {
-   const {responseCode, response, bytesSent} = uploadFile({
-      url: "cdvfile://localhost/persistent/test.txt",
-      to:  "http://www.example.com/upload.php",
-      options: { mimeType: "text/plain",
-                 fileKey:  "file", fileName: "test" }});
-  } catch (err) { /* do something with the error */ }
-}
-```
-
-</div>
-
----
-
-### Do you sense a pattern?
-
-```javascript
-function promisify(fn, thisArg = this, {split = 0} = {}) {
-  return function __promisified__(...args) {
-    const afterArgs = args.splice(split), beforeArgs = args;
-    return new Promise((resolve, reject) => {
-      try {
-        fn.apply(thisArg, beforeArgs.concat(resolve, reject, 
-          ...afterArgs));
-      } catch (err) { resolve(err); }
-    });
-  }
-}
-```
-
----
-
-### Easy wrappers for Cordova plugin APIs!
-
-```javascript
-const getLoc = promisify(
-  navigator.geolocation.getCurrentPosition, 
-  navigator.geolocation // "this" arg
-);
-const {timestamp, coords:{latitude, longitude}} = await getLoc();
-
-const ft = new FileTransfer();
-// upload signature: url, to [split], success, error, options
-const uploadFile = promisify(ft.upload, ft, {split: 2});
-const r = await uploadFile(url, to, options);
-```
-
-<hr>
-
-\* Applies to Cordova plugin APIs that use the success, error form; could be made more generic
-
-
----
-
-# Where can I use this now?
-
--->
 
 ---
 
@@ -538,22 +609,21 @@ const r = await uploadFile(url, to, options);
 
 Static Analysis, FTW!
 
-:page_facing_up: math.js:
+math.js:
 
 ```javascript
 export function add(a, b) { return a+b; }
 ```
-<!-- {style='font-size:90%'} -->
 
-:page_facing_up: index.js:
+index.js:
 ```javascript
-import {add} from "math.js";
+import {add} from "./math.js";
 console.log(add(4, 3));      // 7
 ```
-<!-- {style='font-size:90%'} -->
 
+---
 
-
+# Cool! Where can I use it?
 
 ---
 
@@ -562,22 +632,21 @@ console.log(add(4, 3));      // 7
 |     OS             |   ES2015   |   ES2016   |   ES2017   |
 |-------------------:|-----------:|-----------:|-----------:|
 | Android (Chrome)   |  97% (51+) | 100% (55+) |  53% (56+) |
-|           Edge 15  |      100%  |      100%  |       39%  |
-|           Edge 14  |       93%  |         -  |         -  |
-|           iOS 11\* |      100%  |      100%  |       98%  |
+|  Windows (Edge 15) |      100%  |      100%  |       39%  |
+|  Windows (Edge 14) |       93%  |         -  |         -  |
+|           iOS 10.3 |      100%  |      100%  |       98%  |
 |            iOS 10  |      100%  |       61%  |       42%  |
 |            iOS  9  |       54%  |         -  |         -  |
 
 <hr>
 
-\* Based on current status in Safari Technological Preview 11
-**Note**: Some of the tests are based on existence, not completeness. **Sources**: [ES2015](http://kangax.github.io/compat-table/es6/), [ES2016](http://kangax.github.io/compat-table/es2016plus/), [ES2017](http://kangax.github.io/compat-table/esnext/)
+**Sources**: [ES2015](http://kangax.github.io/compat-table/es6/), [ES2016+](http://kangax.github.io/compat-table/es2016plus/)
 
 ---
 
-# ES2015: The Rise of the Transpilers
+# The Rise of the Transpilers
 
-These can all transpile ES2015\* (feature support may vary)
+These can all transpile ES2015+\* (feature support may vary)
 
 * [Babel](https://babeljs.io) (n&eacute;e es6to5)
 * [TypeScript](https://www.typescriptlang.org)
@@ -602,7 +671,53 @@ These can all transpile ES2015\* (feature support may vary)
 > ### No Implementation! :scream: <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
 
 ---
+
 <!-- template: light -->
+
+# I lie...
+
+Browsers have _finally_ started shipping implementations:
+
+* Live:
+	* Safari 10.1, iOS 10.3
+* Behind a flag
+	* Edge 15
+	* Firefox 54
+	* Chrome and Android WebView 60
+
+<hr>
+
+Source: http://caniuse.com/#feat=es6-module
+
+---
+
+# Native Modules
+
+`js/index.js`: 
+```javascript
+import Game from "./Game.js";
+const game = new Game();
+game.start();
+```
+
+`index.html`: 
+```html
+<script type="module" src="./js/index.js"></script>
+```
+
+---
+
+# There's always a catch
+
+* No "bare" `import`!
+	* Must include the path
+	* Must include the extension
+	* No aliases
+
+A lot of existing ES2015+ imports **do not work in the browser as-is.**
+
+---
+<!-- template: dark -->
 
 ![bg original](../../_common/assets/picard/yay.jpg)
 
@@ -610,6 +725,7 @@ These can all transpile ES2015\* (feature support may vary)
 
 
 ---
+<!-- template: light -->
 
 # Module support using Bundling :shopping:
 
@@ -627,7 +743,7 @@ Dependency management & `import`/`export` (and CommonJS, AMD, etc.) support
     * Just run each tool's CLI... _every time_...
     * Error prone &mdash; you might forget!
 * Automatic
-    * Task runners (`gulp` or `grunt`; out-of-scope)
+    * Task runners (`gulp`, `grunt`, etc.)
     * `npm` scripts
     * Plugin or Project hooks
 
@@ -651,66 +767,31 @@ Dependency management & `import`/`export` (and CommonJS, AMD, etc.) support
 
 ---
 
-<!--
+# Install Webpack
 
-<div style="columns:2">
+Easy (assuming `package.json` exists):
 
-## Sibling Structure
-
-* :file_folder: `project-root/`
-    * :page_facing_up: `config.xml`
-    * :file_folder: `www/`
-        * :page_facing_up: `index.html`
-        * :file_folder: `(ts|es)/`
-            * :page_facing_up: `index.(ts|js)`
-        * :file_folder: `js/`
-            * :page_facing_up: `bundle.js` &larr; (gen)
-
-<!-- {ul^4:class='no_bullets'} --
-
-## External Structure
-
-* :file_folder: `project-root/`
-    * :page_facing_up: `config.xml`
-    * :file_folder: `www.src/`
-        * :page_facing_up: `index.html`
-        * :file_folder: `(ts|es)/`
-            * :page_facing_up: `index.(ts|js)`
-    * :file_folder: `www/`
-        * :page_facing_up: `index.html` &larr; (copied)
-        * :file_folder: `js/`
-            * :page_facing_up: `bundle.js` &larr; (gen)
-
-<!-- {ul^5:class='no_bullets'} --
-<!-- {ul^5:style='font-size:80%'} --
-
-</div>
+```sh cli prompt=$
+npm install --save-dev webpack
+```
 
 ---
 
--->
-
-# Install Webpack & Transpiler
-
-```sh cli host=dev
-npm install --save-dev webpack
-```
-<!-- {style='font-size:69%'} -->
+# Install Transpiler
 
 Typescript:
-``` sh cli host=dev output=2
+``` sh cli prompt=$ output=2
 npm install --save-dev ts-loader typescript core-js
 ```
-<!-- {style='font-size:69%'} -->
 
 Babel:
 
-```sh cli host=dev output=2,3
-npm install --save-dev babel-loader babel-core babel-polyfill \
-  babel-preset-es2015 babel-preset-es2016 babel-preset-es2017 \ 
+```sh cli prompt=$ output=2-4
+npm install --save-dev babel-loader babel-core 
+  babel-polyfill babel-preset-es2015 
+  babel-preset-es2016 babel-preset-es2017 
   babel-plugin-transform-runtime
 ```
-<!-- {style='font-size:69%'} -->
 
 <hr> 
 
@@ -724,8 +805,7 @@ npm install --save-dev babel-loader babel-core babel-polyfill \
 
 ```javascript
 // tsconfig.json
-{
-  "compilerOptions": {
+{ "compilerOptions": {
     "allowJs": true,
     "target": "es5",
     "module": "es2015", // DCR
@@ -733,25 +813,24 @@ npm install --save-dev babel-loader babel-core babel-polyfill \
     "inlineSourceMap": true
   },
   "include": 
-    ["www(.src)/(es|ts)/**/*"]
+    ["www.src/es/**/*"]
 }
 ```
-<!-- {style="font-size:75%"} -->
+<!-- {style="font-size:80%"} -->
 
 ```javascript
 // .babelrc
-{
-  "presets": [
+{ "presets": [
     ["es2015", { 
       "loose": true,
       "modules": false // DCR
     }], 
     "es2016", "es2017"
   ], 
-  "plugins": ["transform-runtime"]
+  "plugins":["transform-runtime"]
 }
 ```
-<!-- {style="font-size:75%"} -->
+<!-- {style="font-size:80%"} -->
 
 </div>
 
@@ -764,45 +843,78 @@ npm install --save-dev babel-loader babel-core babel-polyfill \
 # webpack.config.js
 
 ```javascript
-var src = path.resolve(__dirname, "www.src"),
-    www = path.resolve(__dirname, "www"),
-    loader = "ts-loader"; // or babel-loader
 module.exports = {
-  context: src, entry: "./es/index.js",
   devtool: "inline-source-map",
-  output: { filename: "bundle.js", path: www + "/js" },
-  module: { 
-    rules: [
-      { test: /\.(ts|js|jsx)$/, exclude: /node_modules/,
-         use: loader, options: { entryFileIsJs: true } //excl if babel
-    } /*, ... other rules as needed */ ]} 
+  context: path.resolve(__dirname, "www.src"), 
+  entry: "./es/index.js",
+  output: { 
+    filename: "bundle.js", path: 
+    path.resolve(__dirname, "www", "js")
+  },
+  module: { /*...*/ } 
 }
 ```
-<!-- {style='font-size:79%;'} -->
 
 ---
 
-# Add Scripts
+# webpack.config.js (2)
 
-In `package.json`:
+```javascript
+module: {
+  rules: [ { 
+      test: /\.([t|j]sx?)$/,
+      exclude: /node_modules/,
+      loader: "ts-loader",           // or babel-loader
+      options: { entryFileIsJs: true } // excl if babel
+    } /*, ... other rules as needed */ 
+  ] 
+}
+```
+
+
+---
+
+# npm Scripts
 
 ```javascript
 "scripts": {
+  "sim:ios": "webpack -d && cordova emulate ios",
+  "run:ios": "webpack -d && cordova run ios",
   "build:ios": "webpack -d && cordova build ios",
-  "build:release:ios": "webpack -p && cordova build ios --release",
-  // below requires http-server & npm-run-all to be installed
+  "build:ios:rel": "webpack -p && cordova build ios --release"
+}
+```
+<!-- {style='font-size:89%;'} -->
+
+`-d`: debug
+`-p`: production
+
+```sh prompt=$ cli
+npm run build:ios
+```
+<!-- {style='font-size:90%;'} -->
+
+---
+
+# npm Scripts
+
+Simple watch (requires `http-server`, `npm-run-all`), browser testing only (no Cordova/plugin support):
+
+```javascript
+"scripts": {
   "_watch:webpack": "webpack -d -w",
   "_watch:serve": "http-server -p 8080 -c-1 www",
   "watch": "run-p _watch:*"
 }
-```
-<!-- {style='font-size:79%;'} -->
 
-```sh host=dev cli
-npm run build:ios
+```
+<!-- {style='font-size:90%;'} -->
+
+```sh prompt=$ cli
 npm run watch
 ```
-<!-- {style='font-size:79%;'} -->
+<!-- {style='font-size:90%;'} -->
+
 
 ---
 
@@ -810,19 +922,18 @@ npm run watch
 
 [cordova-plugin-webpack-transpiler](https://github.com/kerrishotts/cordova-plugin-webpack-transpiler) transforms at `prepare`-time.
 
-```sh <!-- host=dev output=2,3 cli -->
-cordova plugin add --save              \ 
-  cordova-plugin-webpack-transpiler    \
+```sh <!-- prompt=$ output=2,3 cli -->
+cordova plugin add cordova-plugin-webpack-transpiler
   --variable CONFIG=typescript|babel|...
 ```
-<!-- {style='font-size:90%'} -->
+<!-- {style='font-size:89%'} -->
 
 Executes when `prepare` is called: `build`, `run`, `emulate`, etc.
 
-```sh <!-- host=dev cli -->
-cordova build ios             # debug mode
-cordova build ios --release   # production mode
-cordova run ios --notransform # don't transform
+```sh <!-- prompt=$ cli -->
+cordova build ios                # debug mode
+cordova build ios --release      # production mode
+cordova run ios --notransform    # skip transform/bundling
 ```
 <!-- {style='font-size:89%'} -->
 
@@ -830,17 +941,16 @@ cordova run ios --notransform # don't transform
 
 # Automating with Templates
 
-<div style="font-size:97%">
-
  Template | Author | Bundler | Transpiler | Frameworks | Automation
----------:|:-------|:-------:|:----------:|:----------:|:----------:
+---------:|:------:|:-------:|:----------:|:----------:|:----------:
 [cordova-template-webpack-ts-scss](https://github.com/kerrishotts/cordova-template-webpack-ts-scss)| Me | Webpack | TypeScript | Vanilla | `cordova`
 [cordova-template-webpack-babel-scss](https://github.com/kerrishotts/cordova-template-webpack-babel-scss)| Me | Webpack | Babel | Vanilla | `cordova`
 [cordova-template-framework7-vue-webpack](https://www.npmjs.com/package/cordova-template-framework7-vue-webpack)| centrual | Webpack | Babel | Vue, F7 | `cordova`
 [phonegap-template-react-hot-loader](https://www.npmjs.com/package/phonegap-template-react-hot-loader)| devgeeks | Webpack | Babel | React | `npm`
 [phonegap-vueify](https://www.npmjs.com/package/phonegap-vueify)| lemaur | Browserify | Babel | Vue | `npm`
 
-</div>
+<!--{table:style="font-size:77%"}-->
+
 
 <hr>
 
@@ -852,22 +962,22 @@ Automation: "cordova" = Cordova hooks; "npm" = npm scripts
 
 `eslint` works just fine with ES2015! (`tslint` for Typescript)
 
-```sh <!-- cli host=dev -->
+```sh <!-- cli prompt=$ -->
 npm install --save-dev eslint
 ```
 <!-- {style='font-size:90%'} -->
 
-:page_facing_up: `package.json`:
+`package.json`:
 ```json5
 "scripts": {
-    "lint": "eslint www.src"
+  "lint": "eslint www.src/es"
 }
+
 ```
 <!-- {style='font-size:90%'} -->
 
-```sh <!-- host=dev cli output=2 -->
-npm run lint    # or, write a plugin /
-                # project-level hook! ;-)
+```sh <!-- prompt=$ cli output=2 -->
+npm run lint    # or, write a plugin/project-level hook! ;-)
 ```
 <!-- {style='font-size:90%'} -->
 
@@ -875,12 +985,12 @@ npm run lint    # or, write a plugin /
 
 # Tests
 
-```sh <!-- cli host=dev -->
+```sh <!-- cli prompt=$ -->
 npm install --save-dev mocha chai
-npm install --save-dev ts-node        # for TypeScript
-npm install --save-dev babel-register # for Babel
+npm install --save-dev ts-node           # for TypeScript
+npm install --save-dev babel-register    # for Babel
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:90%'} -->
 
 Add `test` to `package.json:scripts`\*
 
@@ -890,7 +1000,10 @@ Add `test` to `package.json:scripts`\*
 ```
 <!-- {style='font-size:90%'} -->
 
-Then `npm test`
+```sh <!-- cli prompt=$ -->
+npm test
+```
+<!-- {style='font-size:90%'} -->
 
 <hr>
 
@@ -919,7 +1032,7 @@ First, `npm install --save-dev instanbul cross-env nyc`
 
 ---
 
-# Code coverage (Babel, 2)
+# Code coverage (Babel)
 
 ```javascript
 // package.json
@@ -939,49 +1052,37 @@ First, `npm install --save-dev instanbul cross-env nyc`
 
 # Tips
 
-* ES5 still works; adjust to ES2015+ at your own speed
-* `var` hasn't gone away; it's OK to use it!
+* ES5 still works
+* Use ES2015+ as needed and when you're ready
+* `var` is alive and well
   *  Use where performance is critical (e.g., tight nested loops)
-* Try to declare `const`/`let` at the top of each scope
+* Declare `const`/`let` at the top of each scope
   * Benefits Chrome's optimizer
   * Good practice anyway
-* Arrow functions aren't necessarily drop-in replacements
-  * Can be risky with `describe` & `it` in your tests
+* Arrow functions aren't drop-in
 
 ---
 
-# Tips (2)
+# Tips
 
 * Minify & remove dead code for release builds
   * Reduces bundle sizes and startup time
 * Split code bundles
   * Vendor code can be separately bundled
   * Easier to blacklist in debuggers
-
-<!--
+* Use `WKWebView` on iOS for best performance
 
 ---
 
-# Tips (3)
+# Resources
 
-
-* Chrome likes to _deopt_ for seemingly odd reasons
-    * The inspector will indicate `[deopt]` and the reason
-
-    Reason                              | Workaround
-    :-----------------------------------|:-----------------------------------
-    Declaration not at top (TDZ issues) | Move declaration to top of function
-    Compound assignments                | Use `var` in declaration instead
-
--->
-
-<!-- {table:style='font-size:80%'} -->
-
-<!--
-* Not ES2015+ Specific:
-   * Don't use clamped arrays -- *really* slow in Chrome
-   * Assigning empty array is faster than `arr.length = 0`
--->
+* https://esdiscuss.org
+* [ECMAScript 2015 Support in Mozilla](https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_2015_support_in_Mozilla)
+* [ES2015 Compatibility Table](http://kangax.github.io/compat-table/es6/)
+* [2ality - JavaScript and more](http://2ality.com)
+* [Can I Use](http://caniuse.com)
+* [WebKit Feature Status](https://webkit.org/status/)
+* [Chrome Platform Status](https://www.chromestatus.com/features)
 
 ---
 
@@ -1000,7 +1101,7 @@ First, `npm install --save-dev instanbul cross-env nyc`
 
 #### [@kerrishotts](https://www.twitter.com/kerrishotts)
 
-###### https://github.com/kerrishotts/pgday/blob/master/2017/modern-javascript-and-phonegap
+#### https://kerrishotts.github.io/pgday/
 
 ---
 

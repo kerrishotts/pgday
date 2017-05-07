@@ -298,7 +298,7 @@ cordova-plugin-*your-plugin*/                          | Plugin root
 
 <hr> 
 
-(representational; not every file is included here); Ex: [Device Plugin](https://github.com/apache/cordova-plugin-devicehttps://github.com/apache/cordova-plugin-device)
+(representational; not every file is included here); Ex: [Device Plugin](https://github.com/apache/cordova-plugin-device)
 
 
 ---
@@ -611,7 +611,6 @@ plugman create --name IsPrime
 ```
 <!-- {style='font-size:75%'} -->
 
-> Pass `--variable-name=value` strings to supply extra config
 ---
 
 # phonegap-plugin-template
