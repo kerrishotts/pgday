@@ -51,7 +51,15 @@
 
 # iPhone 3GS <!--{style='text-align:center; color: white; top: 3em;'}-->
 
-## iOS 3  <!--{style='text-align:center; color: white; position: relative; top: 2.9em;'}-->
+---
+
+<!-- footer: By Source (WP:NFCC#4), Fair use, https://en.wikipedia.org/w/index.php?curid=49508224 -->
+
+![bg 30% original](./assets/ios3.png)
+
+# iOS 3 <!--{style="background: none; padding-left: 4.5em;"}-->
+
+## ES3 (1999) <!--{h2:style="padding-left: 15em;"}-->
 
 ---
 
@@ -61,7 +69,19 @@
 
 # HTC Hero <!--{style='text-align:center; color: white; top: 3em;'}-->
 
-## Android 1.5  <!--{style='text-align:center; color: white; position: relative; top: 2.9em;'}-->
+---
+
+<!-- footer: By Android Police - Android Police, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=55057830 -->
+
+![bg 30% original](./assets/android15.jpg)
+
+# Android<br/>1.5 <!--{style="background: none; padding-left: 4.5em;"}-->
+
+## ES3 (1999) <!--{h2:style="padding-left: 15em;"}-->
+
+---
+
+# PhoneGap is born!
 
 ---
 
@@ -79,12 +99,12 @@
 # ES5
 
 * The version we all know and love (~ish?)
+  * `'use strict';`
+  * `map`, `reduce`, `Object.create`, `Object.freeze`, `trim`!
+  * JSON parsing
 * Supported by all modern mobile web views^1^
     * iOS 6+, IE 10+, Edge (forever), Android 4.4+
-* Lots of good things:
-    * `'use strict';`
-    * `map`, `reduce`, `Object.create`, `Object.freeze`, `trim`!
-    * JSON parsing
+    * But not in 2009 &mdash; _no one supported it_
 
 <hr>
 
@@ -92,7 +112,7 @@
 
 ---
 
-> > > **2015**
+> > > **2012**
 
 ---
 
@@ -100,7 +120,63 @@
 
 ![bg fit original](./assets/2009-pres.jpg)
 
-# ***Still*** President of the<br/>United States of America <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
+# Still President of the<br/>United States of America <!--{style='text-align:center; color: white; top: 3em;'}-->
+
+---
+
+![bg original fit](./assets/iphone5.png)
+
+<!-- footer: By Zach Vega - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21298355 -->
+
+# iPhone 5
+
+---
+
+<!-- footer: By Self-taken screenshot from an iPhone 5., https://en.wikipedia.org/w/index.php?curid=37500638 -->
+
+![bg original 25%](./assets/ios6.png)
+
+# iOS 6 <!--{style="padding-left: 4.5em;"}-->
+
+## 93% support for ES5 <!--{style="padding-left: 15em;"}-->
+
+###### http://kangax.github.io/compat-table/es5/ <!--{style="font-size: 50%; font-weight: normal; opacity: 0.5; padding-left: 50em;"}-->
+
+---
+
+<!-- footer: By GalaxyOptimus - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=46022690 -->
+
+![bg original 30%](./assets/galaxys3.png)
+
+# Samsung Galaxy S3
+
+---
+
+![bg original 25%](./assets/android41.jpg)
+
+<!-- footer: By Android Open Source project, CC BY 2.5, https://commons.wikimedia.org/w/index.php?curid=20262781 -->
+
+# Android 4.1<br/>Jelly Bean <!--{style="background: none; padding-left: 4.5em;"}-->
+
+## 85% support for ES5 <!--{style="padding-left: 15em;"}-->
+
+###### http://kangax.github.io/compat-table/es5/ <!--{style="font-size: 50%; font-weight: normal; opacity: 0.5; padding-left: 50em;"}-->
+
+---
+
+<!-- template: light -->
+
+> > > **2015**
+
+---
+
+<!-- footer: -->
+
+<!-- template: dark -->
+
+![bg fit original](./assets/2009-pres.jpg)
+
+# Second term :smile: <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
 
 ---
 
@@ -108,9 +184,26 @@
 
 ## R.I.P. Leonard Nimoy
 
+## :cry:
+
 ---
 
 # ES2015 / ES6
+
+---
+
+<!-- footer: http://kangax.github.io/compat-table/es5/ & http://kangax.github.io/compat-table/es6/ -->
+
+# iOS 9
+
+## 96% ES5 / 54% ES2015
+
+---
+
+# Android 5.1
+
+## 97% ES5 / 25% ES2015
+
 
 ---
 
@@ -150,6 +243,20 @@ Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
 # Brexit
 
 ## Wait... what?
+
+---
+
+# iOS 10
+
+## 100% ES2015
+
+<!-- footer: http://kangax.github.io/compat-table/es6/ -->
+
+---
+
+# Android (Chrome 50)
+
+## 92% ES2015
 
 ---
 
@@ -551,25 +658,6 @@ function sum(start = 0, ...nums) {
 console.log(sum(1, 5, 10, 99)); /* 115 */
 ```
 
-<!--
-
----
-
-# Spread/Rest is awesome (...) (2)
-
-Easy sprintf-like:
-```javascript
-function sprintf(str, ...replacements) {
-    return str.match(/\%[0-9]+/g)
-        .reduce((a, v) => a.replace(v, 
-                            replacements[v.substr(1)]), str);
-}
-console.log(sprintf ("%1, %0", "world", "hello"));
-```
-&rArr; Hello, world
-
--->
-
 ---
 
 # Named Parameters & Defaults
@@ -735,6 +823,10 @@ Dependency management & `import`/`export` (and CommonJS, AMD, etc.) support
 * [JSPM](http://jspm.io)
 * [Browserify](http://browserify.org)
 
+You can do more than just bundling:
+
+* Convert SASS to CSS, lint, copy assets, compress assets, etc.
+
 ---
 
 # Execution Options
@@ -846,10 +938,10 @@ npm install --save-dev babel-loader babel-core
 module.exports = {
   devtool: "inline-source-map",
   context: path.resolve(__dirname, "www.src"), 
-  entry: "./es/index.js",
+  entry: { app: ["./es/index.js"] },
   output: { 
-    filename: "bundle.js", path: 
-    path.resolve(__dirname, "www", "js")
+    filename: "bundle.js", 
+    path: path.resolve(__dirname, "www", "js")
   },
   module: { /*...*/ } 
 }
@@ -871,7 +963,6 @@ module: {
 }
 ```
 
-
 ---
 
 # npm Scripts
@@ -887,12 +978,31 @@ module: {
 <!-- {style='font-size:89%;'} -->
 
 `-d`: debug
-`-p`: production
+`-p`: production (minifies as well)
 
 ```sh prompt=$ cli
 npm run build:ios
 ```
 <!-- {style='font-size:90%;'} -->
+
+---
+
+# Code Splitting
+
+```javascript
+module.exports = {
+  entry: { 
+  	app: ["./es/index.js"],
+    vendor: ["core-js"]
+  }, /*...*/
+  module: { /*...*/ },
+  plugins: [
+  	new webpack.optimize.CommonsChunkPlugin({
+      name: "vendor", filename: "vendor.js"})
+  ]
+}
+
+```
 
 ---
 
@@ -992,7 +1102,7 @@ npm install --save-dev babel-register    # for Babel
 ```
 <!-- {style='font-size:90%'} -->
 
-Add `test` to `package.json:scripts`\*
+Add `test` script to `package.json:scripts`\*
 
 ```javascript
 "test": "mocha" // TypeScript (needs ./test/_bootstrap.js)
