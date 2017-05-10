@@ -14,7 +14,7 @@ Thankfully, writing and executing tests isn't too difficult. In fact, the toolin
 
 # cordova-paramedic
 
-> Paramedic &bullet; _noun_ provides advanced levels of care at the point of illness or injury, including out-of-hospital treatment, and diagnostic services
+> Paramedic &bull; _noun_ provides advanced levels of care at the point of illness or injury, including out-of-hospital treatment, and diagnostic services
 
 Once you have tests written and placed in your plugin's `tests/` directory, cordova-paramedic` does the following for you:
 * Creates a new project (in temporary location)
