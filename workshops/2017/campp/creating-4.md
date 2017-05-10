@@ -22,6 +22,8 @@ Let's take a look at the tail end of our `plugin.xml` again:
             </feature>
         </config-file>
         <source-file src="src/android/IsPrime.java" target-dir="src/com/kerrishotts/example/isprime" />
+        <source-file src="src/android/InspectableThreadPoolExecutor.java" target-dir="src/com/kerrishotts/example/isprime" />
+        <source-file src="src/android/IsPrimeRunnable.java" target-dir="src/com/kerrishotts/example/isprime" />
     </platform>
 
     <platform name="ios">
