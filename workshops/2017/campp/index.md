@@ -35,39 +35,36 @@ Creating a PhoneGap plugin doesn’t have to be scary, and it isn’t all that d
 
 The following prerequisites are required. Versions used for testing follow.
 
-* Cordova or PhoneGap CLI installed
-* Native SDKs installed as needed
-* Comfortable with terminal and CLI
-* Enough knowledge of the native SDKs to be dangerous
-
-Versions tested with:
-
-* iOS
-    * macOS Sierra (10.12.4)
-    * Xcode 8.3.1
-    * Cordova CLI 7.0.0
-    * `cordova-ios` 4.3.1
-
-* Android
-    * macOS Sierra (10.12.4)
-    * Java JDK 1.8.0.102
+* General Prerequisites
+    * Git
+    * Node and npm installed
+        * Tested with node 6.4.0 and 7.9.0
+        * Tested with npm 3.10.8 and 4.2.0
+    * Cordova or PhoneGap CLI installed
+    * Native SDKs installed as needed
+    * Comfortable with terminal and CLI
+    * Enough knowledge of the native SDKs to be dangerous
+* Browser Plugin Development:
+    * Chrome 58 or better (tested 58.0.3029.81)
+* iOS Plugin Development:
+    * Mac (Macbook, Macbook Pro, iMac, etc.)
+    * macOS Sierra (10.12+, tested with 10.12.4)
+    * Xcode 8.3.2
+* Android Plugin Development:
+    * Java 8 JDK (tested with JDK 1.8.0.102 and 1.8.0.131)
     * Android Studio 2.3.1
-    * Android API Level 25 (7.1.1 Nougat)
-    * Android SDK Tools 26.0.1
-    * Android Platform-Tools 25.0.5
-    * Android Build-Tools 25
-    * Cordova CLI 7.0.0
-    * `cordova-android` 6.2.2
-
-* Windows 10 UWP
-    * Windows 10 Pro (v1703, build 15063.138)
-    * Cordova CLI 7.0.0
-    * `cordova-windows` 5.0.0
-
-* Browser
-    * Google Chrome 58.0.3029.81
-    * Cordova CLI 7.0.0
-    * `cordova-browser` 4.1.0
+    * Properly configured AVD
+        * Tested on Android 7.1.1 Nougat (API level 25)
+        * Prefer x86 + [Intel HAXM](https://software.intel.com/en-us/android/articles/intel-hardware-accelerated-execution-manager); otherwise your emulator will take _forever_ to launch.
+    * Update-to-date Android SDK
+        * Tested with
+            * SDK Tools 26.0.1
+            * Platform tools 25.0.5
+            * Build tools 25
+* Windows 10 Plugin Development:
+    * Windows 10 Pro (tested with v1703, build 15063.138)
+    * Visual Studio 2017 (Community version is fine)
+        * Tested with 15.1 (26403.7)
 
 ## Let's get started!
 
