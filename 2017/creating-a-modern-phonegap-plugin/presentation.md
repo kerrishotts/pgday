@@ -1,5 +1,5 @@
 <!-- $size: 16:9 -->
-<!-- page_number: true -->
+<!-- page_number: false -->
 <!-- $theme: elegant -->
 <!-- $prism: okaidia -->
 
