@@ -516,4 +516,4 @@ We're mostly done, but we need to add a couple of lines to the `<plugin name="an
 <source-file src="src/android/IsPrimeRunnable.java" target-dir="src/com/kerrishotts/example/isprime" />
 ```
 
-<em>Et voil&aacute;</em>! we've created a pausable plugin!
+<em>Et voil&agrave;</em>! we've created a pausable plugin!
