@@ -236,4 +236,284 @@ To accomplish this, we need to do several things: we need to listen to the `paus
 
 # Android
 
-TODO.
+Like the iOS plugin, our Android plugin runs in a background thread currently. If the user switches to another app, our plugin may continue to run in the background, usurping valuable battery power. It would be nice if we responded to `pause` and `resume` events appropriately in order to avoid this. Or, if the app navigates to a new top-level page, we should also stop processing, since the callback would now be invalid.
+
+To do this we need to create a custom `ThreadPoolExecutor` so that we can inspect currently executing tasks and pause and resume them as needed. We also need a custom `Runnable` that makes it easy for us to copy a task's current state and create a new `Runnable` that starts where the old one left off.
+
+Unlike the iOS example where we could get by using a single file, Java requires that we use three. So let's get started!
+
+## InspectableThreadPoolExecutor
+
+We need a thread pool that lets us inspect the currently running tasks, not just the pending tasks. To do this, we can extend `ThreadPoolExecutor` as follows:
+
+```java
+// InspectableThreadPoolExecutor.java
+package com.kerrishotts.example.isprime;
+
+import java.util.ArrayList;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+class InspectableThreadPoolExecutor extends ThreadPoolExecutor {
+
+    private ArrayList<Runnable> _tasks;
+
+    public InspectableThreadPoolExecutor(int corePoolSize, int maximumPoolSize, int keepAliveTime,
+                                         TimeUnit unit, BlockingQueue<Runnable> workQueue) {
+        super(corePoolSize, maximumPoolSize, keepAliveTime, unit, workQueue);
+        _tasks = new ArrayList<Runnable>(maximumPoolSize);
+    }
+
+    public ArrayList<Runnable> getAllTasks() {
+        ArrayList<Runnable> arr = new ArrayList<Runnable>(_tasks.size() + getQueue().size());
+        arr.addAll(_tasks);
+        arr.addAll(getQueue());
+        return arr;
+    }
+
+    @Override
+    protected void beforeExecute(Thread t, Runnable r) {
+        super.beforeExecute(t, r);
+        _tasks.add(r);
+    }
+
+    @Override
+    protected void afterExecute(Runnable r, Throwable t) {
+        super.afterExecute(r, t);
+        _tasks.remove(r);
+    }
+}
+```
+
+All this does is create an array of `Runnable` tasks. Before a task starts executing, it is added to the list. When it finishes executing, it is removed.
+
+A new method is added, `getAllTasks` that returns all currently executing and pending tasks as a list of `Runnable` tasks. This lets us recreate the state of the pool should we shut it down on a `pause` event.
+
+## IsPrimeRunnable
+
+Next we need to extract the `IsPrime` method from `IsPrime.java` into another file, called `IsPrimeRunnable.java`. This new class will implement `Runnable`. Let's take a look:
+
+```java
+package com.kerrishotts.example.isprime;
+
+import java.util.GregorianCalendar;
+
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.PluginResult;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class IsPrimeRunnable implements Runnable {
+
+    // [1]
+    private final JSONObject _result;
+    private final CallbackContext _context;
+    private volatile long _lastCandidateFactor = 0;
+
+    // [2]
+    public IsPrimeRunnable(final JSONObject result, final CallbackContext callbackContext) {
+        _result = result;
+        _context = callbackContext;
+        _lastCandidateFactor = 2; // this is where we start checking -- not one or zero.
+    }
+
+    // [3]
+    private IsPrimeRunnable(final JSONObject result, final CallbackContext callbackContext, long lastCandidateFactor) {
+        _result = result;
+        _context = callbackContext;
+        _lastCandidateFactor = lastCandidateFactor; // start from last checked candidate
+    }
+
+    // [4]
+    public IsPrimeRunnable copy() {
+        return new IsPrimeRunnable(_result, _context, _lastCandidateFactor);
+    }
+
+    // [5]
+    public void run() {
+        try {
+            JSONArray factors = _result.getJSONArray("factors");
+            long candidate = _result.getLong("candidate");
+            long half = candidate / 2;
+            long now = (new GregorianCalendar()).getTimeInMillis();
+            long cur = now;
+
+            // [6]
+            long start = _lastCandidateFactor;
+
+            if (candidate == 2) {
+                /* snip */
+            } else {
+                if (start <= 2) { // [6]
+                    factors.put(1);
+                }
+                for (long i = start; i<=half; i++) { // [6]
+                    if (i % 1000 == 0) {
+                        /* snip */
+
+                        // check if we've been interrupted, [7]
+                        if (Thread.currentThread().isInterrupted()) {
+                            throw new InterruptedException();
+                        }
+                    }
+                    /* snip */
+
+                    // [8]
+                    _lastCandidateFactor = i;
+                }
+                /* snip */
+            }
+            /* snip */
+        } catch (JSONException e) {
+            /* snip */
+        } catch (InterruptedException e) {
+            // do nothing; we'll get taken care of later, [7]
+        }
+    }
+}
+```
+
+1. Instances of this new class need to keep the result object and the callback handy. Instances also need a way of keeping track of the last tried candidate factor.
+2. This is the normal way we'll construct an instance, which means the last candidate factor tried will be set to 2. We can't set this to zero, or we'll end up dividing by zero later.
+3. Should the task need to be restarted, we can pass in a last tried candidate factor, and the process will continue from there.
+4. When restarted, we copy the state from the previous running and queued tasks and create new instances in a new pool.
+5. This function doesn't change very much. The only things that change are #6, #7, and #8. The logic, however, remains the same.
+6. We need to be able to start at an arbitrary number -- the last tried candidate factor. This will normally be 2, except if we've been restarted.
+7. Operations in progress won't stop automatically &mdash; we have to check to see if we should stop. That's what we do when we check `Thread.currentThread().isInterrupted()`. If we should stop, we throw an exception which stops the calculation.
+8. We have to be sure to record how far along in the calculation we've progressed.
+
+## Changes to IsPrime.java
+
+Now we need to change `IsPrime.java` to respond to our new events and properly use our new thread pool. Here's the new code:
+
+```java
+// IsPrime.java
+package com.kerrishotts.example.isprime;
+
+import java.util.ArrayList;
+import java.util.concurrent.BlockingQueue;
+import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaPlugin;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.annotation.SuppressLint;
+
+public class IsPrime extends CordovaPlugin {
+
+    // [1]
+    public static final int START_THREADS = 0;
+    public static final int MAX_THREADS = 8;
+    public static final int KEEP_ALIVE = 1000;
+
+    // [2]
+    private InspectableThreadPoolExecutor _pool;
+    private BlockingQueue<Runnable> _q;
+    private ArrayList<Runnable> _pausedTasks;
+
+    // [3]
+    private void _initPool() {
+        _q = new ArrayBlockingQueue<Runnable>(MAX_THREADS);
+        _pool = new InspectableThreadPoolExecutor(START_THREADS, MAX_THREADS, KEEP_ALIVE, TimeUnit.MILLISECONDS, _q);
+    }
+
+    // [4]
+    private void _destroyPool() {
+        if (_pool != null) {
+            _pool.shutdownNow();
+        }
+    }
+
+    // [5]
+    private void _pausePool() {
+        _pausedTasks = new ArrayList<Runnable>(MAX_THREADS);
+        _pausedTasks.addAll(_pool.getAllTasks());
+        _pool.shutdownNow();
+    }
+
+    // [6]
+    private void _restartPool() {
+        _initPool();
+        Runnable[] arr = _pausedTasks.toArray(new Runnable[0]);
+        for (int i = 0; i < arr.length; i++) {
+            _pool.execute(((IsPrimeRunnable)arr[i]).copy());
+        }
+
+        _pausedTasks = null;
+    }
+
+    // [7]
+    @Override
+    public void initialize(org.apache.cordova.CordovaInterface cordova, org.apache.cordova.CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        _initPool();
+    }
+
+    // [8]
+    @Override
+    public void onDestroy() {
+        _destroyPool();
+    }
+
+    // [9]
+    public void onReset() {
+        _destroyPool();
+        _initPool();
+    }
+
+    // [10]
+    @Override
+    public void onPause(boolean multitasking) {
+        _pausePool();
+    }
+
+    // [11]
+    @Override
+    public void onResume(boolean multitasking) {
+        _restartPool();
+    }
+
+    @Override
+    public boolean execute(String action, final JSONArray args, final CallbackContext callbackContext) throws JSONException {
+        /* snip */
+    }
+
+    // [12]
+    private void isPrime(final JSONObject result, final CallbackContext callbackContext) throws JSONException {
+        _pool.execute(new IsPrimeRunnable(result, callbackContext));
+    }
+}
+```
+
+1. No magic numbers! So constants instead. ;-) We need to indicate the minimum number of threads, the maximum number of threads, and how long we're willing to keep an idle thread alive. The latter is in milliseconds.
+2. Next, we need an instance of our `InspectableThreadPoolExecutor`, a work queue for it, and also an array ready to hold any paused tasks.
+3. `_initPool` creates the new work queue and a new instance of `InspectableThreadPoolExecutor`, using our constants defined in #1.
+4. `_destroyPool` will shut down any running tasks.
+5. `_pausePool` gets a list of all running and pending tasks from our thread pool, stores them, and then shuts the pool down. Running tasks will eventually stop when they next check if they've been interrupted.
+6. `_resumePool` takes the list of all paused tasks, copies them to a new `IsPrimeRunnable` instance, and then adds them to a new thread pool. This effectively resumes the tasks.
+7. `initialize` is called when the plugin is initialized by Cordova. We call `_initPool` here so we have an initial thread pool to work with.
+8. `onDestroy` is called when everything is shutting down, which makes this a good place to destroy the pool.
+9. `onReset` is called when Cordova navigates to a new top-level page. As such, we need to stop existing tasks and also create a new pool.
+10. When `pause` is received, we need to pause the pool.
+11. When `resume` is received, we call `_restartPool` to resume the pool.
+12. We create a new `IsPrimeRunnable` instance and tell the pool to start executing it.
+
+## plugin.xml changes
+
+We're mostly done, but we need to add a couple of lines to the `<plugin name="android"` tag in `plugin.xml`:
+
+```xml
+<source-file src="src/android/InspectableThreadPoolExecutor.java" target-dir="src/com/kerrishotts/example/isprime" />
+<source-file src="src/android/IsPrimeRunnable.java" target-dir="src/com/kerrishotts/example/isprime" />
+```
+
+<em>Et voil&acute;</em> we've created a pausable plugin!
