@@ -137,7 +137,7 @@ exports.defineAutoTests = function () {
 
 Manual tests are excellent for tests that require user interaction or tests that are hard to write verification routines for. These are controlled by a simple user interface in the temporary project. You can then tap on tests, have them run, and verify that they did what you want.
 
-Manual tests are exported on `exports.defineManualTests`. Here's a simple example from our prime plugin's test script:
+Manual tests are exported on `exports.defineManualTests`. Here's a simple example from our prime plugin's test script (some of which is copied from a core plugin's tests &mdash; told you we copied!):
 
 ```javascript
 exports.defineManualTests = function (contentEl, createActionButton) {
