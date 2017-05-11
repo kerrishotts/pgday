@@ -16,6 +16,7 @@
 ##### https://kerrishotts.github.io/pgday/ <!--{style="color:white"}-->
 
 ---
+
 <!-- template: light -->
 
 <!-- footer:  -->
@@ -33,11 +34,11 @@
 
 ---
 
+<!-- template: dark -->
+
 > > > **2009**
 
 ---
-
-<!-- template: dark -->
 
 ![bg fit original](./assets/2009-pres.jpg)
 
@@ -81,7 +82,7 @@
 
 ---
 
-# PhoneGap is born!
+# :tada: PhoneGap is born! :tada:
 
 ---
 
@@ -93,7 +94,6 @@
 
 ---
 
-<!-- template: light -->
 <!-- footer: -->
 
 # ES5
@@ -108,15 +108,13 @@
 
 <hr>
 
-1.  http://caniuse.com/#feat=es5
+1 http://caniuse.com/#feat=es5
 
 ---
 
 > > > **2012**
 
 ---
-
-<!-- template: dark -->
 
 ![bg fit original](./assets/2009-pres.jpg)
 
@@ -164,15 +162,11 @@
 
 ---
 
-<!-- template: light -->
-
 > > > **2015**
 
 ---
 
 <!-- footer: -->
-
-<!-- template: dark -->
 
 ![bg fit original](./assets/2009-pres.jpg)
 
@@ -180,15 +174,7 @@
 
 ---
 
-# Live Long, and Prosper
-
-## R.I.P. Leonard Nimoy
-
-## :cry:
-
----
-
-# ES2015 / ES6
+# :tada: ES2015 (n&eacute;e ES6) :tada:
 
 ---
 
@@ -196,18 +182,18 @@
 
 # iOS 9
 
-## 96% ES5 / 54% ES2015
+## 54% ES2015
 
 ---
 
 # Android 5.1
 
-## 97% ES5 / 25% ES2015
+## 25% ES2015
 
 
 ---
 
-<!-- template: light -->
+<!-- footer: -->
 
 # ES2015 (ES6)
 
@@ -232,7 +218,7 @@ Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
 
 ---
 
-<!-- template: dark -->
+<!-- footer: -->
 
 ![bg fit original](./assets/2009-pres.jpg)
 
@@ -248,9 +234,9 @@ Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
 
 # iOS 10
 
-## 100% ES2015
+## 100% ES2015 \*
 
-<!-- footer: http://kangax.github.io/compat-table/es6/ -->
+<!-- footer: * Except module implementation; source: http://kangax.github.io/compat-table/es6/ -->
 
 ---
 
@@ -260,11 +246,11 @@ Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
 
 ---
 
+<!-- footer: -->
+
 # ES2016 / ES7
 
 ---
-
-<!-- template: light -->
 
 # ES2016 (ES7)
 
@@ -289,15 +275,15 @@ Source: http://www.2ality.com/2016/01/ecmascript-2016.html
 
 ![bg fit original](./assets/2017-pres.jpg)
 
-# W T F ? <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
+# What the...? <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
 
 ---
 
 # ES2017
 
----
+## Ah, that's better...
 
-<!-- template: light -->
+---
 
 # ES2017
 
@@ -322,117 +308,43 @@ Source: http://www.2ality.com/2016/02/ecmascript-2017.html
 
 ---
 
-<!-- template: dark -->
-
-![bg original](../../_common/assets/picard/pouting.jpg)
-
-# Before we continue...
-
----
-
 <!-- template: light -->
 
-# Important Caveats
-
-* ES2015+ is **NOT** a performance optimization
-  * See https://kpdecker.github.io/six-speed/ (as of 2017-01-04)
-
-![ES 2015+ performance](./assets/es6perf.png)
+> ### A quick intro to ES2015+
 
 ---
 
-**Webview**
-**ES2015+ Perf**
-(Not to scale)
+# Block. Scoped. Variables. Finally.
 
-![bg original 80%](./assets/perf1.png?a)
+```javascript
+let i = 50;
+for (let i = 0; i < 100; i++) {
+  console.log(i); // 0...99
+}
+console.log(i); // 50
+```
 
-<!--
+Constant references too:
 
-
-* **WKWebView** (iOS) single-core performance is **excellent**
-* Compared to Safari on MBPr\*
-    * iPad Pro 12.9&Prime;: roughly equal
-    * iPhone 6s: 2&times; slower
-    * iPad Mini 4: 2.5&times; slower
-
-* **Android Webview / Chrome** performance is **slow**; by roughly an order of magnitude
-* Compared to Chrome on MBPr:
-    * OnePlus One: ~10&times; slower
-    * Samsung Tab S 8.4&Prime;: ~33&times; slower
-
-
-<hr>
-
-**Note:** Results _highly sensitive_ to the JavaScript features in use.
-
--->
+```javascript
+const SECONDS_IN_A_MINUTE = 60;
+const CREATE_ACTION = "action";
+```
 
 ---
 
-<!-- template: dark -->
+# Constants aren't constant
 
-![bg original](../../_common/assets/picard/double-wtf.jpg)
+Only the reference is constant:
 
-> #### UIWebView strikes again <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
+```javascript
+const DEFAULT_OPTIONS = {
+  quality: 50
+};
 
----
-
-<!-- template: light -->
-
-<!-- footer: UIWebView's performance is highly dependent upon language features in use. -->
-
-![bg original 95%](./assets/perf2.png)
-
-<!--
-
-# Webviews &amp; Performance (2)
-
-* UIWebView: *ugh*
-    * "Slower than molasses in January"
-    * e.g: ~75&times; slower on an iPad Pro 12.9&Prime;
-    * No JIT :cry:
-
--->
-
----
-
-<!-- footer: -->
-
-# Important Caveats, continued
-
-* May require a build step
-* Debugging can be "fun"
-* Some of the syntax can be a little _sharp_ &mdash; handle with care
-
----
-
-<!-- template: light -->
-
-# Euuuuggghhhh!!!
-
-## Way to crush my dreams!
-
----
-
-# Not really....
-
-* Micro-benchmarks aren't the entire story
-	* Engines are continually improving
-
-* Actual performance deltas are highly variable 
-	* Depends on platform and the language features in use
-
-* Lots of benefits:
-	* Expressive and concise
-	* Less boilerplate
-	* `padStart` and `padEnd`! :wink:
-
----
-
-# What's to like?
-
-## A quick intro to ES2015+
+DEFAULT_OPTIONS.quality = 100;
+console.log(DEFAULT_OPTIONS.quality); // 100
+```
 
 ---
 
@@ -506,6 +418,63 @@ Line 6 ES5 equivalent: `.addEventListener("click", (function() { this.sayHi(); }
 # ![center 250%](./assets/alert-correct.png)
 -->
 
+---
+
+# Arrow function quirks
+
+No parameters? Use parentheses:
+```javascript
+[1, 2, 3].forEach(() => console.log("hi"));
+```
+
+One parameter? Convention is no parentheses:
+```javascript
+[1, 2, 3].map(i => i * 2);
+```
+
+Multiple parameters? Use parentheses:
+
+```javascript
+[1, 2, 3].map((i, idx) => i * idx);
+```
+
+---
+
+# Arrow function returns
+
+Single line arrow functions should use implicit `return`:
+
+```javascript
+[1, 2, 3].map(i => i * 2);
+```
+
+Multi-line arrow functions should use blocks:
+
+```javascript
+[1, 2, 3].map(i => {
+  let x = Math.floor(Math.random() * 100);
+  return i * x;
+});
+```
+
+---
+
+# Arrow function ambiguity
+
+But what if we return an object? This won't work:
+
+```javascript
+[1, 2, 3].map(i => {i: i * 2}); // is equivalent to
+[1, 2, 3].map(i => {            // this, which is
+i:                              // obviously not what
+	i * 2;                      // we want :-(
+});
+```
+Instead, wrap the return in parentheses:
+
+```javascript
+[1, 2, 3].map(i => ({i: i * 2}));
+```
 
 ---
 
@@ -555,7 +524,7 @@ function getPos(options) {
 
 # Promises, Promises, Promises
 
-Easier-to-read `then` and `catch`:
+Easier-to-read chaining:
 
 ```javascript
 getPos.then(pos => {
@@ -668,8 +637,7 @@ function getPicture({quality = 50, width = 512,
   return new Promise((resolve, reject) => {
     navigator.camera.getPicture(resolve, reject, {
       allowEdit: false,
-      correctOrientation: true,
-      quality, 
+      correctOrientation: true, quality, 
       targetWidth: width, targetHeight: height,      
     });
   });
@@ -766,9 +734,9 @@ These can all transpile ES2015+\* (feature support may vary)
 
 Browsers have _finally_ started shipping implementations:
 
-* Live:
+* Available now:
 	* Safari 10.1, iOS 10.3
-* Behind a flag
+* Behind a flag:
 	* Edge 15
 	* Firefox 54
 	* Chrome and Android WebView 60
@@ -802,7 +770,7 @@ game.start();
 	* Must include the extension
 	* No aliases
 
-A lot of existing ES2015+ imports **do not work in the browser as-is.**
+A lot of existing ES2015+ modules **do not work in the browser as-is.**
 
 ---
 <!-- template: dark -->
@@ -833,7 +801,8 @@ You can do more than just bundling:
 
 * Manual
     * Just run each tool's CLI... _every time_...
-    * Error prone &mdash; you might forget!
+    * Um... no.
+	    * Error prone &mdash; you might forget!
 * Automatic
     * Task runners (`gulp`, `grunt`, etc.)
     * `npm` scripts
@@ -949,7 +918,7 @@ module.exports = {
 
 ---
 
-# webpack.config.js (2)
+# webpack.config.js
 
 ```javascript
 module: {
@@ -1006,28 +975,6 @@ module.exports = {
 
 ---
 
-# npm Scripts
-
-Simple watch (requires `http-server`, `npm-run-all`), browser testing only (no Cordova/plugin support):
-
-```javascript
-"scripts": {
-  "_watch:webpack": "webpack -d -w",
-  "_watch:serve": "http-server -p 8080 -c-1 www",
-  "watch": "run-p _watch:*"
-}
-
-```
-<!-- {style='font-size:90%;'} -->
-
-```sh prompt=$ cli
-npm run watch
-```
-<!-- {style='font-size:90%;'} -->
-
-
----
-
 # Automating with Plugin Hooks
 
 [cordova-plugin-webpack-transpiler](https://github.com/kerrishotts/cordova-plugin-webpack-transpiler) transforms at `prepare`-time.
@@ -1041,9 +988,9 @@ cordova plugin add cordova-plugin-webpack-transpiler
 Executes when `prepare` is called: `build`, `run`, `emulate`, etc.
 
 ```sh <!-- prompt=$ cli -->
-cordova build ios                # debug mode
-cordova build ios --release      # production mode
-cordova run ios --notransform    # skip transform/bundling
+cordova build ios               # debug mode
+cordova build ios --release     # production mode
+cordova run ios --notransform   # skip transform/bundling
 ```
 <!-- {style='font-size:89%'} -->
 
@@ -1065,6 +1012,10 @@ cordova run ios --notransform    # skip transform/bundling
 <hr>
 
 Automation: "cordova" = Cordova hooks; "npm" = npm scripts
+
+---
+
+###### [Video](./assets/templatevideo.mp4)
 
 ---
 
@@ -1093,70 +1044,214 @@ npm run lint    # or, write a plugin/project-level hook! ;-)
 
 ---
 
-# Tests
+# Tests and Coverage
 
-```sh <!-- cli prompt=$ -->
-npm install --save-dev mocha chai
-npm install --save-dev ts-node           # for TypeScript
-npm install --save-dev babel-register    # for Babel
+
+```sh <!-- cli prompt=$ output=2-3 -->
+npm install --save-dev chai mocha mocha-webkit
+  webpack-node-externals source-map-support
+  istanbul-instrumentor-loader cross-env
 ```
-<!-- {style='font-size:90%'} -->
 
-Add `test` script to `package.json:scripts`\*
-
-```javascript
-"test": "mocha" // TypeScript (needs ./test/_bootstrap.js)
-"test": "mocha --compilers js:babel-register"     // Babel
-```
-<!-- {style='font-size:90%'} -->
-
-```sh <!-- cli prompt=$ -->
-npm test
-```
-<!-- {style='font-size:90%'} -->
+* Create `mocha-webpack.opts`
+* Create `.nycrc`
+* Create webpack config for testing and coverage
+* Add npm scripts
 
 <hr>
 
-\* Assumes tests are in `./test`
-\_bootstrap.js: `require("ts-node").register();`
+Based on: https://github.com/istanbuljs/nyc/issues/176#issuecomment-286738545
 
 ---
 
-# Code coverage (Babel)
+# mocha-webpack.opts
 
-First, `npm install --save-dev instanbul cross-env nyc`
-
-```javascript
-{ // .babelrc
-  "presets": ["es2015", ...],
-  "plugins": [...],
-  "env": { 
-    "cover": {
-      "plugins": ["transform-es2015-modules-commonjs",
-                  "istanbul"]
-    }
-  } 
-}
+```bash
+--webpack-config ./webpack.config-test.js
+--require source-map-support/register
+--full-trace
+test/*.js
 ```
-<!-- {style='font-size:85%'} -->
 
 ---
 
-# Code coverage (Babel)
+# .nycrc
 
-```javascript
-// package.json
-"nyc": {
-  "require": ["babel-register"], 
-  "reporter": ["text", "html"],
-  "sourceMap": false, 
+```json
+{
+  "extension": [".js", ".jsx", ".ts", ".tsx"],
+  "reporter": ["html", "text-summary"],
+  "cache": true,
+  "sourceMap": false,
   "instrument": false
-},
-"scripts": { //...,
-  "cover": "cross-env NODE_ENV=cover nyc npm test"
 }
 ```
-<!-- {style='font-size:90%'} -->
+
+---
+
+# webpack.config-test.js
+
+```javascript
+var path = require("path");
+var coverage = process.env.NODE_ENV === "cover";
+module.exports = {
+  context: path.resolve("test"),
+  target: "node",
+  externals: require("webpack-node-externals")(),
+  devtool: "inline-source-map",
+  resolve: {
+    extensions: [".js", ".jsx",".ts", ".tsx"],
+    modules: ["node_modules"]
+  }, module: { /*...*/ }
+};
+```
+<!-- {style="font-size:89%"} -->
+
+---
+
+# webpack.config-test.js
+
+```javascript
+module: {
+  rules: [{
+    test: /\.(j|t)sx?/,
+    exclude: /node_modules/,
+    rules: [{ test: () => coverage,
+              enforce: "post",
+              loader: "istanbul-instrumenter-loader?esModules"
+    }, { loader: "ts-loader", // or babel-loader
+         options: { entryFileIsJs: true } // not if babel
+    }]
+ }]
+}
+```
+<!-- {style="font-size:89%"} -->
+
+---
+
+# Add npm scripts
+
+Add scripts to `package.json:scripts`\*
+
+```javascript
+"test": "mocha-webpack",
+"cover": "cross-env NODE_ENV=cover nyc npm test",
+```
+
+And then:
+
+```sh <!-- cli prompt=$ -->
+npm test
+npm run cover
+```
+
+---
+
+<!-- template: dark -->
+
+![bg original](../../_common/assets/picard/pouting.jpg)
+
+# Reality Check...
+
+---
+
+<!-- template: light -->
+
+# Reality Check...
+
+* ES2015+ is **NOT** a performance optimization
+  * See https://kpdecker.github.io/six-speed/ (as of 2017-01-04)
+
+![ES 2015+ performance](./assets/es6perf.png)
+
+---
+
+**Webview**
+**ES2015+ Perf**
+(Not to scale)
+
+![bg original 80%](./assets/perf1.png?a)
+
+<!--
+
+
+* **WKWebView** (iOS) single-core performance is **excellent**
+* Compared to Safari on MBPr\*
+    * iPad Pro 12.9&Prime;: roughly equal
+    * iPhone 6s: 2&times; slower
+    * iPad Mini 4: 2.5&times; slower
+
+* **Android Webview / Chrome** performance is **slow**; by roughly an order of magnitude
+* Compared to Chrome on MBPr:
+    * OnePlus One: ~10&times; slower
+    * Samsung Tab S 8.4&Prime;: ~33&times; slower
+
+
+<hr>
+
+**Note:** Results _highly sensitive_ to the JavaScript features in use.
+
+-->
+
+---
+
+<!-- template: dark -->
+
+![bg original](../../_common/assets/picard/double-wtf.jpg)
+
+> #### UIWebView strikes again <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
+
+---
+
+<!-- template: light -->
+
+<!-- footer: UIWebView's performance is highly dependent upon language features in use; this is a worst-case representation. -->
+
+![bg original 95%](./assets/perf2.png)
+
+<!--
+
+# Webviews &amp; Performance (2)
+
+* UIWebView: *ugh*
+    * "Slower than molasses in January"
+    * e.g: ~75&times; slower on an iPad Pro 12.9&Prime;
+    * No JIT :cry:
+
+-->
+
+---
+
+<!-- footer: -->
+
+# More Reality Checks
+
+* Build step
+* Debugging can be "fun"
+* Some of the syntax can be a little _sharp_ &mdash; handle with care
+
+---
+
+<!-- template: light -->
+
+# Euuuuggghhhh!!!
+
+## Way to crush my dreams!
+
+---
+
+# Not really....
+
+* Micro-benchmarks aren't the entire story
+	* Engines are continually improving
+
+* Actual performance deltas are highly variable 
+	* Depends on platform and the language features in use
+
+* Lots of benefits:
+	* Expressive and concise
+	* Less boilerplate
+	* `padStart` and `padEnd`! :wink:
 
 ---
 
