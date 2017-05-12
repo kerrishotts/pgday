@@ -770,7 +770,10 @@ game.start();
 	* Must include the extension
 	* No aliases
 
-A lot of existing ES2015+ modules **do not work in the browser as-is.**
+* iOS support does not work in PhoneGap / Cordova
+	* Not supported at all by `UIWebView`
+	* `WKWebView` without a local webserver throws CORS errors
+	* `WKWebView` using the local webserver throws 403 forbidden
 
 ---
 <!-- template: dark -->
