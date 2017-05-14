@@ -84,6 +84,8 @@
 
 # :tada: PhoneGap is born! :tada:
 
+<!-- footer: -->
+
 ---
 
 <!-- footer: By Ramaksoud2000 via Chris Williams - Wikipedia via GitHub logo.js, Public Domain, https://commons.wikimedia.org/w/index.php?curid=18434372 -->
@@ -161,6 +163,7 @@
 ###### http://kangax.github.io/compat-table/es5/ <!--{style="font-size: 50%; font-weight: normal; opacity: 0.5; padding-left: 50em;"}-->
 
 ---
+<!-- footer: -->
 
 > > > **2015**
 
@@ -770,10 +773,10 @@ game.start();
 	* Must include the extension
 	* No aliases
 
-* iOS support does not work in PhoneGap / Cordova
-	* Not supported at all by `UIWebView`
-	* `WKWebView` without a local webserver throws CORS errors
-	* `WKWebView` using the local webserver throws 403 forbidden
+* iOS module loading does not work in PhoneGap / Cordova
+	* Why? 
+	* Timo Ernst, Building PhoneGap apps with Vue.js and Framework7
+	* 1:30pm-2:10pm
 
 ---
 <!-- template: dark -->
