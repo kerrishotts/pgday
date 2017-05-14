@@ -67,11 +67,13 @@ There are twenty core plugins:
  network-information | ~~splashscreen~~ | statusbar
  vibration           | whitelist
 
+ > **Note**: A plugin audit is underway. If you want your voice heard regarding core plugins that you use, please see [CB-12708](https://issues.apache.org/jira/browse/CB-12708), find your core plugin's issue number, and comment on the plugin's issue.
+
 There are many, many more community plugins:
 
 |                         Repository | Plugins                 |
 |-----------------------------------:|:------------------------|
-|<https://cordova.apache.org/plugins>| ~2,066 plugins &amp; templates (excl. core) |
+|<https://cordova.apache.org/plugins>| ~2,211 plugins &amp; templates (excl. core) |
 |<http://www.plugreg.com>            | ~1,592 plugins (excl. core) |
 |<http://plugins.telerik.com/cordova>| ~77 plugins             |
 

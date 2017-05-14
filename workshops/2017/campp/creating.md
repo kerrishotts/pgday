@@ -97,8 +97,13 @@ Let's go over `plugin.xml` [(complete file)](https://github.com/kerrishotts/cord
         * There is no official standard for this; some plugins will pollute the global namespace, while others will use `phonegap.plugins` or something else.
         * I do suggest keeping to the `cordova.plugins.*` space unless you are writing a polyfill or writing a plugin that conforms to a standard that uses a different space.
         * I used my initials solely to avoid conflicts with other plugins. This is solely up to you.
+    * Other child tags for `js-module`:
+        * `<merges>` will merge the exported module with the target.
+        * `<runs>` will only run the code, but doesn't export anything.
+    * [Full docs](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#js-module)
 
-* Our plugin will also consist of native code, so we need to specify where those files are, and how they map. Don't worry too much about the mapping process yet &mdash; we'll cover that in a little bit. For now, just pay attention to the source file paths, since this is where we'll need to place our native code.
+
+* Our plugin will also consist of native code, so we need to specify where those files are, and how they map. Don't worry too much about the mapping process yet &mdash; we'll cover that in a little bit. For now, just pay attention to the source file paths, since this is where we'll need to place our native code. [Full docs](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html).
 
     ```xml
         <platform name="android">
@@ -134,6 +139,8 @@ Let's go over `plugin.xml` [(complete file)](https://github.com/kerrishotts/cord
         </platform>
     </plugin>
     ```
+* Manifest modifications can also be specified in `plugin.xml`. We've used one already: `config-file`, and it modifies the _platform's_ `config.xml` (rather than the project's). It can also be used to modify files like the Android Manifest or iOS plist files. [Full docs](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#config-file)
+    * There's a related tag called `edit-config` which is used to _merge_ attributes with existing elements. [Full docs](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#edit-config)
 
 ## npm metadata
 

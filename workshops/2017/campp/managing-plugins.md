@@ -15,19 +15,21 @@ Whether you are using a core or community plugin or you're developing your own, 
 Plugins are typically downloaded from npm:
 
 ```sh
-$ cordova plugin add --save cordova-plugin-device
+$ cordova plugin add [--save] cordova-plugin-device
 
 $ cordova plugin ls                                # or list
 cordova-plugin-device 1.1.1 "Device"
 
-$ cordova plugin rm --save cordova-plugin-device   # or remove
+$ cordova plugin rm [--save] cordova-plugin-device   # or remove
 ```
 
 For Cordova CLI versions prior to 7.0.0, you'll typically want to use the `--save` switch, since this persists the plugin and version to your app's `config.xml`. This lets you easily restore plugins later (at `prepare`-time).
 
 For Cordova CLI versions after 7.0.0, plugins are automatically saved to your project's configuration. You'll need to use the `--nosave` switch in order to disable this feature.
 
-> **Note**: As of Cordova 7, plugins are also saved to your app's `package.json` file. If one doesn't exist, it will be created automatically at first `prepare`.
+> **Cordova 7.x Note**: As of Cordova 7, plugins are also saved to your app's `package.json` file. If one doesn't exist, it will be created automatically at first `prepare`.
+
+> **Cordova 7.x Note**: If a plugin doesn't have a `package.json` file, an error may be thrown when adding the plugin. To add the plugin in this case, use the `--nofetch` flag, which uses pre-7.x plugin management logic.
 
 # Installing from Git
 
@@ -52,9 +54,9 @@ $ cordova plugin add http://github.com/apache/cordova-plugin-device#branch
 Plugins can also be installed from the local file system &mdash; which is very useful during development and testing:
 
 ```sh
-$ cordova plugin add --save [--link] /path/to/plugin
+$ cordova plugin add [--save] [--link] /path/to/plugin
 
-$ cordova plugin rm --save cordova-plugin-device
+$ cordova plugin rm [--save] cordova-plugin-device
 ```
 
 The `--link` switch is most useful when developing plugins &mdash; it will link various parts of the plugin in your app's structure to the plugin's native code. This makes it easier to develop the plugin, since changes made in the app project can be reflected back to the plugin.
@@ -62,6 +64,8 @@ The `--link` switch is most useful when developing plugins &mdash; it will link 
 > **Note:** Not _everything_ is linked; we'll cover this later.
 
 > **Warning:** Careful with parent plugins and child projects &mdash; some tools choke on circular references in the file system
+
+> **Windows 10**: You may need to be an administrator in order to create links.
 
 # Finding plugins
 

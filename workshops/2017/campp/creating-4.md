@@ -59,3 +59,33 @@ Here's a couple of pictures that should make the mapping even more obvious:
 ![Android Plugin Class Mapping](./img/android-plugin-class-map.png)
 
 For proxy-based platforms, the mapping is handled by the proxy JavaScript module, which is why a `<js-module>` with a `<runs>` child is used instead.
+
+# Dependencies
+
+Many times one will need to specify some dependencies. You can add both plugins and platforms as dependencies. The method differs by Cordova version.
+
+* pre-Cordova 6.1.0
+    * Managed by `plugin.xml`
+    * plugin dependencies ([eg](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L32); [docs](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#dependency))
+    ```xml
+    <dependency id="cordova-plugin-file" version="^4.0.0" />
+    ```
+    * platform &amp; tool dependencies ([eg];(https://github.com/apache/cordova-plugin-inappbrowser/blob/92ca973b3da3c79fd4bba1e1ca8a12c75a1b6260/plugin.xml#L32) ; [docs](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#engines-and-engine))
+    ```xml
+    <engines>
+        <engine name="cordova" version=">=3.1.0" />
+    </engines>
+    ```
+* Cordova 6.1.0 and later
+    * Managed in `package.json`
+    * [Full docs](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/index.html#specifying-cordova-dependencies)
+    ```javascript
+        "engines": {
+            "cordovaDependencies": {
+                "2.0.0": { // plugin version (applies to any ver 2+)
+                    "cordova-plugin-console": ">1.0.0",
+                    "cordova": ">6.0.0" // cordova-cli above version 6
+                }
+            }
+        }
+    ```
