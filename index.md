@@ -19,6 +19,6 @@ This repository includes slides and source material for presentations and worksh
 
  Year | Title                                  | Slides  | Source  |    Video    | Links
 -----:|:---------------------------------------|:-------:|:-------:|:-----------:|:-----
- 2016 | Common PhoneGap Gotchas (EU)           | [PDF]() | &mdash; | [YouTube]() |
+ 2016 | Common PhoneGap Gotchas (EU)           | [PDF](https://github.com/kerrishotts/pgday/raw/master/2016/common-phonegap-gotchas/presentation.pdf) | &mdash; | [YouTube](https://www.youtube.com/watch?v=gDPjPpVeBXk) |
  2017 | Modern JavaScript and PhoneGap (EU)    | [PDF](https://github.com/kerrishotts/pgday/raw/master/2017/modern-javascript-and-phonegap/presentation.pdf) | [GitHub](https://github.com/kerrishotts/pgday/tree/master/2017/modern-javascript-and-phonegap) | Coming |
  2017 | Creating a Modern PhoneGap Plugin (EU) | [PDF](https://github.com/kerrishotts/pgday/raw/master/2017/creating-a-modern-phonegap-plugin/presentation.pdf) | [GitHub](https://github.com/kerrishotts/pgday/tree/master/2017/creating-a-modern-phonegap-plugin) | Coming | [Workshop](./workshops/2017/campp)
