@@ -35,7 +35,7 @@ $ open platforms/ios/example.xcworkspace
 $ open -a "Android Studio" "./platforms/android/"
 
 # for Windows; launches Visual Studio
-> start .\\platforms\\windows\\CordovaApp.sln
+> start .\platforms\windows\CordovaApp.sln
 ```
 
 You may also need to debug the JavaScript side of things, in which case, you can connect Google Chrome to your Android apps and Safari to your iOS apps. Visual Studio can be used to debug Windows apps.
