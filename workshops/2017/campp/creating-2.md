@@ -41,7 +41,7 @@ The code for the `browser` platform is located at `src/browser/isPrimeProxy.js`.
         var result = args[0],
             candidate = result.candidate,
             half = Math.floor(candidate / 2);
-        for (var i = 2; i <= halfN; i++) {
+        for (var i = 2; i <= half; i++) {
             result.progress = ((i + 1) / half) * 100;
             if (candidate % i === 0) {
                 result.factors.push(i);
@@ -250,7 +250,7 @@ We're using Java for our Android plugin, so the code should be pretty easy to fo
             } else {
                 return false;
             }
-            return false;
+            return true;
         }
     }
     ```
