@@ -242,9 +242,53 @@ cordova plugin rm [--save] cordova-plugin-device
 
 ---
 
+![bg o40%](./assets/pics/little-791331_1920.jpg)
+<!-- footer: Photo by kaboompics (https://pixabay.com/en/users/kaboompics-1013994/), courtesy of Pixabay.com-->
+
+
+# Crossing the bridges
+
+---
+<!--footer: -->
+
+# Know your Bridges
+
+Allows communication between native code and web view contexts.
+
+* iOS
+
+* Android
+
+* Browser/Windows is an exception...
+  * Careful, the bridge is a **mirage**! :desert:
+  * JavaScript is **native** :fireworks:
+  * `cordova.exec` uses a proxy to keep things consistent
+  * [full docs](https://cordova.apache.org/docs/en/latest/guide/platforms/win8/plugin.html#creating-a-windows-plugin-in-javascript)
+
+---
+
+<!-- footer: -->
+
+![bg fit original](assets/ios-bridge.png?c)
+
+---
+
+![bg fit original](assets/android-bridge.png?c)
+
+---
+
+![bg fit original](assets/proxy-bridge.png?d)
+
+---
+
+<!--footer: -->
+
+![bg original fit](./assets/tests-block.png?b)
+
+---
+
 ![bg o20%](./assets/pics/x-ray-237402_1920.jpg)
 <!-- footer: Photo by dcondrey (https://pixabay.com/en/users/dcondrey-122249/), courtesy of Pixabay.com-->
-
 
 
 
@@ -256,7 +300,7 @@ cordova plugin rm [--save] cordova-plugin-device
 
 # The Stuff Plugins are Made of
 
- Ingredients  | Ingredients
+ Ingredients  | Ingredients <!-- {thead:style='display:none'} -->
 :------------:|:------------------:
 Metadata      | Documentation _^s^_
 Native Code \*| JavaScript \*
@@ -318,7 +362,7 @@ cordova-plugin-*your-plugin*/                          | Plugin root
 
 </div>
 
-Note: **bold is required**; otherwise optional, but you'll want most of these
+Note: **bold is required**; otherwise optional, but most are used
 
 <hr>
 
@@ -327,8 +371,6 @@ Note: **bold is required**; otherwise optional, but you'll want most of these
 ---
 
 ## Example Metadata (plugin.xml)
-
-<div style="font-size:79%">
 
 ```xml <!--number -->
 <?xml version="1.0" encoding="UTF-8"?>
@@ -344,8 +386,7 @@ Note: **bold is required**; otherwise optional, but you'll want most of these
   <issue>https://issues.apache.org/jira/browse/CB/
     component/12320648</issue>
 ```
-
-</div>
+<!-- {style="font-size: 79%"} -->
 
 <hr>
 
@@ -415,13 +456,11 @@ Use `<platform>` tags: [^docs^](https://cordova.apache.org/docs/en/latest/plugin
 
 <hr>
 
-**Note:** Visible platform support on plugin repo is separately controlled (`package.json` keywords)
+**Note:** You should also indicate platform support in `packge.json`:`cordova.platforms`
 
 ---
 
 ## Assets and Native Code
-
-<div style="font-size: 90%">
 
 ```xml <!-- number -->
 <platform name="android">
@@ -429,13 +468,13 @@ Use `<platform>` tags: [^docs^](https://cordova.apache.org/docs/en/latest/plugin
     target-dir="src/org/apache/cordova/device" />
 </platform>
 <platform name="ios">
-    <header-file src="src/ios/CDVDevice.h" />
-    <source-file src="src/ios/CDVDevice.m" />
-    <framework src="libz.tbd" />
+  <header-file src="src/ios/CDVDevice.h" />
+  <source-file src="src/ios/CDVDevice.m" />
+  <framework src="libz.tbd" />
 </platform>    
 ```
 
-</div>
+<!-- {style="font-size:90%"} -->
 
 <hr>
 
@@ -466,8 +505,6 @@ Other asset tags: `asset`, `resource-file`, `lib-file`; [full docs](https://cord
     </config-file>
     ```
     <!--{style="font-size:80%"}-->
-  * Use `<param name="onload" value="true" />` to init at startup
-
 
 <!--{ul:style="font-size:85%"}-->
 
@@ -515,6 +552,8 @@ Other asset tags: `asset`, `resource-file`, `lib-file`; [full docs](https://cord
 
 ---
 
+<!--
+
 # Dependencies ( &lt; cordova@6.1.0)
 
 Before `cordova@6.1.0`, `plugin.xml` managed dependencies:
@@ -523,14 +562,14 @@ Before `cordova@6.1.0`, `plugin.xml` managed dependencies:
   ```xml
   <dependency id="cordova-plugin-file" version="^4.0.0" />
   ```
-  <!-- {style='font-size:80%'} -->
+  <!-- {style='font-size:80%'} ->
 * platform &amp; tool dependencies[^2^](https://github.com/apache/cordova-plugin-inappbrowser/blob/92ca973b3da3c79fd4bba1e1ca8a12c75a1b6260/plugin.xml#L32) [^docs^](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#engines-and-engine)
   ```xml
   <engines>
     <engine name="cordova" version=">=3.1.0" />
   </engines>
   ```
-  <!-- {style='font-size:80%'} -->
+  <!-- {style='font-size:80%'} ->
   
 <hr>
 
@@ -538,9 +577,11 @@ Before `cordova@6.1.0`, `plugin.xml` managed dependencies:
 
 ---
 
+-->
+
 # Dependencies (cordova@6.1.0+)
 
-Now dependencies should be managed in `package.json`: [^docs^](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/index.html#specifying-cordova-dependencies)
+Dependencies are managed in `package.json`: [^docs^](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/index.html#specifying-cordova-dependencies)
 
 ```javascript
 "engines": {
@@ -552,13 +593,13 @@ Now dependencies should be managed in `package.json`: [^docs^](https://cordova.a
   }
 }
 ```
-<!-- {style='font-size:80%'} -->
+<!-- {style='font-size:90%'} -->
 
 ---
 
 # Documentation
 
-Documentation is critical; how else will you users know how to use your plugin?
+Documentation is absolutely critical!
 
 * Location of documentation
     * English goes in `README.md` (plugin root)
@@ -584,6 +625,7 @@ Documentation is critical; how else will you users know how to use your plugin?
 
 
 ---
+<!-- footer: -->
 
 
 # plugman
@@ -592,7 +634,7 @@ Documentation is critical; how else will you users know how to use your plugin?
 
 It is also used to create an initial plugin project:
 
-```sh <!-- cli prompt=$ output=3-5 -->
+```sh <!-- cli prompt=$ output=4-6 -->
 npm install -g plugman
 mkdir isprime
 plugman create --name IsPrime
@@ -608,11 +650,12 @@ plugman create --name IsPrime
 
 Or, use PhoneGap's plugin template to create a plugin: https://github.com/phonegap/phonegap-plugin-template
 
-```sh <!-- prompt=$ cli output=2,5 -->
+```sh <!-- prompt=$ cli output=2-3,5-7 -->
 npm i -g https://github.com/phonegap/phonegap-plugin-template
 
+#parms: path name plugin-id
 phonegap-plugin-create isprime IsPrime
-  cordova-plugin-example-isprime  #parms: path name plugin-id
+  cordova-plugin-example-isprime  
 ? license[MIT] [enter]
 ```
 <!-- {style='font-size:80%'} -->
@@ -629,21 +672,19 @@ Creates `docs`, `src/android`, `src/ios`, `www`, `plugin.xml`, `package.json`, a
 
 ```javascript
 // www/isPrime.js
-var exec = cordova.require("cordova/exec"), SERVICE = "IsPrime";
-function tick(fn, thisArg) {
-  return function() {
-    setTimeout(fn.apply(thisArg, arguments), 0);
-  };
-} 
-module.exports = function isPrime(successFn, failureFn, candidate) {
-  // ensure the parameters are of the correct types
-  if (typeof successFn !== "function") throw new Error("...");
-  /*...*/
-  var result = { isPrime: false, candidate: candidate, /*...*/ };
-  exec(tick(successFn), tick(failureFn), SERVICE, "isPrime", [result]);
+var exec = cordova.require("cordova/exec"), 
+    SERVICE = "IsPrime";
+module.exports = function isPrime(successFn, failureFn, 
+  candidate) {
+  // ensure the arguments are of the correct types
+  if (typeof successFn !== "function") throw new Error("!");
+  /* etc. */
+  var arg = { isPrime: false, candidate: candidate, ... };
+  /* pass the call over the cordova bridge */
+  exec(successFn, failureFn, SERVICE, "isPrime", [arg]);
 }
 ```
-<!-- {style='font-size:75%'} -->
+<!-- {style='font-size:90%'} -->
 
 ---
 
@@ -655,9 +696,7 @@ module.exports = function isPrime(successFn, failureFn, candidate) {
 
 # Your Native Code (iOS)
 
-```clike
-```
-```objectivec
+```c
 #import <Cordova/CDV.h>
 @interface CDVIsPrime : CDVPlugin
 @end
@@ -692,8 +731,8 @@ public class IsPrime extends CordovaPlugin {
   }
   private void isPrime(JSONObject result, CallbackContext callbackContext) 
     throws JSONException {
-	/* abracadabra: determine if candidate is prime */
-    PluginResult pluginResult=new PluginResult(PluginResult.Status.OK, result);
+	/* magic incantation: determine if candidate is prime */
+    PluginResult pluginResult = new PluginResult(PluginResult.Status.OK, result);
     callbackContext.sendPluginResult(pluginResult);
   }
 }
@@ -723,7 +762,7 @@ require("cordova/exec/proxy").add("IsPrime", module.exports);
 
 # Plugin Class Mapping (iOS)
 
-Remember the JS API's call to `cordova.exec`?
+Remember the JS API's call to `cordova.exec` and plugin class mapping in `plugin.xml`?
 
 ![iOS Status Bar Plugin Class Mapping](./assets/ios-plugin-class-map.png)
 
@@ -743,20 +782,20 @@ CDVPluginResult* r=[CDVPluginResult resultWithStatus:CDVCommandStatus_OK
   messageAsDictionary:result];
 [r setKeepCallbackAsBool:YES];
 ```
-<!-- {style='font-size:70%'} -->
+<!-- {style='font-size:75%'} -->
 ```java
 
 // Android
 PluginResult r = new PluginResult(PluginResult.Status.OK, result);
 r.setKeepCallback(true);
 ```
-<!-- {style='font-size:70%'} -->
+<!-- {style='font-size:75%'} -->
 ```javascript
 
 // Browser / Windows
 successFn(result, {keepCallback: true});
 ```
-<!-- {style='font-size:70%'} -->
+<!-- {style='font-size:75%'} -->
 
 <hr>
 
@@ -772,51 +811,7 @@ successFn(result, {keepCallback: true});
 * You should respond to `onDestroy` and `onReset` as well
 	* `onDestroy` occurs when the plugin is about to go away
 	* `onReset` occurs when the web view is about to navigate
-
----
-
-![bg o40%](./assets/pics/little-791331_1920.jpg)
-<!-- footer: Photo by kaboompics (https://pixabay.com/en/users/kaboompics-1013994/), courtesy of Pixabay.com-->
-
-
-# Crossing the bridges
-
----
-<!--footer: -->
-
-# Know your Bridges
-
-Allows communication between native code and web view contexts.
-
-* iOS
-
-* Android
-
-* Browser/Windows is an exception...
-  * Careful, the bridge is a **mirage**! :desert:
-  * JavaScript is **native** :fireworks:
-  * `cordova.exec` uses a proxy to keep things consistent
-  * [full docs](https://cordova.apache.org/docs/en/latest/guide/platforms/win8/plugin.html#creating-a-windows-plugin-in-javascript)
-
----
-
-<!-- footer: -->
-
-![bg fit original](assets/ios-bridge.png?c)
-
----
-
-![bg fit original](assets/android-bridge.png?c)
-
----
-
-![bg fit original](assets/proxy-bridge.png?d)
-
----
-
-<!--footer: -->
-
-![bg original fit](./assets/tests-block.png?b)
+	* Great for cleaning up background operations
 
 ---
 
@@ -832,23 +827,48 @@ Allows communication between native code and web view contexts.
 
 --- 
 
-# cordova-paramedic
+## cordova-paramedic
 
 > n. *provides advanced levels of care at the point of illness or injury, including out-of-hospital treatment, and diagnostic services*
 
-```sh <!-- cli prompt=$ output=2 -->
-npm install -g cordova-paramedic
+```sh <!-- cli prompt=$ output=3-4 -->
+npm i -D cordova-paramedic
+npm i -D https://github.com/apache/cordova-paramedic.git
+```
+<!-- {style='font-size:90%'} -->
 
-cordova-paramedic --platform ios --plugin .
+Then:
+
+```sh <!-- cli prompt=$ output=2 -->
+./node_modules/cordova-paramedic/main.js --platform ios 
+  --plugin .
 ```
 <!-- {style='font-size:90%'} -->
 
 Repo &amp; docs: https://github.com/apache/cordova-paramedic
 
+---
+
+## cordova-paramedic
+
+Or, just use an npm script in `package.json`:
+
+```json
+"scripts": {
+    "test:ios": "cordova-paramedic --platform ios     \
+      --plugin .",
+}
+```
+
+And then:
+
+```sh <!-- cli prompt=$ -->
+npm run test:ios
+```
 
 ---
 
-# Automates Jasmine Tests
+## Automates Jasmine Tests
 
 * Creates a new project (in temporary location)
 * Adds the platform specified (`ios`, `android`, `windows`, etc.)
@@ -866,7 +886,7 @@ Repo &amp; docs: https://github.com/apache/cordova-paramedic
 
 ---
 
-# How to write tests
+## How to write tests
 
 * Copy a core plugin's tests – we all do it!
 * Create a `tests` folder in your plugin's repository
@@ -887,12 +907,14 @@ Repo &amp; docs: https://github.com/apache/cordova-paramedic
 
 ---
 
-# Testing Tips
+## Testing Tips
 
 * Automate as much as you can (`exports.defineAutoTests`)
 * For tests that can't be automated, use manual tests (`exports.defineManualTests`)
 * Don't forget to accept &amp; call `done` in your `it` tests when working with callbacks and promises.
 * If you've got similar tests, you can build them programatically
+* For native UI, you can use Appium
+* [Travis CI example](https://github.com/kerrishotts/cordova-plugin-example-isprime/blob/master/.travis.yml) (iOS &amp; Android only)
 
 ---
 
@@ -917,10 +939,27 @@ Repo &amp; docs: https://github.com/apache/cordova-paramedic
     ```
     <!--{style="font-size:80%"}-->
     
-    * Note `--link` &mdash; can simplify dev workflow
+    * `--link` &mdash; can simplify dev workflow
     * If you change your example's `www`, be sure to `prepare`
 
-* Xcode (macOS) / Safari &bullet; Android Studio / Google Chrome &bullet; Visual Studio (Windows)
+---
+
+## IDEs &amp; Debugging
+
+* iOS: Xcode / Safari
+  ```sh <!-- cli prompt=$ -->
+  open ./platforms/ios/*.xcworkspace
+  ```
+
+* Android: Android Studio / Google Chrome
+  ```sh <!-- cli prompt=$ -->
+  open -a "Android Studio" "./platforms/android/"
+  ```
+  
+* Windows (universal): Visual Studio
+  ```sh <!-- cli prompt=> -->
+  start .\platforms\windows\CordovaApp.sln
+  ```
 
 ---
 
@@ -934,8 +973,8 @@ Repo &amp; docs: https://github.com/apache/cordova-paramedic
 * Native code in symlinked in app's `platforms/`
 
 Exceptions &amp; notes:
-* `cordova clean android` if the Android compiler complains
-* `plugin.xml` changes require an `rm` &amp; `add`
+* `cordova clean android` if the build complains
+* `plugin.xml` changes require a `plugin rm` &amp; `add`
 * Changes to your plugin's `www` require an `rm` &amp; `add` as well
 * `platform rm` &amp; `add` won't preserve `--link`s ([CB-12597](https://issues.apache.org/jira/browse/CB-12597))
 
@@ -945,21 +984,24 @@ Exceptions &amp; notes:
 
 # Publishing your plugin
 
-* If you want to publish to `npm`, you'll need a `package.json`
+* Generate / update `package.json`
 
-* `plugman` can generate it based on `plugin.xml` for you:
+  * `plugman` can generate it based on `plugin.xml` for you:
 
     ```sh <!-- cli prompt=$ -->    
     plugman createpackagejson .
     ```
 
-* If you used the PhoneGap Plugin Template, `package.json` is already there &mdash; you'll need to update it.
-
 * Once `package.json` is correct, publish via:
     ```sh <!-- cli prompt=$ -->    
     npm publish
     ```
+    
+###### **IMPORTANT:**
+
 * Don't forget `.npmignore`!
+* If you used the PhoneGap Plugin Template, `package.json` is already there &mdash; you'll need to update it.
+
 ---
 
 ![bg o60%](./assets/pics/blur-1867166_1920.jpg)
@@ -993,9 +1035,9 @@ Exceptions &amp; notes:
 * Use background threads for processing
   * [iOS documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/ios/plugin.html#threading)
   * [Android documentation](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#threading)
-* Avoid init at app startup unless necessary
+* Avoid init at app startup unless necessary, but if you need to start up at start, you can:
     ```xml
-    <param name="onload" value="false" />
+    <param name="onload" value="true" />
     ```
 * Override `onReset` to clean up when web view navigates [^eg^](https://github.com/apache/cordova-plugin-statusbar/blob/master/src/ios/CDVStatusBar.m#L153) [^ios^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L154)
 [^android^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L348)
@@ -1009,7 +1051,7 @@ Exceptions &amp; notes:
   * `cordova.requestPermission()` [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L397)
   * `cordova.hasPermission()` [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L407)
   * Override `onRequestPermissionResult` [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L418)
-* Don't forget Android activity lifecycle [^docs^](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#launching-other-activities) [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L143)
+* Don't forget Android activity lifecycle [^docs^](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#launching-other-activities) [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L178)
 
 ---
 
@@ -1066,25 +1108,14 @@ Possibilities:
 
 # Homework
 
-* Create a new plugin and add it to a Cordova project
-* Extend and/or improve a plugin
-    * For example, the globalization plugin's API is asynchronous, which is really irritating.
-        * All the formatting / globalization information could be determined up-front instead
-        * Try it: https://github.com/apache/cordova-plugin-globalization
-* The sky's the limit!
-
----
-
-![bg o10%](./assets/pics/lightbulb-1285110_1920.jpg)
-<!-- footer: Photo by Pexels (https://pixabay.com/en/users/Pexels-2286921/), courtesy of Pixabay.com-->
-
-
-# Some more cool plugin ideas
-
-* Game controller support
-* Apple Pencil / Stylus support (pressure, tilt)
-* Audio/video processing
-* Faster computation (compared with JavaScript)
+* Create a new plugin and add it to a Cordova project.
+  * Apple Pencil / Stylus support (pressure, tilt)
+  * Audio/video processing
+  * Faster computation (compared to JavaScript)
+* Extend and/or improve an existing plugin
+  * Core plugins should adhere to specs when they are available
+  * Translate API docs if you know a language other than English
+  * Add and improve tests and examples
 
 
 ---

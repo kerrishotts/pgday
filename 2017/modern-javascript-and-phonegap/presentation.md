@@ -35,10 +35,12 @@
 ---
 
 <!-- template: dark -->
-
+<!-- footer: TARDIS by Zir at English Wikipedia, CC BY 2.5, https://commons.wikimedia.org/w/index.php?curid=8300120 -->
+![bg fit o60%](./assets/TARDIS1.jpg)
 > > > **2009**
 
 ---
+<!-- footer: -->
 
 ![bg fit original](./assets/2009-pres.jpg)
 
@@ -50,7 +52,7 @@
 
 ![bg 50% original](./assets/iphone3gs.jpg)
 
-# iPhone 3GS <!--{style='text-align:center; color: white; top: 3em;'}-->
+# iPhone<br/>3GS <!--{style="background: none; margin-left: -5.9em;"}-->
 
 ---
 
@@ -68,7 +70,7 @@
 
 ![bg 50% original](./assets/hero.jpg)
 
-# HTC Hero <!--{style='text-align:center; color: white; top: 3em;'}-->
+# HTC<br/>Hero <!--{style="background: none; margin-left: -5.9em;"}-->
 
 ---
 
@@ -82,9 +84,11 @@
 
 ---
 
-# :tada: PhoneGap is born! :tada:
+![bg fit](./assets/phonegap-white.png)
 
-<!-- footer: -->
+# PhoneGap is born! :baby: :tada:
+
+<!-- footer: Logo from http://phonegap.com/about/logos/ -->
 
 ---
 
@@ -92,7 +96,7 @@
 
 ![bg 40% original](./assets/JavaScript-logo.png)
 
-# ECMAScript 5 <!--{style='text-align:center; color: white; top: -2.1em;'}-->
+# 5 <!--{h1: style="background: none; font-size: 1600%; margin-left: 0.875em;"}-->
 
 ---
 
@@ -128,7 +132,7 @@
 
 <!-- footer: By Zach Vega - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=21298355 -->
 
-# iPhone 5
+# iPhone<br/>5 <!--{style="background: none; margin-left: -5em;"}-->
 
 ---
 
@@ -148,7 +152,7 @@
 
 ![bg original 30%](./assets/galaxys3.png)
 
-# Samsung Galaxy S3
+# Samsung<br/>Galaxy S3  <!--{style="background: none; margin-left: -5em;"}-->
 
 ---
 
@@ -177,7 +181,8 @@
 
 ---
 
-# :tada: ES2015 (n&eacute;e ES6) :tada:
+# :tada: ES2015 :tada:
+## n&eacute;e ES6
 
 ---
 
@@ -231,7 +236,7 @@ Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
 
 # Brexit
 
-## Wait... what?
+## Wait... how'd that happen?
 
 ---
 
@@ -309,6 +314,8 @@ Source: http://www.2ality.com/2016/02/ecmascript-2017.html
 
 ## https://esdiscuss.org
 
+###### https://mail.mozilla.org/listinfo/es-discuss
+
 ---
 
 <!-- template: light -->
@@ -320,25 +327,21 @@ Source: http://www.2ality.com/2016/02/ecmascript-2017.html
 # Block. Scoped. Variables. Finally.
 
 ```javascript
-let i = 50;
-for (let i = 0; i < 100; i++) {
-  console.log(i); // 0...99
-}
-console.log(i); // 50
-```
-
-Constant references too:
-
-```javascript
 const SECONDS_IN_A_MINUTE = 60;
-const CREATE_ACTION = "action";
+const HELLO = "Hiya";
+
+let i = SECONDS_IN_A_MINUTE;
+for (let i = 0; i < 100; i++) {
+  console.log(HELLO, i); // Hiya 0... Hiya 99
+}
+console.log(i); // 60
 ```
 
 ---
 
 # Constants aren't constant
 
-Only the reference is constant:
+Only the reference is constant!
 
 ```javascript
 const DEFAULT_OPTIONS = {
@@ -353,22 +356,18 @@ console.log(DEFAULT_OPTIONS.quality); // 100
 
 # Dang it, _this!_
 
-<div style='font-size:95%'>
-
-```javascript <!-- highlight=3,6 number -->
+```javascript <!-- highlight=4,8 number -->
 var app = {
   text: "Hello, PG Day Attendees!",
-  sayHi: function() { alert(this.text); },
+  sayHi: function() { 
+  	alert(this.text); 
+  },
   start: function() {
     document.querySelector("#clickme")
-      .addEventListener("click", this.sayHi, false);
+    .addEventListener("click", this.sayHi, false);
   }
 }
-
-app.start();
 ```
-
-</div>
 
 ---
 
@@ -387,26 +386,18 @@ app.start();
 
 # Arrow functions
 
-<div style='font-size:85%'>
-
-```javascript <!-- number highlight=3,6 -->
+```javascript <!-- number highlight=5,8 -->
 class App {
-  constructor() { this.text = "Hello, PG Day Attendees!"; }
+  constructor() { 
+    this.text = "Hello, PG Day Attendees!"; 
+  }
   sayHi() { alert(this.text); }
   start() {
     document.querySelector("#clickme")
-      .addEventListener("click",() => this.sayHi(), false);
+    .addEventListener("click",() => this.sayHi());
   }
 }
-const app = new App();
-app.start();
 ```
-
-</div>
-
-<hr>
-
-Line 6 ES5 equivalent: `.addEventListener("click", (function() { this.sayHi(); }).bind(this), false)`
 
 ---
 
@@ -425,9 +416,10 @@ Line 6 ES5 equivalent: `.addEventListener("click", (function() { this.sayHi(); }
 
 # Arrow function quirks
 
-No parameters? Use parentheses:
+No or 2+ parameters? Use parentheses:
 ```javascript
-[1, 2, 3].forEach(() => console.log("hi"));
+[1, 2, 3].map(() => Math.floor(Math.random() * 100));
+[1, 2, 3].map((i, idx) => i * idx);
 ```
 
 One parameter? Convention is no parentheses:
@@ -435,23 +427,17 @@ One parameter? Convention is no parentheses:
 [1, 2, 3].map(i => i * 2);
 ```
 
-Multiple parameters? Use parentheses:
-
-```javascript
-[1, 2, 3].map((i, idx) => i * idx);
-```
-
 ---
 
 # Arrow function returns
 
-Single line arrow functions should use implicit `return`:
+Single line arrow functions use implicit `return`:
 
 ```javascript
 [1, 2, 3].map(i => i * 2);
 ```
 
-Multi-line arrow functions should use blocks:
+Block arrow functions use explicit `return`:
 
 ```javascript
 [1, 2, 3].map(i => {
@@ -473,7 +459,7 @@ i:                              // obviously not what
 	i * 2;                      // we want :-(
 });
 ```
-Instead, wrap the return in parentheses:
+Instead, wrap the implicit return in parentheses:
 
 ```javascript
 [1, 2, 3].map(i => ({i: i * 2}));
@@ -483,21 +469,24 @@ Instead, wrap the return in parentheses:
 
 # Template Strings
 
-Single quotes, double quotes, and now... backticks!? Just after I remapped underscore to the backtick, no less!
+Multiline and Variable interpolation:
 
 ```javascript
-function sayHello(name) {
-  return `Hello, ${name}!`;
+function sayHelloAndGoodbye(name) {
+  return `Hello, ${name},
+Goodbye, ${name}`;
 }
 
-sayHello("World");  // Hello, World!
+sayHelloAndGoodbye("World");  
+// Hello, World!
+// Godbye, World!
 ```
 
 ---
 
 # Template Strings
 
-Complex expressions (*use with care*):
+Arbitrary expressions (*use with care*):
 
 ```javascript
 function sayComplexHello(name) {
@@ -527,7 +516,7 @@ function getPos(options) {
 
 # Promises, Promises, Promises
 
-Easier-to-read chaining:
+Chaining is easier to read:
 
 ```javascript
 getPos.then(pos => {
@@ -653,13 +642,13 @@ function getPicture({quality = 50, width = 512,
 
 ```javascript
 // use all the defaults
-getPicture().then(/*...*/);
+await getPicture();
 
 // specify only quality
-getPicture({quality:75}).then(/*...*/);
+await getPicture({quality:75});
 
 // specify only height & width
-getPicture({height: 1024, width: 1024}).then(/*...*/)
+await getPicture({height: 1024, width: 1024});
 ```
 
 ---
@@ -671,7 +660,7 @@ Static Analysis, FTW!
 math.js:
 
 ```javascript
-export function add(a, b) { return a+b; }
+export function add(a, b) { return a + b; }
 ```
 
 index.js:
@@ -705,7 +694,7 @@ console.log(add(4, 3));      // 7
 
 # The Rise of the Transpilers
 
-These can all transpile ES2015+\* (feature support may vary)
+These can all transpile ES2015+\* to ES5:
 
 * [Babel](https://babeljs.io) (n&eacute;e es6to5)
 * [TypeScript](https://www.typescriptlang.org)
@@ -714,7 +703,7 @@ These can all transpile ES2015+\* (feature support may vary)
 
 <hr>
 
-&nbsp;\* **Note:** Not every ES2015+ feature can be transpiled effectively (if at all), such as proxies, shared memory, atomics, built-in subclassing, and tail call elimination. Also, most transpilers need [core-js](https://github.com/zloirock/core-js) to polyfill the standard library.
+&nbsp;\* **Note:** Not every ES2015+ feature can be transpiled effectively and to spec (if at all), such as proxies, shared memory, atomics, built-in subclassing, and tail call elimination. Also, most transpilers need to polyfill the standard library.
 \*\* Doesn't attempt to transform non-performant or non-trivial ES6 features; _also very young_
 
 ---
@@ -733,7 +722,7 @@ These can all transpile ES2015+\* (feature support may vary)
 
 <!-- template: light -->
 
-# I lie...
+# Until now...
 
 Browsers have _finally_ started shipping implementations:
 
@@ -771,19 +760,22 @@ game.start();
 * No "bare" `import`!
 	* Must include the path
 	* Must include the extension
-	* No aliases
+	* No node-style resolution
 
 * iOS module loading does not work in PhoneGap / Cordova
-	* Why? 
-	* Timo Ernst, Building PhoneGap apps with Vue.js and Framework7
-	* 1:30pm-2:10pm
+
+<center>
+Timo Ernst<br/>
+Building PhoneGap apps with Vue.js and Framework7<br/>
+13:30 &mdash; 14:10
+</center>
 
 ---
 <!-- template: dark -->
 
 ![bg original](../../_common/assets/picard/yay.jpg)
 
-> ### But we can fix that... <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
+> ### But we can fix all that... <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
 
 
 ---
@@ -806,19 +798,16 @@ You can do more than just bundling:
 # Execution Options
 
 * Manual
-    * Just run each tool's CLI... _every time_...
-    * Um... no.
-	    * Error prone &mdash; you might forget!
-* Automatic
-    * Task runners (`gulp`, `grunt`, etc.)
+* Task runner
+    * `gulp`, `grunt`, etc.
     * `npm` scripts
-    * Plugin or Project hooks
+* Automatic
+    * Plugin Hooks
+    * Project hooks
 
 ---
 
 # Automating with npm scripts
-
-<!-- * Determine ES2015+ code location -->
 
 * Pick your bundler and transpiler
 
@@ -1211,7 +1200,7 @@ npm run cover
 
 <!-- template: light -->
 
-<!-- footer: UIWebView's performance is highly dependent upon language features in use; this is a worst-case representation. -->
+<!-- footer: UIWebView's performance is highly dependent upon language features used. -->
 
 ![bg original 95%](./assets/perf2.png)
 
