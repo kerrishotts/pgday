@@ -252,3 +252,62 @@ The above example also demonstrates two more useful tips:
         runChecks(tests);
     });
     ```
+
+# Continuous Integration using Travis CI
+
+Testing with Travis CI makes it easy to verify that your last code changes didn't totally break your plugin. To enable Travis CI support, add a `.travis.yml` to your project root that looks like the following:
+
+```yml
+sudo: false
+matrix:
+  include:
+    - os: osx
+      language: objective-c
+    - os: linux
+      jdk: oraclejdk1.8
+      language: android
+android:
+  components:
+    - tools
+    - platform-tools
+    - tools
+    - build-tools-25.0.2
+    - android-25
+    - sys-img-armeabi-v7a-android-N
+  licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+script:
+  - nvm install 6.10.2
+  - nvm use 6.10.2
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then rvm use system; fi
+  - /bin/bash tests/travis.sh
+```
+
+Then add the following script to your `test` directory, named `travis.sh`:
+
+```sh
+#!/bin/bash
+set -o nounset
+set -o errexit
+
+npm install -g cordova
+npm install
+
+# lint
+npm run lint
+
+# run tests appropriate for platform
+if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+    sudo gem install cocoapods
+    npm install -g ios-sim ios-deploy
+    npm run test:ios
+fi
+if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
+    echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
+    emulator -avd test -no-audio -no-window &
+    android-wait-for-emulator
+    npm run test:android
+fi
+```

@@ -18,7 +18,7 @@ The proxy-based platforms do have a "bridge" of sorts, but it's far less complic
 
 ![Browser &amp; Windows Bridge](./img/proxy-bridge.png)
 
-The second and fourth columns you should recognize as code that our plugin provides (although this image uses the Camera plugin, so the names aren't the same). The leftmost column is the consumer of the plugin. The third column is essentially the proxy bridge &mdash; it is here that the service is mapped to your JavaScript proxy code.
+The second and fourth columns is code that our plugin provides. The leftmost column is the consumer of the plugin. The third column is essentially the proxy bridge &mdash; it is here that the service is mapped to your JavaScript proxy code.
 
 # iOS Bridge
 
@@ -44,4 +44,4 @@ Now that you've seen a sample of what the bridges look like, there are some conc
 * If we don't initialize the bridges, our plugins can't work. This is what happens if we forget `cordova.js`, for example, or if something else interferes with Cordova's proper initialization.
 * Why we have to wait for `deviceready` should be obvious as well: not only do we need to wait for plugins to initialize, but we also have to have the bridge in place, or we couldn't ever contact our plugins.
 
-I invite you to navigate through the code for all the platforms you intend on supporting &mdash; there's lots of great nuggets that you can dig out, and you'll understand how the entire process works, which should also help you write better plugins.
+It is a good idea to navigate through the code for all the platforms you intend on supporting &mdash; there's lots of great nuggets that you can dig out, and you'll understand how the entire process works, which should also help you write better plugins.

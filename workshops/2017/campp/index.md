@@ -70,9 +70,9 @@ The following prerequisites are required. Versions used for testing follow.
 
 1. [What is a plugin?](what-is-a-plugin.md) &mdash; What a plugin is; what plugins can do; plugin categories
 2. [Managing plugins](managing-plugins.md) &mdash; Installing from npm, git, local file system; finding plugins
-3. [Plugin X-Ray](plugin-x-ray.md) &mdash; What's inside a plugin (metadata, documentation, structure, etc.)
-4. [Creating a plugin (four parts)](creating.md) &mdash; Creating a plugin scaffold; JS API; native code; class mapping
-5. [Know your bridges](bridges.md) &mdash; iOS, Android, Browser &amp; Windows
+3. [Know your bridges](bridges.md) &mdash; iOS, Android, Browser &amp; Windows
+4. [Plugin X-Ray](plugin-x-ray.md) &mdash; What's inside a plugin (metadata, documentation, structure, etc.)
+5. [Creating a plugin (four parts)](creating.md) &mdash; Creating a plugin scaffold; JS API; native code; class mapping
 6. [Testing](testing.md) &mdash; Testing your plugin with cordova-paramedic, Jasmine; tips
 7. [Debugging and Iterating](debugging-and-iterating.md) &mdash; Linking your plugin; using the native SDK's IDEs
 8. [Publishing](publishing.md) &mdash; Publishing to npm
