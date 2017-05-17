@@ -281,12 +281,6 @@ Allows communication between native code and web view contexts.
 
 ---
 
-<!--footer: -->
-
-![bg original fit](./assets/tests-block.png?b)
-
----
-
 ![bg o20%](./assets/pics/x-ray-237402_1920.jpg)
 <!-- footer: Photo by dcondrey (https://pixabay.com/en/users/dcondrey-122249/), courtesy of Pixabay.com-->
 
@@ -814,6 +808,14 @@ successFn(result, {keepCallback: true});
 	* Great for cleaning up background operations
 
 ---
+
+
+<!--footer: -->
+
+![bg original fit](./assets/tests-block.png?b)
+
+---
+
 
 # Testing plugins
 
