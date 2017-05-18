@@ -19,24 +19,33 @@
       });
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
     function updateLinks() {
       setTimeout(function() {
         var els = document.querySelectorAll("a[href*='http']")
         els = [].slice.call(els, 0);
         els.forEach(function(el) {
+=======
+    function updateLinks() {
+      setTimeout(() => {
+        Array.from(document.querySelectorAll("a[href*='http']")).forEach(el => {
+>>>>>>> 44fde19... tweaks
           el.setAttribute("target", "_blank");
         });
       }, 1000);
     }
+<<<<<<< HEAD
   </script>
 </head>
 <body onload="slideshow = create(); updateLinks()">
 </body>
 </html>
 =======
+=======
+>>>>>>> 44fde19... tweaks
   </script>
 </head>
-<body onload="slideshow = create()">
+<body onload="slideshow = create(); updateLinks()">
 </body>
 </html>
 >>>>>>> 7684d0d... backslide!

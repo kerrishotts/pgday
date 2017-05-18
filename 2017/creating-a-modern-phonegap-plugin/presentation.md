@@ -33,9 +33,14 @@ Good afternoon everyone! This is "Creating a Modern PhoneGap Plugin", and I'll b
 ## Kerri Shotts ([@kerrishotts](https://www.twitter.com/kerrishotts))
 ## Jesse MacFadyen ([@purplecabbage](https://www.twitter.com/purplecabbage))
 
-### Slides at https://goo.gl/2xVAwZ
+### Slides at https://kerrishotts.github.io/pgday
 ### Based on [PGDay EU 2016 plugin workshop](http://purplecabbage.github.io/slides/pgd16Plugins/index.html) by Jesse
 >>>>>>> 7684d0d... backslide!
+
+???
+Kerri
+
+Good afternoon everyone! This is "Creating a Modern PhoneGap Plugin", and I'll be presenting alongside Jesse, who is _the_ expert when it comes to plugins! If you have any questions, feel free to tweet either of us, and slides are available at the link on the slide.
 
 ---
 footer:
@@ -160,10 +165,14 @@ Full access to the Cordova project and environment at install time. Some ideas:
     * [cordova-plugin-test-framework](https://github.com/apache/cordova-plugin-test-framework)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .center.big[*Plugin-ception!*]
 =======
 ## *Plugin-ception :fireworks:*
 >>>>>>> 7684d0d... backslide!
+=======
+.center.big[*Plugin-ception!*]
+>>>>>>> 44fde19... tweaks
 
 ---
 
@@ -225,10 +234,14 @@ Plugins are typically downloaded from npm:
 
 ```sh
 <<<<<<< HEAD
+<<<<<<< HEAD
 cordova plugin add cordova-plugin-device
 =======
 cordova plugin add [--save] cordova-plugin-device
 >>>>>>> 7684d0d... backslide!
+=======
+cordova plugin add cordova-plugin-device
+>>>>>>> 44fde19... tweaks
 
 cordova plugin ls                                # or list
 cordova-plugin-device 1.1.1 "Device"
@@ -237,6 +250,7 @@ cordova plugin rm cordova-plugin-device # or remove
 ```
 
 .notes[
+<<<<<<< HEAD
 <<<<<<< HEAD
 **Note:** As of Cordova 7.x, `--save` is implied, so plugins automatically get saved to your project configuration. Use `--nosave` to disable if needed.
 
@@ -250,10 +264,17 @@ You're probably familiar with adding plugins this way. I do want to mention that
 **Note:** `--save` persists the plugin to `config.xml` so that plugins can be easily restored (done at `prepare`-time)
 
 **7.x:** `--save` is the default in `cordova@7.0.0`; `--nosave` will turn it off
+=======
+**Note:** As of Cordova 7.x, `--save` is implied, so plugins automatically get saved to your project configuration. Use `--nosave` to disable if needed.
+>>>>>>> 44fde19... tweaks
 
-**7.x:** Fetching via npm is now the default; if a plugin doesn't have `package.json` adding will fail. Use `--nofetch` for those plugins.
+**Important:** Fetching via npm is now the default as of Cordova 7.x; if a plugin doesn't have `package.json` adding will fail. Use `--nofetch` for those plugins.
 ]
 >>>>>>> 7684d0d... backslide!
+
+???
+
+You're probably familiar with adding plugins this way. I do want to mention that Cordova 7 does change somethings -- plugins are saved automatically to your project configuration, and plugins are now added using your system npm. You can both if you want &mdash `--nosave` will disable saving, and `--nofetch` will go back to the pre-7.x way of installing plugins, but hopefully this change will make it even easier for you to manage your projects.
 
 ---
 
@@ -289,6 +310,7 @@ Or install from the local file system &mdash; very useful for plugin development
 
 ```sh
 <<<<<<< HEAD
+<<<<<<< HEAD
 cordova plugin add [--link] /path/to/plugin
 cordova plugin rm cordova-plugin-device
 ```
@@ -303,7 +325,15 @@ cordova plugin rm [--save] cordova-plugin-device
 **Note**: `--link` can be useful when developing plugins
 >>>>>>> 7684d0d... backslide!
 
+=======
+cordova plugin add [--link] /path/to/plugin
+cordova plugin rm cordova-plugin-device
+```
+
+>>>>>>> 44fde19... tweaks
 .notes[
+**Note**: `--link` can be useful when debugging and iterating
+
 **Tip:** Adding a plugin to a child project (relative to the plugin) may automatically symlink the plugin
 
 **Note:** Careful with parent plugins and child projects &mdash; easy to get circular references in the file system
@@ -317,6 +347,10 @@ cordova plugin rm [--save] cordova-plugin-device
 When building your own plugins, you'll probably be using this method the most &mdash; you don't have to publish anything anywhere, but you can still test your plugins in Cordova apps using this method.
 =======
 >>>>>>> 7684d0d... backslide!
+
+???
+
+When building your own plugins, you'll probably be using this method the most &mdash; you don't have to publish anything anywhere, but you can still test your plugins in Cordova apps using this method.
 
 ---
 footer:
@@ -373,14 +407,20 @@ Allows communication between native code and web view contexts.
   * [full docs](https://cordova.apache.org/docs/en/latest/guide/platforms/win8/plugin.html#creating-a-windows-plugin-in-javascript)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 44fde19... tweaks
 .notes[
   <a href="http://github.com/apache/cordova-plugin-device">Device Plugin</a>
 ]
 
+<<<<<<< HEAD
 ---
 footer:
 
 =======
+=======
+>>>>>>> 44fde19... tweaks
 ---
 footer:
 
@@ -407,6 +447,7 @@ footer: Photo by dcondrey (https://pixabay.com/en/users/dcondrey-122249/), court
 .bg[![bg o20%](./assets/pics/x-ray-237402_1920.jpg)]
 
 ???
+<<<<<<< HEAD
 =======
 >>>>>>> 7684d0d... backslide!
 
@@ -417,6 +458,11 @@ Kerri
 .bg[![bg o20%](./assets/pics/x-ray-237402_1920.jpg)]
 
 >>>>>>> 7684d0d... backslide!
+=======
+
+Kerri
+
+>>>>>>> 44fde19... tweaks
 ---
 footer:
 class: table-no-header
@@ -457,6 +503,22 @@ It's entirely possible your plugin might contain NO code whatsoever. This is bec
 =======
 >>>>>>> 7684d0d... backslide!
 
+???
+
+So, what's in a plugin anyway? Plugins consist of several things:
+
+* metadata (cordova, npm)
+* documentation
+* JavaScript code
+* native code (iOS, Android, etc.)
+* tests
+* TypeScript types
+* hooks
+
+Aside from a few parts of metadata, everything else is optional &mdash; you should only include what you need in order to make your plugin function as desired. If you don't need JavaScript code, don't include it. If you aren't using hooks, then you don't need those either. Although documentation and tests aren't required, both are highly suggested as they can help the user better understand your plugin, and provide your user with some assurance that the plugin will work correctly.
+
+It's entirely possible your plugin might contain NO code whatsoever. This is because plugins can depend upon other plugins, meaning you could build a plugin mash-up of sorts. If you use a set of plugins frequently, you could create an often-used plugin and add them all in one go.
+
 ---
 footer:
 class: table-no-header
@@ -487,6 +549,7 @@ cordova-plugin-*your-plugin*/                          | Plugin root
 ]
 
 ???
+<<<<<<< HEAD
 =======
 
 .notes[
@@ -497,6 +560,11 @@ cordova-plugin-*your-plugin*/                          | Plugin root
 So this is a typical file structure for plugins &mdash; you'll typically have the metadata and configuration out in the root diretory, along with primary documentation and licensing information. Then you'll have your native code in `src`, your JavaScript code in `www`, for example, etc.
 
 <<<<<<< HEAD
+=======
+
+So this is a typical file structure for plugins &mdash; you'll typically have the metadata and configuration out in the root diretory, along with primary documentation and licensing information. Then you'll have your native code in `src`, your JavaScript code in `www`, for example, etc.
+
+>>>>>>> 44fde19... tweaks
 
 =======
 >>>>>>> 7684d0d... backslide!
@@ -535,13 +603,22 @@ Metadata controls a lot of aspects of your plugin, including how people find you
   > **Note:** The `package.json` file can be automatically generated when it comes time to publish. We'll go over this later. Once you have one, though, you'll end up manually modifying this file.
 =======
 
-
 .notes[
   Note: **bold is required**; otherwise optional, but most are used
 
   **Note:** `package.json` can be generated by `plugman`
 ]
 >>>>>>> 7684d0d... backslide!
+
+???
+
+Metadata controls a lot of aspects of your plugin, including how people find your plugin, but also how your plugin is configured, and how it affects your consumer's app. There are two types of metadata:
+
+* Plugin metadata is stored in `plugin.xml`. You can think of this as an analogue to an app's `config.xml`. Plugin metadata controls lots of things, such as id, version, author, license, name, description, repo, issue, keywords, platform (&amp; assets), dependencies, engines, preferences, hooks, info, and more.
+
+* npm metadata is stored in `package.json`. This is required for publishing your plugin to npm. It is focused mostly on presentation aspects of your plugin, including things such as name, version, author, license, description, repository, issue, keywords, platforms, and dependencies.
+
+  > **Note:** The `package.json` file can be automatically generated when it comes time to publish. We'll go over this later. Once you have one, though, you'll end up manually modifying this file.
 
 ---
 footer:
@@ -574,6 +651,11 @@ Descriptive metadata includes things like the name of the plugin, the version, t
 
 =======
 >>>>>>> 7684d0d... backslide!
+
+???
+
+Descriptive metadata includes things like the name of the plugin, the version, the repository where it is located, and so on. In `plugin.xml`, an example looks like this:
+
 
 ---
 footer:
@@ -610,10 +692,14 @@ Automatically injected into your consumer's `index.html`. [<sup>docs</sup>](http
 ```xml
 <js-module src="www/device.js" name="device">
 <<<<<<< HEAD
+<<<<<<< HEAD
   [<actions.../>]
 =======
   [<see below/>]
 >>>>>>> 7684d0d... backslide!
+=======
+  [<actions.../>]
+>>>>>>> 44fde19... tweaks
 </js-module>
 ```
 
@@ -635,6 +721,18 @@ To specify a module, the following pattern is used (note the path to the source 
 
 You can then replace `actions` with any of the following, depending upon your API's needs.
 
+<<<<<<< HEAD
+=======
+.notes[ Unless necessary, target `cordova.plugins.yourPlugin`]
+
+???
+Typically run-time plugins will provide some sort of JavaScript API that the consumer's app can interact with. This isn't a hard-and-fast rule, however, since some plugins can operate independently and don't return data to the app's webview.
+
+To specify a module, the following pattern is used (note the path to the source file, and a unique name for the file):
+
+You can then replace `actions` with any of the following, depending upon your API's needs.
+
+>>>>>>> 44fde19... tweaks
 It is important to point out that by specifying one or more JavaScript modules, references will be automatically injected into your consumer's `index.html` file.
 
 > **Tip:** Unless necessary, target `cordova.plugins.yourPlugin`. Polyfills and implementations of standards are example exceptions.
@@ -691,6 +789,10 @@ Run-time plugins will also often provide native code and other assets (such as i
 =======
 >>>>>>> 7684d0d... backslide!
 
+???
+
+Run-time plugins will also often provide native code and other assets (such as images and such). Because these are often platform-specific and we don't want to copy unnecessary files to each platform, `<platform>` tags are used to indicate which assets go to which platforms. [(docs)](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html)
+
 ---
 footer:
 
@@ -701,11 +803,16 @@ footer:
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="Geolocation">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <param name="android-package"
                value="org.apache.cordova.geolocation.Geolocation" />
 =======
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
 >>>>>>> 7684d0d... backslide!
+=======
+        <param name="android-package"
+               value="org.apache.cordova.geolocation.Geolocation" />
+>>>>>>> 44fde19... tweaks
       </feature>
     </config-file>
     ```
@@ -753,6 +860,12 @@ There are two types of modifications: insertion of elements to the manifest via 
 =======
 >>>>>>> 7684d0d... backslide!
 
+???
+
+Often times you'll need to modify the consumer app's configuration files. Sometimes this will be the app's `config.xml` file, but other times you may need to modify a plist or `AndroidManifest.xml` file.
+
+There are two types of modifications: insertion of elements to the manifest via `config-file`, or additions of attributes to existing elements via `edit-config`.
+
 ---
 footer:
 
@@ -773,6 +886,7 @@ footer:
 footer:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Dependencies
 
 Plugin Dependencies are managed in `plugin.xml`: [<sup>docs</sup>](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#dependency)
@@ -790,18 +904,22 @@ Sometimes you'll need to specify dependencies for a plugin as well. This can be 
 # Dependencies (cordova@6.1.0+)
 
 Dependencies are managed in `package.json`: [<sup>docs</sup>](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/index.html#specifying-cordova-dependencies)
+=======
+# Dependencies
+>>>>>>> 44fde19... tweaks
 
-```javascript
-"engines": {
-  "cordovaDependencies": {
-    "2.0.0": { // plugin version (applies to any ver 2+)
-      "cordova-plugin-console": ">1.0.0",
-      "cordova": ">6.0.0" // cordova-cli above version 6
-    }
-  }
-}
+Plugin Dependencies are managed in `plugin.xml`: [<sup>docs</sup>](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#dependency)
+```xml
+<dependency id="cordova-plugin-camera" version="~2.0.0" />
+<dependency id="cordova-plugin-statusbar" version="^2.0.0" />
+<dependency id="cordova-plugin-device"
+           url="https://github.com/apache/cordova-plugin-device.git" />
 ```
 >>>>>>> 7684d0d... backslide!
+
+???
+
+Sometimes you'll need to specify dependencies for a plugin as well. This can be done with `plugin.xml` -- and if you wanted to create a plugin mashup, this is where you'd do it.
 
 ---
 footer:
@@ -827,6 +945,9 @@ class: section
 ???
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 44fde19... tweaks
 Kerri
 
 ---
@@ -1045,6 +1166,10 @@ Jesse
 =======
 >>>>>>> 7684d0d... backslide!
 
+???
+
+Jesse
+
 ---
 footer:
 
@@ -1157,12 +1282,18 @@ footer: Photo by ROverhate (https://pixabay.com/en/users/ROverhate-1759589/), co
 # Debugging &amp; Iterating
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 44fde19... tweaks
 ???
 
 Kerri
 
+<<<<<<< HEAD
 =======
 >>>>>>> 7684d0d... backslide!
+=======
+>>>>>>> 44fde19... tweaks
 ---
 footer:
 
@@ -1256,12 +1387,18 @@ footer: Photo by Pexels (https://pixabay.com/en/users/Pexels-2286921/), courtesy
 # Tips &amp; Tricks
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 44fde19... tweaks
 ???
 
 Jesse and Kerri
 
+<<<<<<< HEAD
 =======
 >>>>>>> 7684d0d... backslide!
+=======
+>>>>>>> 44fde19... tweaks
 ---
 footer:
 
@@ -1299,10 +1436,14 @@ footer:
 # Native (Android)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 * Override `pluginInitialize` for plugin initialization logic [<sup>code</sup>](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L72)
 =======
 * Override `pluginInitialize` for plugin initialization logic [<sup>code](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L72)
 >>>>>>> 7684d0d... backslide!
+=======
+* Override `pluginInitialize` for plugin initialization logic [<sup>code</sup>](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L72)
+>>>>>>> 44fde19... tweaks
 
 * Runtime Permission Requests (Marshmallow) [<sup>docs</sup>](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#runtime-permissions-cordova-android-500)
   * `cordova.requestPermission()` [<sup>code</sup>](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L397)
@@ -1326,12 +1467,20 @@ footer:
 
 # Native (iOS)
 
+<<<<<<< HEAD
 * Use `pluginInitialize` for plugin initialization logic [^eg^](https://github.com/apache/cordova-plugin-statusbar/blob/master/src/ios/CDVStatusBar.m#L107) [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L83)
 * If memory is getting low, `onMemoryWarning` is called [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L149)
 * If app is going to be terminated, `onAppTerminate` is called [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L144)
 * You can respond to `pause`, `resume`, etc. [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L123), but you have to register for notifications in `pluginInitialize`
 * If you need to handle URLs, override `handleOpenURL` [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L130)
 >>>>>>> 7684d0d... backslide!
+=======
+* Use `pluginInitialize` for plugin initialization logic [<sup>eg</sup>](https://github.com/apache/cordova-plugin-statusbar/blob/master/src/ios/CDVStatusBar.m#L107) [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L83)
+* If memory is getting low, `onMemoryWarning` is called [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L149)
+* If app is going to be terminated, `onAppTerminate` is called [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L144)
+* You can respond to `pause`, `resume`, etc. [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L123), but you have to register for notifications in `pluginInitialize`
+* If you need to handle URLs, override `handleOpenURL` [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L130)
+>>>>>>> 44fde19... tweaks
 * Never, _ever_ call JavaScript that triggers blocking UI (e.g. `alert`) without wrapping with `setTimeout`
 
 ---
@@ -1404,10 +1553,14 @@ footer:
 ### Jesse ([@purplecabbage](https://www.twitter.com/purplecabbage)) &bullet; Kerri ([@kerrishotts](https://www.twitter.com/kerrishotts))
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ### Slides at https://kerrishotts.github.io/pgday
 =======
 #### Slides available at: https://goo.gl/2xVAwZ
 >>>>>>> 7684d0d... backslide!
+=======
+### Slides at https://kerrishotts.github.io/pgday
+>>>>>>> 44fde19... tweaks
 
 #### Based on Jesse's [PG Day 2016 EU plugin workshop](http://purplecabbage.github.io/slides/pgd16Plugins/index.html)
 
