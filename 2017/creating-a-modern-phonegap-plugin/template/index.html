@@ -18,8 +18,15 @@
         highlightStyle: 'monokai'
       });
     }
+    function updateLinks() {
+      setTimeout(() => {
+        Array.from(document.querySelectorAll("a[href*='http']")).forEach(el => {
+          el.setAttribute("target", "_blank");
+        });
+      }, 1000);
+    }
   </script>
 </head>
-<body onload="slideshow = create()">
+<body onload="slideshow = create(); updateLinks()">
 </body>
 </html>
