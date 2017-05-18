@@ -17,8 +17,13 @@ footer: Photo by AlexanderStein (https://pixabay.com/en/users/AlexanderStein-452
 ## Kerri Shotts ([@kerrishotts](https://www.twitter.com/kerrishotts))
 ## Jesse MacFadyen ([@purplecabbage](https://www.twitter.com/purplecabbage))
 
-### Slides at https://goo.gl/2xVAwZ
+### Slides at https://kerrishotts.github.io/pgday
 ### Based on [PGDay EU 2016 plugin workshop](http://purplecabbage.github.io/slides/pgd16Plugins/index.html) by Jesse
+
+???
+Kerri
+
+Good afternoon everyone! This is "Creating a Modern PhoneGap Plugin", and I'll be presenting alongside Jesse, who is _the_ expert when it comes to plugins! If you have any questions, feel free to tweet either of us, and slides are available at the link on the slide.
 
 ---
 footer:
@@ -30,12 +35,15 @@ footer:
 
 * Used PhoneGap for six+ years
 * Author of five books about PhoneGap
-* IT Consultant for eight years
 * Apache Cordova committer
 * One of several moderators:
     * [Adobe PhoneGap Forums](http://forums.adobe.com/community/phonegap)
     * [Google Cordova Group](https://groups.google.com/forum/#!forum/phonegap)
 * [@kerrishotts](https://www.twitter.com/kerrishotts)
+
+???
+
+Kerri
 
 ---
 
@@ -50,6 +58,10 @@ footer:
 * At Adobe for nearly 6 years now
 * [@purplecabbage](https://www.twitter.com/purplecabbage)
 
+???
+
+Jesse
+
 ---
 
 footer:
@@ -61,6 +73,14 @@ _noun_ A mystical collection of machine incantations which grant access to amazi
 ## ahem...
 
 _noun_ A module consisting of code and settings extending the essential functionality of Cordova with the goal of providing access to device capabilities, enhancing existing capabilities, or improving the developer's workflow
+
+???
+
+Kerri
+
+So, almost everyone is _using_ plugins today, but only a few people actually know how they work. To many, plugins are kind of magical &mdash; plugins cross into territory and languages the dev might not know, and the dev might not be familiar with everything a plugin can actually do.
+
+But plugins aren't magical: they're just modules conisting of code and settings that can extend the functionality of a Cordova app _or_ the Cordova development environment. And although you may be exposed to languages with which you aren't immediately familiar, that process can be extremely rewarding. And you can always start small and grow over time.
 
 ---
 
@@ -77,6 +97,9 @@ footer:
   * Core &mdash; used to be built in pre-3.x (Undergoing audit: [CB-12708](https://issues.apache.org/jira/browse/CB-12708))
   * Community &mdash; people like you!
 
+???
+
+A plugin can do anything that native code could do within the same context. There are various contexts in which a plugin can operate, mainly "install time", "build time", and "run time". Most developers are probably most familiar with the latter context, and most plugins provide their functionality within that context. For example, a plugin that operates in the run time context can use the native SDK's functionality (including widgets, low-level functionality, etc.), whereas a plugin that operates in either the install or build time context can use Cordova's Node environment.
 ---
 
 footer: Photo by skeeze (https://pixabay.com/en/users/skeeze-272447/), courtesy of Pixabay.com
@@ -124,7 +147,7 @@ Full access to the Cordova project and environment at install time. Some ideas:
 * Provide tests for another plugin...
     * [cordova-plugin-test-framework](https://github.com/apache/cordova-plugin-test-framework)
 
-## *Plugin-ception :fireworks:*
+.center.big[*Plugin-ception!*]
 
 ---
 
@@ -144,6 +167,11 @@ Core Cordova Plugins (used to be built-in pre-3.x) (Audit: [CB-12708](https://is
  inappbrowser        | media           | media-capture
  network-information | ~~splashscreen~~ | statusbar
  vibration           | whitelist
+
+???
+There are two categories of plugins: _core_ and _community_. The former are generally plugins that were originally core functionality &mdash; that is, they were built-in to Cordova and later split out so that they could be maintained separately and receive updates without having to update all of Cordova. The latter are plugins developed and supported by the community themselves.
+
+I should mention that there is currently an ongoing plugin audit -- check out issue CB-12708 for more info and to express your thoughts if you have plugins you'd like to see sunsetted, brought up to spek, etc.
 
 ---
 
@@ -166,6 +194,12 @@ footer:
 
 # Managing Plugins
 
+???
+
+Kerri
+
+Whether you are using a core or community plugin or you're developing your own, the commands for adding plugins to your projects remain the same. In order to support various workflows and local development, plugins can be installed from a variety of sources.
+
 ---
 footer:
 
@@ -174,21 +208,23 @@ footer:
 Plugins are typically downloaded from npm:
 
 ```sh
-cordova plugin add [--save] cordova-plugin-device
+cordova plugin add cordova-plugin-device
 
 cordova plugin ls                                # or list
 cordova-plugin-device 1.1.1 "Device"
 
-cordova plugin rm [--save] cordova-plugin-device # or remove
+cordova plugin rm cordova-plugin-device # or remove
 ```
 
 .notes[
-**Note:** `--save` persists the plugin to `config.xml` so that plugins can be easily restored (done at `prepare`-time)
+**Note:** As of Cordova 7.x, `--save` is implied, so plugins automatically get saved to your project configuration. Use `--nosave` to disable if needed.
 
-**7.x:** `--save` is the default in `cordova@7.0.0`; `--nosave` will turn it off
-
-**7.x:** Fetching via npm is now the default; if a plugin doesn't have `package.json` adding will fail. Use `--nofetch` for those plugins.
+**Important:** Fetching via npm is now the default as of Cordova 7.x; if a plugin doesn't have `package.json` adding will fail. Use `--nofetch` for those plugins.
 ]
+
+???
+
+You're probably familiar with adding plugins this way. I do want to mention that Cordova 7 does change somethings -- plugins are saved automatically to your project configuration, and plugins are now added using your system npm. You can both if you want &mdash `--nosave` will disable saving, and `--nofetch` will go back to the pre-7.x way of installing plugins, but hopefully this change will make it even easier for you to manage your projects.
 
 ---
 
@@ -223,19 +259,23 @@ footer:
 Or install from the local file system &mdash; very useful for plugin development.
 
 ```sh
-cordova plugin add [--save] [--link] /path/to/plugin
-cordova plugin rm [--save] cordova-plugin-device
+cordova plugin add [--link] /path/to/plugin
+cordova plugin rm cordova-plugin-device
 ```
 
-**Note**: `--link` can be useful when developing plugins
-
 .notes[
+**Note**: `--link` can be useful when debugging and iterating
+
 **Tip:** Adding a plugin to a child project (relative to the plugin) may automatically symlink the plugin
 
 **Note:** Careful with parent plugins and child projects &mdash; easy to get circular references in the file system
 
 **Windows:** May need to be admin to create links
 ]
+
+???
+
+When building your own plugins, you'll probably be using this method the most &mdash; you don't have to publish anything anywhere, but you can still test your plugins in Cordova apps using this method.
 
 ---
 footer:
@@ -258,7 +298,9 @@ footer:
     ├────────────────────────────────────────────────────────────────────────────────
     ```
 
+???
 
+And, of course, you're probably familiar with how to search for plugins, but I do want to point out that `ecosystem:cordova` query string &mdash; all Cordova plugins should have that in their metadata (which we'll show later) &mdash; otherwise they may not be visible to the Cordova plugin search page.
 
 ---
 class: section
@@ -267,6 +309,10 @@ footer: Photo by kaboompics (https://pixabay.com/en/users/kaboompics-1013994/), 
 .bg[![bg o40%](./assets/pics/little-791331_1920.jpg)]
 
 # Crossing the bridges
+
+???
+
+Jesse
 
 ---
 footer:
@@ -280,10 +326,14 @@ Allows communication between native code and web view contexts.
 * Android
 
 * Browser/Windows is an exception...
-  * Careful, the bridge is a **mirage**! :desert:
-  * JavaScript is **native** :fireworks:
+  * Careful, the bridge is a **mirage**!
+  * JavaScript is **native**
   * `cordova.exec` uses a proxy to keep things consistent
   * [full docs](https://cordova.apache.org/docs/en/latest/guide/platforms/win8/plugin.html#creating-a-windows-plugin-in-javascript)
+
+.notes[
+  <a href="http://github.com/apache/cordova-plugin-device">Device Plugin</a>
+]
 
 ---
 footer:
@@ -308,6 +358,10 @@ footer: Photo by dcondrey (https://pixabay.com/en/users/dcondrey-122249/), court
 
 .bg[![bg o20%](./assets/pics/x-ray-237402_1920.jpg)]
 
+???
+
+Kerri
+
 ---
 footer:
 class: table-no-header
@@ -328,6 +382,22 @@ Typings \*    | TLC \* +
 
 **+** Optional but highly suggested
 ]
+
+???
+
+So, what's in a plugin anyway? Plugins consist of several things:
+
+* metadata (cordova, npm)
+* documentation
+* JavaScript code
+* native code (iOS, Android, etc.)
+* tests
+* TypeScript types
+* hooks
+
+Aside from a few parts of metadata, everything else is optional &mdash; you should only include what you need in order to make your plugin function as desired. If you don't need JavaScript code, don't include it. If you aren't using hooks, then you don't need those either. Although documentation and tests aren't required, both are highly suggested as they can help the user better understand your plugin, and provide your user with some assurance that the plugin will work correctly.
+
+It's entirely possible your plugin might contain NO code whatsoever. This is because plugins can depend upon other plugins, meaning you could build a plugin mash-up of sorts. If you use a set of plugins frequently, you could create an often-used plugin and add them all in one go.
 
 ---
 footer:
@@ -357,6 +427,10 @@ cordova-plugin-*your-plugin*/                          | Plugin root
   (representational; not every file is included here); Ex: [Device Plugin](https://github.com/apache/cordova-plugin-device)
 ]
 
+???
+
+So this is a typical file structure for plugins &mdash; you'll typically have the metadata and configuration out in the root diretory, along with primary documentation and licensing information. Then you'll have your native code in `src`, your JavaScript code in `www`, for example, etc.
+
 
 ---
 footer:
@@ -375,12 +449,21 @@ footer:
 
 ]
 
-
 .notes[
   Note: **bold is required**; otherwise optional, but most are used
 
   **Note:** `package.json` can be generated by `plugman`
 ]
+
+???
+
+Metadata controls a lot of aspects of your plugin, including how people find your plugin, but also how your plugin is configured, and how it affects your consumer's app. There are two types of metadata:
+
+* Plugin metadata is stored in `plugin.xml`. You can think of this as an analogue to an app's `config.xml`. Plugin metadata controls lots of things, such as id, version, author, license, name, description, repo, issue, keywords, platform (&amp; assets), dependencies, engines, preferences, hooks, info, and more.
+
+* npm metadata is stored in `package.json`. This is required for publishing your plugin to npm. It is focused mostly on presentation aspects of your plugin, including things such as name, version, author, license, description, repository, issue, keywords, platforms, and dependencies.
+
+  > **Note:** The `package.json` file can be automatically generated when it comes time to publish. We'll go over this later. Once you have one, though, you'll end up manually modifying this file.
 
 ---
 footer:
@@ -405,6 +488,11 @@ footer:
 .notes[
 [Device Plugin's Metadata](https://github.com/apache/cordova-plugin-device/blob/master/plugin.xml)
 ]
+
+???
+
+Descriptive metadata includes things like the name of the plugin, the version, the repository where it is located, and so on. In `plugin.xml`, an example looks like this:
+
 
 ---
 footer:
@@ -440,17 +528,28 @@ Automatically injected into your consumer's `index.html`. [<sup>docs</sup>](http
 
 ```xml
 <js-module src="www/device.js" name="device">
-  [<see below/>]
+  [<actions.../>]
 </js-module>
 ```
 
-Children                       | Description
+ Actions                       | Description
 :------------------------------|:------------------------------
 `<clobbers target="device" />` | overwrites `window.device`
 `<merges target="device" />`   | merges with `window.device`
 `<runs />`                     | runs, but doesn't export
 
-* Unless necessary, target `cordova.plugins.yourPlugin`
+.notes[ Unless necessary, target `cordova.plugins.yourPlugin`]
+
+???
+Typically run-time plugins will provide some sort of JavaScript API that the consumer's app can interact with. This isn't a hard-and-fast rule, however, since some plugins can operate independently and don't return data to the app's webview.
+
+To specify a module, the following pattern is used (note the path to the source file, and a unique name for the file):
+
+You can then replace `actions` with any of the following, depending upon your API's needs.
+
+It is important to point out that by specifying one or more JavaScript modules, references will be automatically injected into your consumer's `index.html` file.
+
+> **Tip:** Unless necessary, target `cordova.plugins.yourPlugin`. Polyfills and implementations of standards are example exceptions.
 
 ---
 footer:
@@ -497,6 +596,10 @@ Other asset tags: `asset`, `resource-file`, `lib-file`; [full docs](https://cord
 **Bug:** On iOS hidden (dot) files may not be copied. See [CB-10135](https://issues.apache.org/jira/browse/CB-10135)
 ]
 
+???
+
+Run-time plugins will also often provide native code and other assets (such as images and such). Because these are often platform-specific and we don't want to copy unnecessary files to each platform, `<platform>` tags are used to indicate which assets go to which platforms. [(docs)](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html)
+
 ---
 footer:
 
@@ -506,7 +609,8 @@ footer:
     ```xml
     <config-file target="res/xml/config.xml" parent="/*">
       <feature name="Geolocation">
-        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+        <param name="android-package"
+               value="org.apache.cordova.geolocation.Geolocation" />
       </feature>
     </config-file>
     ```
@@ -545,6 +649,12 @@ footer:
 1: [android, file transfer](https://github.com/apache/cordova-plugin-file-transfer/blob/ac2ae8ba2edc099dcde49cd66b810eb225e04d3d/plugin.xml#L50); [ios, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L103); [windows, geolocation](https://github.com/apache/cordova-plugin-geolocation/blob/96f0830caab4d48a01d97db1d9ec3f4c52b95be3/plugin.xml#L218)
 ]
 
+???
+
+Often times you'll need to modify the consumer app's configuration files. Sometimes this will be the app's `config.xml` file, but other times you may need to modify a plist or `AndroidManifest.xml` file.
+
+There are two types of modifications: insertion of elements to the manifest via `config-file`, or additions of attributes to existing elements via `edit-config`.
+
 ---
 footer:
 
@@ -564,20 +674,19 @@ footer:
 ---
 footer:
 
-# Dependencies (cordova@6.1.0+)
+# Dependencies
 
-Dependencies are managed in `package.json`: [<sup>docs</sup>](https://cordova.apache.org/docs/en/latest/guide/hybrid/plugins/index.html#specifying-cordova-dependencies)
-
-```javascript
-"engines": {
-  "cordovaDependencies": {
-    "2.0.0": { // plugin version (applies to any ver 2+)
-      "cordova-plugin-console": ">1.0.0",
-      "cordova": ">6.0.0" // cordova-cli above version 6
-    }
-  }
-}
+Plugin Dependencies are managed in `plugin.xml`: [<sup>docs</sup>](https://cordova.apache.org/docs/en/latest/plugin_ref/spec.html#dependency)
+```xml
+<dependency id="cordova-plugin-camera" version="~2.0.0" />
+<dependency id="cordova-plugin-statusbar" version="^2.0.0" />
+<dependency id="cordova-plugin-device"
+           url="https://github.com/apache/cordova-plugin-device.git" />
 ```
+
+???
+
+Sometimes you'll need to specify dependencies for a plugin as well. This can be done with `plugin.xml` -- and if you wanted to create a plugin mashup, this is where you'd do it.
 
 ---
 footer:
@@ -599,6 +708,10 @@ class: section
 
 ###And getting rich, maybe?
 ###Or maybe not...
+
+???
+
+Kerri
 
 ---
 
@@ -807,6 +920,10 @@ footer:
 
 .bg.original.fit[![bg original fit](./assets/tests-block.png?b)]
 
+???
+
+Jesse
+
 ---
 footer:
 
@@ -918,6 +1035,10 @@ footer: Photo by ROverhate (https://pixabay.com/en/users/ROverhate-1759589/), co
 
 # Debugging &amp; Iterating
 
+???
+
+Kerri
+
 ---
 footer:
 
@@ -1010,12 +1131,16 @@ footer: Photo by Pexels (https://pixabay.com/en/users/Pexels-2286921/), courtesy
 
 # Tips &amp; Tricks
 
+???
+
+Jesse and Kerri
+
 ---
 footer:
 
 # JavaScript API
 
-* Promisify your API
+* Promisify your API [<sup>eg</sup>](https://github.com/kerrishotts/cordova-plugin-example-isprime/blob/master/www/isPrime.js#L35)
 * Preprocess arguments in JavaScript
     * convert to appropriate types
     * throw type-mismatch errors, etc.
@@ -1046,13 +1171,13 @@ footer:
 
 # Native (Android)
 
-* Override `pluginInitialize` for plugin initialization logic [<sup>code](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L72)
+* Override `pluginInitialize` for plugin initialization logic [<sup>code</sup>](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L72)
 
-* Runtime Permission Requests (Marshmallow) [^docs^](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#runtime-permissions-cordova-android-500)
-  * `cordova.requestPermission()` [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L397)
-  * `cordova.hasPermission()` [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L407)
-  * Override `onRequestPermissionResult` [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L418)
-* Don't forget Android activity lifecycle [^docs^](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#launching-other-activities) [^code^](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L178)
+* Runtime Permission Requests (Marshmallow) [<sup>docs</sup>](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#runtime-permissions-cordova-android-500)
+  * `cordova.requestPermission()` [<sup>code</sup>](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L397)
+  * `cordova.hasPermission()` [<sup>code</sup>](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L407)
+  * Override `onRequestPermissionResult` [<sup>code</sup>](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L418)
+* Don't forget Android activity lifecycle [<sup>docs</sup>](https://cordova.apache.org/docs/en/latest/guide/platforms/android/plugin.html#launching-other-activities) [<sup>code</sup>](https://github.com/apache/cordova-android/blob/master/framework/src/org/apache/cordova/CordovaPlugin.java#L178)
 
 ---
 
@@ -1060,11 +1185,11 @@ footer:
 
 # Native (iOS)
 
-* Use `pluginInitialize` for plugin initialization logic [^eg^](https://github.com/apache/cordova-plugin-statusbar/blob/master/src/ios/CDVStatusBar.m#L107) [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L83)
-* If memory is getting low, `onMemoryWarning` is called [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L149)
-* If app is going to be terminated, `onAppTerminate` is called [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L144)
-* You can respond to `pause`, `resume`, etc. [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L123), but you have to register for notifications in `pluginInitialize`
-* If you need to handle URLs, override `handleOpenURL` [^code^](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L130)
+* Use `pluginInitialize` for plugin initialization logic [<sup>eg</sup>](https://github.com/apache/cordova-plugin-statusbar/blob/master/src/ios/CDVStatusBar.m#L107) [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L83)
+* If memory is getting low, `onMemoryWarning` is called [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L149)
+* If app is going to be terminated, `onAppTerminate` is called [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L144)
+* You can respond to `pause`, `resume`, etc. [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L123), but you have to register for notifications in `pluginInitialize`
+* If you need to handle URLs, override `handleOpenURL` [<sup>code</sup>](https://github.com/apache/cordova-ios/blob/636113f047ee2c7dae742dff2beafae2121ceb62/CordovaLib/Classes/Public/CDVPlugin.m#L130)
 * Never, _ever_ call JavaScript that triggers blocking UI (e.g. `alert`) without wrapping with `setTimeout`
 
 ---
@@ -1094,6 +1219,10 @@ Possibilities:
 * Check plugin versions and warn if out-of-date
 * **Note:** NOT supported by PhoneGap Build
 
+???
+
+Kerri or Jesse
+
 ---
 footer:
 
@@ -1119,7 +1248,9 @@ footer: Photo by geralt (https://pixabay.com/en/users/geralt-9301/), courtesy of
   * Translate API docs if you know a language other than English
   * Add and improve tests and examples
 
+???
 
+Jesse
 ---
 class: section
 footer:
@@ -1128,9 +1259,9 @@ footer:
 
 ## Thanks!
 
-#### Jesse ([@purplecabbage](https://www.twitter.com/purplecabbage)) &bullet; Kerri ([@kerrishotts](https://www.twitter.com/kerrishotts))
+### Jesse ([@purplecabbage](https://www.twitter.com/purplecabbage)) &bullet; Kerri ([@kerrishotts](https://www.twitter.com/kerrishotts))
 
-#### Slides available at: https://goo.gl/2xVAwZ
+### Slides at https://kerrishotts.github.io/pgday
 
 #### Based on Jesse's [PG Day 2016 EU plugin workshop](http://purplecabbage.github.io/slides/pgd16Plugins/index.html)
 
