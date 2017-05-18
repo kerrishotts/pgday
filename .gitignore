@@ -3,3 +3,5 @@ plugins
 hooks
 !www/.gitkeep
 www
+.tmp
+node_modules
