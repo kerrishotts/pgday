@@ -1,0 +1,15 @@
+{
+  "name": "creating-a-modern-phonegap-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "bs serve"
+  },
+  "author": "Kerri Shotts",
+  "license": "Apache2",
+  "devDependencies": {
+    "backslide": "^1.2.0"
+  }
+}

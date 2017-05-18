@@ -3,7 +3,12 @@ plugins
 hooks
 !www/.gitkeep
 www
+<<<<<<< HEAD
 node_modules
 .tmp
 .vscode
 typings
+=======
+.tmp
+node_modules
+>>>>>>> 1bb7a24... using backslide
