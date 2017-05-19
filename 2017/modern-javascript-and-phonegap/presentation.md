@@ -479,7 +479,7 @@ Goodbye, ${name}`;
 
 sayHelloAndGoodbye("World");  
 // Hello, World!
-// Godbye, World!
+// Goodbye, World!
 ```
 
 ---
@@ -519,8 +519,8 @@ function getPos(options) {
 Chaining is easier to read:
 
 ```javascript
-getPos.then(pos => {
-  console.log(JSON.stringify(pos);
+getPos().then(pos => {
+  console.log(JSON.stringify(pos));
 }).catch(err => {
   console.error(err);
 });
@@ -538,7 +538,7 @@ function gotPos(data) {
   console.log(`${latitude},${longitude}@${timestamp}`);
 }
 function gotError(err) {
-    console.log(`Error ${err.code}: ${err.message}`);
+    console.log(`Error received! ${err}`);
 }
 getPos().then(gotPos).catch(gotError);
 ```
@@ -557,7 +557,7 @@ function divide(a, b) {
     return [a / b, null];
   }
 }
-let [results, error] = someFunction();
+let [results, error] = divide();
 ```
 
 ---
@@ -571,7 +571,7 @@ async function start() {
         {coords:{latitude, longitude}} = pos;
     console.log(`${latitude}, ${longitude}`);
   } catch(err) {
-    console.log(`Error ${err.code}: ${err.message}`);
+    console.log(`Error received! ${err}`);
   }
 }
 ```
@@ -591,21 +591,12 @@ var elList = document.querySelectorAll("a"),
     elArr = [].slice.call(elList, 0);
 ```
 
----
-
-# Array-like conversion
-
-Using the standard library:
+ES2015:
 
 ```javascript
 let elArr = Array.from(document.querySelectorAll("a"));
 ```
 
-Using the spread operator:
-
-```javascript
-let elArr = [...document.querySelectorAll("a")];
-```
 
 ---
 
@@ -866,7 +857,7 @@ npm install --save-dev babel-loader babel-core
     "target": "es5",
     "module": "es2015", // DCR
     "lib": ["es2015", ...]
-    "inlineSourceMap": true
+    "sourceMap": true
   },
   "include": 
     ["www.src/es/**/*"]
@@ -970,6 +961,20 @@ module.exports = {
 
 ---
 
+# ... don't forget to update index.html
+
+`www/index.html`:
+```html
+<body>
+  <script type="text/javascript" src="js/vendor.js">
+  </script>
+  <script type="text/javascript" src="js/bundle.js">
+  </script>
+</body>
+```
+
+---
+
 # Automating with Plugin Hooks
 
 [cordova-plugin-webpack-transpiler](https://github.com/kerrishotts/cordova-plugin-webpack-transpiler) transforms at `prepare`-time.
@@ -999,14 +1004,12 @@ cordova run ios --notransform   # skip transform/bundling
 [cordova-template-webpack-babel-scss](https://github.com/kerrishotts/cordova-template-webpack-babel-scss)| Me | Webpack | Babel | Vanilla | `cordova`
 [cordova-template-framework7-vue-webpack](https://www.npmjs.com/package/cordova-template-framework7-vue-webpack)| centrual | Webpack | Babel | Vue, F7 | `cordova`
 [phonegap-template-react-hot-loader](https://www.npmjs.com/package/phonegap-template-react-hot-loader)| devgeeks | Webpack | Babel | React | `npm`
+[phonegap-template-vue-f7-blank](https://www.npmjs.com/package/phonegap-template-vue-f7-blank)| devgeeks | Webpack | Babel | Vue, F7 | `npm`
+[phonegap-template-vue-f7-split-panel](https://www.npmjs.com/package/phonegap-template-vue-f7-split-panel)| devgeeks | Webpack | Babel | Vue, F7 | `npm`
+[phonegap-template-vue-f7-tabs](https://www.npmjs.com/package/phonegap-template-vue-f7-tabs)| devgeeks | Webpack | Babel | Vue, F7 | `npm`
 [phonegap-vueify](https://www.npmjs.com/package/phonegap-vueify)| lemaur | Browserify | Babel | Vue | `npm`
 
-<!--{table:style="font-size:77%"}-->
-
-
-<hr>
-
-Automation: "cordova" = Cordova hooks; "npm" = npm scripts
+<!--{table:style="font-size:70%"}-->
 
 ---
 
@@ -1020,6 +1023,7 @@ Automation: "cordova" = Cordova hooks; "npm" = npm scripts
 
 ```sh <!-- cli prompt=$ -->
 npm install --save-dev eslint
+# eslint-plugin-async-await if you need async/await
 ```
 <!-- {style='font-size:90%'} -->
 
@@ -1246,7 +1250,7 @@ npm run cover
 * Lots of benefits:
 	* Expressive and concise
 	* Less boilerplate
-	* `padStart` and `padEnd`! :wink:
+	* String padding! :wink:
 
 ---
 
@@ -1256,10 +1260,8 @@ npm run cover
 * Use ES2015+ as needed and when you're ready
 * `var` is alive and well
   *  Use where performance is critical (e.g., tight nested loops)
-* Declare `const`/`let` at the top of each scope
-  * Benefits Chrome's optimizer
-  * Good practice anyway
 * Arrow functions aren't drop-in
+  * `this` is lexically scoped
 
 ---
 

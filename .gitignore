@@ -3,3 +3,7 @@ plugins
 hooks
 !www/.gitkeep
 www
+node_modules
+.tmp
+.vscode
+typings

@@ -1,0 +1,48 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/Volumes/Files/Users/kerrishotts/.nvm/versions/node/v6.4.0/bin/node',
+1 verbose cli   '/Volumes/Files/Users/kerrishotts/.nvm/versions/node/v6.4.0/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'run:browser' ]
+2 info using npm@3.10.8
+3 info using node@v6.4.0
+4 verbose run-script [ 'prerun:browser', 'run:browser', 'postrun:browser' ]
+5 info lifecycle ts-demo@1.0.0~prerun:browser: ts-demo@1.0.0
+6 silly lifecycle ts-demo@1.0.0~prerun:browser: no script for prerun:browser, continuing
+7 info lifecycle ts-demo@1.0.0~run:browser: ts-demo@1.0.0
+8 verbose lifecycle ts-demo@1.0.0~run:browser: unsafe-perm in lifecycle true
+9 verbose lifecycle ts-demo@1.0.0~run:browser: PATH: /Volumes/Files/Users/kerrishotts/.nvm/versions/node/v6.4.0/lib/node_modules/npm/bin/node-gyp-bin:/Volumes/Files/Users/kerrishotts/Projects/presentations/pgday/2017/modern-javascript-and-phonegap/babel/node_modules/.bin:/Volumes/Files/Users/kerrishotts/.nvm/versions/node/v6.4.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Volumes/Files/Users/kerrishotts/Library/Android/sdk/tools:/Volumes/Files/Users/kerrishotts/Library/Android/sdk/tools/bin:/Volumes/Files/Users/kerrishotts/Library/Android/sdk/platform-tools:/Volumes/Files/Users/kerrishotts/Dropbox/useful-unix-scripts:/opt/instantclient_11_2:/Volumes/Files/Users/kerrishotts/Library/Android/sdk/tools:/Volumes/Files/Users/kerrishotts/Library/Android/sdk/platform-tools:~/Dropbox/useful-unix-scripts
+10 verbose lifecycle ts-demo@1.0.0~run:browser: CWD: /Volumes/Files/Users/kerrishotts/Projects/presentations/pgday/2017/modern-javascript-and-phonegap/babel
+11 silly lifecycle ts-demo@1.0.0~run:browser: Args: [ '-c', 'webpack -d && cordova run browser' ]
+12 silly lifecycle ts-demo@1.0.0~run:browser: Returned: code: 2  signal: null
+13 info lifecycle ts-demo@1.0.0~run:browser: Failed to exec run:browser script
+14 verbose stack Error: ts-demo@1.0.0 run:browser: `webpack -d && cordova run browser`
+14 verbose stack Exit status 2
+14 verbose stack     at EventEmitter.<anonymous> (/Volumes/Files/Users/kerrishotts/.nvm/versions/node/v6.4.0/lib/node_modules/npm/lib/utils/lifecycle.js:255:16)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at EventEmitter.emit (events.js:191:7)
+14 verbose stack     at ChildProcess.<anonymous> (/Volumes/Files/Users/kerrishotts/.nvm/versions/node/v6.4.0/lib/node_modules/npm/lib/utils/spawn.js:40:14)
+14 verbose stack     at emitTwo (events.js:106:13)
+14 verbose stack     at ChildProcess.emit (events.js:191:7)
+14 verbose stack     at maybeClose (internal/child_process.js:852:16)
+14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:215:5)
+15 verbose pkgid ts-demo@1.0.0
+16 verbose cwd /Volumes/Files/Users/kerrishotts/Projects/presentations/pgday/2017/modern-javascript-and-phonegap/babel
+17 error Darwin 16.5.0
+18 error argv "/Volumes/Files/Users/kerrishotts/.nvm/versions/node/v6.4.0/bin/node" "/Volumes/Files/Users/kerrishotts/.nvm/versions/node/v6.4.0/bin/npm" "run" "run:browser"
+19 error node v6.4.0
+20 error npm  v3.10.8
+21 error code ELIFECYCLE
+22 error ts-demo@1.0.0 run:browser: `webpack -d && cordova run browser`
+22 error Exit status 2
+23 error Failed at the ts-demo@1.0.0 run:browser script 'webpack -d && cordova run browser'.
+23 error Make sure you have the latest version of node.js and npm installed.
+23 error If you do, this is most likely a problem with the ts-demo package,
+23 error not with npm itself.
+23 error Tell the author that this fails on your system:
+23 error     webpack -d && cordova run browser
+23 error You can get information on how to open an issue for this project with:
+23 error     npm bugs ts-demo
+23 error Or if that isn't available, you can get their info via:
+23 error     npm owner ls ts-demo
+23 error There is likely additional logging output above.
+24 verbose exit [ 1, true ]

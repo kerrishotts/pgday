@@ -1,0 +1,53 @@
+{
+    "name": "ts-demo",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "webpack": "webpack",
+        "sim:ios": "webpack -d && cordova emulate ios",
+        "run:ios": "webpack -d && cordova run ios",
+        "run:browser": "webpack -d && cordova run browser",
+        "build:ios": "webpack -d && cordova build ios",
+        "build:ios:rel": "webpack -p && cordova build ios --release",
+        "lint": "eslint www.src/es"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "core-js": "^2.4.1",
+        "eslint": "^3.19.0",
+        "eslint-config-airbnb-base": "^11.2.0",
+        "eslint-plugin-async-await": "0.0.0",
+        "eslint-plugin-import": "^2.2.0",
+        "ts-loader": "^2.0.3",
+        "typescript": "^2.3.2",
+        "webpack": "^2.5.1"
+    },
+    "dependencies": {
+        "cordova-browser": "^4.1.0",
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-camera": "^2.4.1",
+        "cordova-plugin-compat": "^1.1.0",
+        "cordova-plugin-geolocation": "^2.4.3",
+        "cordova-plugin-whitelist": "^1.3.2"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-geolocation": {
+                "GEOLOCATION_USAGE_DESCRIPTION": " "
+            },
+            "cordova-plugin-camera": {
+                "GEOLOCATION_USAGE_DESCRIPTION": " ",
+                "CAMERA_USAGE_DESCRIPTION": " ",
+                "PHOTOLIBRARY_USAGE_DESCRIPTION": " "
+            }
+        },
+        "platforms": [
+            "browser",
+            "ios"
+        ]
+    }
+}
