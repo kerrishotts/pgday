@@ -40,13 +40,6 @@
 > > > **2009**
 
 ---
-<!-- footer: -->
-
-![bg fit original](./assets/2009-pres.jpg)
-
-# President of the<br/>United States of America <!--{style='text-align:center; color: white; top: 3em;'}-->
-
----
 
 <!-- footer: By nvog86 - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=20238837 -->
 
@@ -84,14 +77,6 @@
 
 ---
 
-![bg fit](./assets/phonegap-white.png)
-
-# PhoneGap is born! :baby: :tada:
-
-<!-- footer: Logo from http://phonegap.com/about/logos/ -->
-
----
-
 <!-- footer: By Ramaksoud2000 via Chris Williams - Wikipedia via GitHub logo.js, Public Domain, https://commons.wikimedia.org/w/index.php?curid=18434372 -->
 
 ![bg 40% original](./assets/JavaScript-logo.png)
@@ -119,12 +104,6 @@
 ---
 
 > > > **2012**
-
----
-
-![bg fit original](./assets/2009-pres.jpg)
-
-# Still President of the<br/>United States of America <!--{style='text-align:center; color: white; top: 3em;'}-->
 
 ---
 
@@ -173,14 +152,6 @@
 
 ---
 
-<!-- footer: -->
-
-![bg fit original](./assets/2009-pres.jpg)
-
-# Second term :smile: <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
-
----
-
 # :tada: ES2015 :tada:
 ## n&eacute;e ES6
 
@@ -226,14 +197,6 @@ Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
 
 ---
 
-<!-- footer: -->
-
-![bg fit original](./assets/2009-pres.jpg)
-
-# We'll miss you! :cry: <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
-
----
-
 # Brexit
 
 ## Wait... how'd that happen?
@@ -267,7 +230,7 @@ Fewer features, but still important:
 |Feature                               <!-- {tr:style='display:none'} -->|
 |:--------------------------------------|
 |Exponent (`**`)                        |
-|`Array.prototype.incudes()`            |
+|`Array.prototype.includes()`           |
 
 <hr>
 
@@ -279,17 +242,7 @@ Source: http://www.2ality.com/2016/01/ecmascript-2016.html
 
 ---
 
-<!-- template: dark -->
-
-![bg fit original](./assets/2017-pres.jpg)
-
-# What the...? <!--{h1:style='text-align:center; color: white; top: 3em;'}-->
-
----
-
 # ES2017
-
-## Ah, that's better...
 
 ---
 
@@ -1014,135 +967,6 @@ cordova run ios --notransform   # skip transform/bundling
 ---
 
 ###### [Video](./assets/templatevideo.mp4)
-
----
-
-# Linting
-
-`eslint` works just fine with ES2015! (`tslint` for Typescript)
-
-```sh <!-- cli prompt=$ -->
-npm install --save-dev eslint
-# eslint-plugin-async-await if you need async/await
-```
-<!-- {style='font-size:90%'} -->
-
-`package.json`:
-```json5
-"scripts": {
-  "lint": "eslint www.src/es"
-}
-
-```
-<!-- {style='font-size:90%'} -->
-
-```sh <!-- prompt=$ cli output=2 -->
-npm run lint    # or, write a plugin/project-level hook! ;-)
-```
-<!-- {style='font-size:90%'} -->
-
----
-
-# Tests and Coverage
-
-
-```sh <!-- cli prompt=$ output=2-3 -->
-npm install --save-dev chai mocha mocha-webkit
-  webpack-node-externals source-map-support
-  istanbul-instrumentor-loader cross-env
-```
-
-* Create `mocha-webpack.opts`
-* Create `.nycrc`
-* Create webpack config for testing and coverage
-* Add npm scripts
-
-<hr>
-
-Based on: https://github.com/istanbuljs/nyc/issues/176#issuecomment-286738545
-
----
-
-# mocha-webpack.opts
-
-```bash
---webpack-config ./webpack.config-test.js
---require source-map-support/register
---full-trace
-test/*.js
-```
-
----
-
-# .nycrc
-
-```json
-{
-  "extension": [".js", ".jsx", ".ts", ".tsx"],
-  "reporter": ["html", "text-summary"],
-  "cache": true,
-  "sourceMap": false,
-  "instrument": false
-}
-```
-
----
-
-# webpack.config-test.js
-
-```javascript
-var path = require("path");
-var coverage = process.env.NODE_ENV === "cover";
-module.exports = {
-  context: path.resolve("test"),
-  target: "node",
-  externals: require("webpack-node-externals")(),
-  devtool: "inline-source-map",
-  resolve: {
-    extensions: [".js", ".jsx",".ts", ".tsx"],
-    modules: ["node_modules"]
-  }, module: { /*...*/ }
-};
-```
-<!-- {style="font-size:89%"} -->
-
----
-
-# webpack.config-test.js
-
-```javascript
-module: {
-  rules: [{
-    test: /\.(j|t)sx?/,
-    exclude: /node_modules/,
-    rules: [{ test: () => coverage,
-              enforce: "post",
-              loader: "istanbul-instrumenter-loader?esModules"
-    }, { loader: "ts-loader", // or babel-loader
-         options: { entryFileIsJs: true } // not if babel
-    }]
- }]
-}
-```
-<!-- {style="font-size:89%"} -->
-
----
-
-# Add npm scripts
-
-Add scripts to `package.json:scripts`\*
-
-```javascript
-"test": "mocha-webpack",
-"cover": "cross-env NODE_ENV=cover nyc npm test",
-```
-
-And then:
-
-```sh <!-- cli prompt=$ -->
-npm test
-npm run cover
-```
 
 ---
 
