@@ -15,21 +15,17 @@ Whether you are using a core or community plugin or you're developing your own, 
 Plugins are typically downloaded from npm:
 
 ```sh
-$ cordova plugin add [--save] cordova-plugin-device
+$ cordova plugin add cordova-plugin-device
 
 $ cordova plugin ls                                # or list
 cordova-plugin-device 1.1.1 "Device"
 
-$ cordova plugin rm [--save] cordova-plugin-device   # or remove
+$ cordova plugin rm cordova-plugin-device   # or remove
 ```
 
-For Cordova CLI versions prior to 7.0.0, you'll typically want to use the `--save` switch, since this persists the plugin and version to your app's `config.xml`. This lets you easily restore plugins later (at `prepare`-time).
+> **Note:** As of Cordova 7.x, `--save` is implied, so plugins automatically get saved to your project configuration. Use `--nosave` to disable if needed.
 
-For Cordova CLI versions after 7.0.0, plugins are automatically saved to your project's configuration. You'll need to use the `--nosave` switch in order to disable this feature.
-
-> **Cordova 7.x Note**: As of Cordova 7, plugins are also saved to your app's `package.json` file. If one doesn't exist, it will be created automatically at first `prepare`.
-
-> **Cordova 7.x Note**: If a plugin doesn't have a `package.json` file, an error may be thrown when adding the plugin. To add the plugin in this case, use the `--nofetch` flag, which uses pre-7.x plugin management logic.
+> **Important:** Fetching via npm is now the default as of Cordova 7.x; if a plugin doesn't have `package.json` adding will fail. Use `--nofetch` for those plugins.
 
 # Installing from Git
 

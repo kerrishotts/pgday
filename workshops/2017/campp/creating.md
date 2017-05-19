@@ -187,7 +187,6 @@ Let's go over `package.json` [(complete file)](https://github.com/kerrishotts/co
     "engines": {
         "cordova": ">=6.0.0"
     }
-    }
     ```
 
 # Documentation
