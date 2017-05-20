@@ -51,8 +51,3 @@ So, we're close to the end &mdash; how about a few sage words of advice?
 * Never, _ever_ call JavaScript that triggers blocking UI (e.g. `alert`)
 
 
-# Miscellaneous
-
-* Don't forget the `browser` platform!
-    * Useful when testing on the desktop
-    * Mock results if no equivalent browser support
