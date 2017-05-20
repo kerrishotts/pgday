@@ -27,9 +27,16 @@
         els.forEach(function(el) {
 =======
     function updateLinks() {
+<<<<<<< HEAD
       setTimeout(() => {
         Array.from(document.querySelectorAll("a[href*='http']")).forEach(el => {
 >>>>>>> 44fde19... tweaks
+=======
+      setTimeout(function() {
+        var els = document.querySelectorAll("a[href*='http']")
+        els = [].slice.call(els, 0);
+        els.forEach(function(el) {
+>>>>>>> f7a8649... update presentation pdf
           el.setAttribute("target", "_blank");
         });
       }, 1000);
@@ -48,4 +55,7 @@
 <body onload="slideshow = create(); updateLinks()">
 </body>
 </html>
+<<<<<<< HEAD
 >>>>>>> 7684d0d... backslide!
+=======
+>>>>>>> f7a8649... update presentation pdf
