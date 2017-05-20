@@ -296,6 +296,7 @@ table {
   margin: 0;
 }
 
+/*
 @media print {
   .remark-slide-scaler {
     width: 100% !important;
@@ -305,6 +306,7 @@ table {
     left: 0 !important;
   }
 }
+*/
 
 
 .bg {
@@ -312,7 +314,7 @@ table {
   left: 0; right: 0;
   bottom: 0; top: 0;
   opacity: 0.25;
-  z-index: -1;
+  z-index: 0;
 
   img {
     width: 100%;
