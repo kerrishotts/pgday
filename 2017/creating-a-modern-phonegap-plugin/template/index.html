@@ -19,8 +19,10 @@
       });
     }
     function updateLinks() {
-      setTimeout(() => {
-        Array.from(document.querySelectorAll("a[href*='http']")).forEach(el => {
+      setTimeout(function() {
+        var els = document.querySelectorAll("a[href*='http']")
+        els = [].slice.call(els, 0);
+        els.forEach(function(el) {
           el.setAttribute("target", "_blank");
         });
       }, 1000);
