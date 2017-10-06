@@ -31,13 +31,14 @@
 * One of many moderators at:
     * [Cordova Google Group](https://groups.google.com/forum/#!forum/phonegap)
     * [PhoneGap Adobe Forums](http://forums.adobe.com/community/phonegap)
+* @ Adobe now for ~2mo
 
 ---
 
 <!-- template: dark -->
 <!-- footer: TARDIS by Zir at English Wikipedia, CC BY 2.5, https://commons.wikimedia.org/w/index.php?curid=8300120 -->
 ![bg fit o60%](./assets/TARDIS1.jpg)
-> > > **2009**
+> > > > **2009**
 
 ---
 
@@ -102,8 +103,10 @@
 1 http://caniuse.com/#feat=es5
 
 ---
+![bg original](./assets/time_vortex_by_cosmicthunder-d424tir.jpg)
+> > > > **2012** <!--{style="color:#DDD"}-->
 
-> > > **2012**
+<!-- footer: Time Vortex by Cosmic Thunder (https://cosmicthunder.deviantart.com/) -->
 
 ---
 
@@ -146,11 +149,13 @@
 ###### http://kangax.github.io/compat-table/es5/ <!--{style="font-size: 50%; font-weight: normal; opacity: 0.5; padding-left: 50em;"}-->
 
 ---
-<!-- footer: -->
+![bg original](./assets/time_vortex_by_cosmicthunder-d424tir.jpg)
+> > > > **2015** <!--{style="color:#DDD"}-->
 
-> > > **2015**
+<!-- footer: Time Vortex by Cosmic Thunder (https://cosmicthunder.deviantart.com/) -->
 
 ---
+<!-- footer: -->
 
 # :tada: ES2015 :tada:
 ## n&eacute;e ES6
@@ -193,13 +198,10 @@ Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
 
 ---
 
-> > > **2016**
+![bg original](./assets/time_vortex_by_cosmicthunder-d424tir.jpg)
+> > > > **2016** <!--{style="color:#DDD"}-->
 
----
-
-# Brexit
-
-## Wait... how'd that happen?
+<!-- footer: Time Vortex by Cosmic Thunder (https://cosmicthunder.deviantart.com/) -->
 
 ---
 
@@ -238,22 +240,22 @@ Source: http://www.2ality.com/2016/01/ecmascript-2016.html
 
 ---
 
-> > > **2017**
+![bg original](./assets/time_vortex_by_cosmicthunder-d424tir.jpg)
+> > > > **2017** <!--{style="color:#DDD"}-->
+
+<!-- footer: Time Vortex by Cosmic Thunder (https://cosmicthunder.deviantart.com/) -->
 
 ---
 
-# ES2017
-
----
+<!-- footer: -->
 
 # ES2017
 
-Finally &mdash; proper string padding!
 
 |Feature                               <!-- {tr:style='display:none'} -->|
 |:--------------------------------------|
 |`async` / `await`                      |
-|String padding :wink:                  |
+|String padding                         |
 |Shared memory                          |
 |Atomics                                |
 
@@ -265,15 +267,29 @@ Source: http://www.2ality.com/2016/02/ecmascript-2017.html
 
 # ES2018 and beyond
 
+Stage 3 Proposals (Stage 4 is included in next release)
+
+|       |         |
+|:-----:|:-------:|
+| `global` | Object Rest/spread |
+| async iteration | `import()` |
+| RegExp improvements | `Promise.prototype.finally` |
+| BigInt | Class Fields |
+| Optional `catch` binding | `import.meta` |
+
+---
+
 ## https://esdiscuss.org
 
-###### https://mail.mozilla.org/listinfo/es-discuss
+###### (https://mail.mozilla.org/listinfo/es-discuss)
+
+## https://github.com/tc39/ecma262
 
 ---
 
 <!-- template: light -->
 
-> ### A quick intro to ES2015+
+## A quick intro to ES2015+
 
 ---
 
@@ -287,14 +303,14 @@ let i = SECONDS_IN_A_MINUTE;
 for (let i = 0; i < 100; i++) {
   console.log(HELLO, i); // Hiya 0... Hiya 99
 }
-console.log(i); // 60
+console.log(i);          // 60
 ```
 
 ---
 
-# Constants aren't constant
+# Constants !== immutable
 
-Only the reference is constant!
+The variable can't be reassigned, but the contents are still mutable.
 
 ```javascript
 const DEFAULT_OPTIONS = {
@@ -346,8 +362,8 @@ class App {
   }
   sayHi() { alert(this.text); }
   start() {
-    document.querySelector("#clickme")
-    .addEventListener("click",() => this.sayHi());
+    document.querySelector("#clickme")   
+    .addEventListener("click",() => this.sayHi()); // <-
   }
 }
 ```
@@ -369,7 +385,7 @@ class App {
 
 # Arrow function quirks
 
-No or 2+ parameters? Use parentheses:
+Zero or 2+ parameters? Use parentheses:
 ```javascript
 [1, 2, 3].map(() => Math.floor(Math.random() * 100));
 [1, 2, 3].map((i, idx) => i * idx);
@@ -422,7 +438,7 @@ Instead, wrap the implicit return in parentheses:
 
 # Template Strings
 
-Multiline and Variable interpolation:
+Multiline and expression interpolation:
 
 ```javascript
 function sayHelloAndGoodbye(name) {
@@ -430,9 +446,9 @@ function sayHelloAndGoodbye(name) {
 Goodbye, ${name}`;
 }
 
-sayHelloAndGoodbye("World");  
-// Hello, World!
-// Goodbye, World!
+sayHelloAndGoodbye("Doctor");  
+// Hello, Doctor!
+// Goodbye, Doctor!
 ```
 
 ---
@@ -443,11 +459,11 @@ Arbitrary expressions (*use with care*):
 
 ```javascript
 function sayComplexHello(name) {
-  return `Hello, ${name ? name : "Jane Doe"}!`;
+  return `Hello, ${name ? name : "Doctor"}!`;
 }
 
 sayComplexHello("Alex");    // Hello, Alex!
-sayComplexHello();          // Hello, Jane Doe!
+sayComplexHello();          // Hello, Doctor!
 ```
 
 ---
@@ -472,11 +488,9 @@ function getPos(options) {
 Chaining is easier to read:
 
 ```javascript
-getPos().then(pos => {
-  console.log(JSON.stringify(pos));
-}).catch(err => {
-  console.error(err);
-});
+getPos()
+  .then(pos => console.log(JSON.stringify(pos)))
+  .catch(err => console.error(err));
 ```
 
 ---
@@ -510,7 +524,7 @@ function divide(a, b) {
     return [a / b, null];
   }
 }
-let [results, error] = divide();
+let [results, error] = divide(4, 0);
 ```
 
 ---
@@ -531,13 +545,13 @@ async function start() {
 
 <hr>
 
-**Note**: `async` poisons the call tree; all callers must also be `async` or treat the response like a `promise`.
+**Note**: `async` poisons the call tree; all callers must also be `async` or treat the return result like a `promise`.
 
 ---
 
 # Array-like conversion
 
-If only I had a &euro; for every time I've written:
+If only I had a :dollar: for every time I've written:
 
 ```javascript
 var elList = document.querySelectorAll("a"),
@@ -801,7 +815,7 @@ npm install --save-dev babel-loader babel-core
 
 # Configure Transpiler
 
-<div style="columns: 2">
+<div style="columns: 2; font-size: 80%">
 
 ```javascript
 // tsconfig.json
@@ -982,7 +996,7 @@ cordova run ios --notransform   # skip transform/bundling
 
 # Reality Check...
 
-* ES2015+ is **NOT** a performance optimization
+* Don't switch to ES2015+ because you expect performance improvements
   * See https://kpdecker.github.io/six-speed/ (as of 2017-01-04)
 
 ![ES 2015+ performance](./assets/es6perf.png)
