@@ -56,6 +56,7 @@ footer:
 * One of several moderators:
     * [Adobe PhoneGap Forums](http://forums.adobe.com/community/phonegap)
     * [Google Cordova Group](https://groups.google.com/forum/#!forum/phonegap)
+* At Adobe now for nearly 2 months
 * [@kerrishotts](https://www.twitter.com/kerrishotts)
 
 ???
@@ -111,7 +112,7 @@ footer:
     * build time
     * install time
 * Two sources of Plugins
-  * Core &mdash; used to be built in pre-3.x (Undergoing audit: [CB-12708](https://issues.apache.org/jira/browse/CB-12708))
+  * Core &mdash; used to be built in pre-3.x
   * Community &mdash; people like you!
 
 ???
@@ -132,7 +133,6 @@ Full access to the native SDK and device features. Some examples:
 * Social Plugins: [Email](https://github.com/hypery2k/cordova-email-plugin), [X SocialSharing](https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin)
 * Audio Plugins: [DBMeter](https://github.com/akofman/cordova-plugin-dbmeter), [Native Audio](https://github.com/floatinghotpot/cordova-plugin-nativeaudio), [Media Picker](https://github.com/an-rahulpandey/cordova-plugin-mediapicker)
 * Misc: [Barcode Scanner](https://github.com/phonegap/phonegap-plugin-barcodescanner), [In App Purchase](https://github.com/j3k0/cordova-plugin-purchase), [Google Maps](https://github.com/mapsplugin/cordova-plugin-googlemaps), [Vuforia](https://github.com/mattrayner/cordova-plugin-vuforia) (AR), [Microsoft ACE](https://github.com/Microsoft/ace) (native controls), [Tesseract](https://github.com/jcesarmobile/cordova-plugin-tesseract-ocr) (OCR, iOS)
-* Creative Cloud: [Auth](https://github.com/CreativeSDK/phonegap-plugin-csdk-user-auth), [Asset Browser](https://github.com/CreativeSDK/phonegap-plugin-csdk-asset-browser), [Image Editor](https://github.com/CreativeSDK/phonegap-plugin-csdk-image-editor), [Send to Desktop](https://github.com/CreativeSDK/phonegap-template-csdk-send-to-desktop)
 
 ---
 
@@ -177,21 +177,42 @@ Full access to the Cordova project and environment at install time. Some ideas:
 ---
 
 footer:
-class: table-no-header
+class: table-no-header medium
 
 # The Core Plugins
 
-Core Cordova Plugins (used to be built-in pre-3.x) (Audit: [CB-12708](https://issues.apache.org/jira/browse/CB-12708))
+ Plugin              | Decision        | Notes
+:-------------------:|:---------------:|:--------------:
+ battery-status      | Sunset?         |
+ contacts            | Keep            |
+ device-orientation  | Sunset?         | `orientation`
+ file-transfer       | Sunset?         | XHR2
+ inappbrowser        | Keep            |
+ network-information | Sunset?         | Browser API
+ vibration           | Sunset?         | Browser API
+ camera              | Sunset?         | `MediaCapture` API
+ device              | Keep            |
+ dialogs             | Keep            |
+ geolocation         | Keep            |
 
- Plugin              | Plugin          | Plugin
-:--------------------|:----------------|:----------------
- battery-status      | camera          | console
- contacts            | device          | device-motion
- device-orientation  | dialogs         | file
- file-transfer       | geolocation     | globalization
- inappbrowser        | media           | media-capture
- network-information | ~~splashscreen~~ | statusbar
- vibration           | whitelist
+---
+
+footer:
+class: table-no-header medium
+
+## The Core Plugins
+
+ Plugin              | Decision        | Notes
+:-------------------:|:---------------:|:--------------:
+ media               | Sunset?         | Browser APIs
+ splashscreen        | Merge           |
+ whitelist           | Keep            |
+ console             | Merge           |
+ device-motion       | Sunset?         | Browser APIs
+ file                | Keep            |
+ globalization       | Sunset?         | Use i18n APIs
+ media-capture       | Sunset          | `MediaCapture` API
+ statusbar           | Merge?          |
 
 ???
 There are two categories of plugins: _core_ and _community_. The former are generally plugins that were originally core functionality &mdash; that is, they were built-in to Cordova and later split out so that they could be maintained separately and receive updates without having to update all of Cordova. The latter are plugins developed and supported by the community themselves.
@@ -207,11 +228,16 @@ class: table
 
 Devoloped and supported by the community &mdash; like you!
 
-|                         Repository | Plugins                 |
-|-----------------------------------:|:------------------------|
-| https://cordova.apache.org/plugins | ~2,211 plugins &amp; templates (excl. core) |
-| http://www.plugreg.com             | ~1,592 plugins (excl. core) |
-| http://plugins.telerik.com/cordova | ~77 plugins             |
+.center.huge[
+https://cordova.apache.org/plugins 
+
+~2,720 plugins &amp; templates (excl. core)
+]
+
+.notes[
+At PG Day EU: 2,211
+]
+
 
 ---
 class: section
@@ -246,7 +272,7 @@ cordova plugin add cordova-plugin-device
 cordova plugin ls                                # or list
 cordova-plugin-device 1.1.1 "Device"
 
-cordova plugin rm cordova-plugin-device # or remove
+cordova plugin rm cordova-plugin-device          # or remove
 ```
 
 .notes[
@@ -282,14 +308,14 @@ footer:
 
 # Git
 
-Plugins can also be installed from a Git repository.
+Plugins can also be installed from a Git repository. Typically used for pre-release testing.
 
 ```sh
 cordova plugin add http://github.com/apache/cordova-plugin-device
 cordova plugin rm cordova-plugin-device
 ```
 
-Specify a branch: (useful for testing pre-release/edge plugins):
+Specify a branch:
 
 ```sh
 cordova plugin add http://github.com/apache/cordova-plugin-device
@@ -309,6 +335,7 @@ footer:
 Or install from the local file system &mdash; very useful for plugin development.
 
 ```sh
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 cordova plugin add [--link] /path/to/plugin
@@ -348,6 +375,12 @@ When building your own plugins, you'll probably be using this method the most &m
 =======
 >>>>>>> 7684d0d... backslide!
 
+=======
+cordova plugin add /path/to/plugin
+cordova plugin rm cordova-plugin-device
+```
+
+>>>>>>> 65c97f0... order & tweaks
 ???
 
 When building your own plugins, you'll probably be using this method the most &mdash; you don't have to publish anything anywhere, but you can still test your plugins in Cordova apps using this method.
@@ -379,6 +412,7 @@ And, of course, you're probably familiar with how to search for plugins, but I d
 
 ---
 class: section
+<<<<<<< HEAD
 footer: Photo by kaboompics (https://pixabay.com/en/users/kaboompics-1013994/), courtesy of Pixabay.com
 
 .bg[![bg o40%](./assets/pics/little-791331_1920.jpg)]
@@ -439,10 +473,13 @@ footer:
 
 ---
 class: section
+=======
+>>>>>>> 65c97f0... order & tweaks
 footer: Photo by dcondrey (https://pixabay.com/en/users/dcondrey-122249/), courtesy of Pixabay.com
 <<<<<<< HEAD
 
 # Plugin X-ray
+
 
 .bg[![bg o20%](./assets/pics/x-ray-237402_1920.jpg)]
 
@@ -560,7 +597,21 @@ cordova-plugin-*your-plugin*/                          | Plugin root
 So this is a typical file structure for plugins &mdash; you'll typically have the metadata and configuration out in the root diretory, along with primary documentation and licensing information. Then you'll have your native code in `src`, your JavaScript code in `www`, for example, etc.
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+---
+footer:
+
+# Documentation
+
+Documentation is absolutely critical!
+
+* Location of documentation
+    * English goes in `README.md` (plugin root)
+    * Other languages in `docs/[locale]/README.md`
+* Provide examples, constants, errors that can be thrown, etc.
+>>>>>>> 65c97f0... order & tweaks
 
 So this is a typical file structure for plugins &mdash; you'll typically have the metadata and configuration out in the root diretory, along with primary documentation and licensing information. Then you'll have your native code in `src`, your JavaScript code in `www`, for example, etc.
 
@@ -572,13 +623,15 @@ So this is a typical file structure for plugins &mdash; you'll typically have th
 footer:
 # Metadata
 
-.col-6[
+.col-5[
 ### plugin.xml
 
 **id**, **version**, author, license, name, description, repo, issue, keywords, platform (&amp; assets), dependencies, engines, preferences, hooks, info, etc.
 ]
 
-.col-6[
+.col-2[&nbsp;]
+
+.col-5[
 ### package.json
 
 **name**, **version**, author, license, description, repository, issue, keywords, platforms, dependencies
@@ -924,23 +977,83 @@ Sometimes you'll need to specify dependencies for a plugin as well. This can be 
 ---
 footer:
 
-# Documentation
+# Publishing your plugin
 
-Documentation is absolutely critical!
+* Generate / update `package.json`
 
-* Location of documentation
-    * English goes in `README.md` (plugin root)
-    * Other languages in `docs/[locale]/README.md`
-* Provide examples, constants, errors that can be thrown, etc.
+  * `plugman` can generate it based on `plugin.xml` for you:
+
+      ```sh
+      plugman createpackagejson .
+      ```
+
+* Once `package.json` is correct, publish via:
+    ```sh
+    npm publish
+    ```
+
+.notes[
+Don't forget `.npmignore`!
+
+If you used the PhoneGap Plugin Template, `package.json` is already there &mdash; you'll need to update it.
+]
+
+---
+class: section
+footer: Photo by kaboompics (https://pixabay.com/en/users/kaboompics-1013994/), courtesy of Pixabay.com
+
+.bg[![bg o40%](./assets/pics/little-791331_1920.jpg)]
+
+# Crossing the bridges
+
+???
+
+Jesse
+
+---
+footer:
+
+# Know your Bridges
+
+Allows communication between native code and web view contexts.
+
+* iOS
+
+* Android
+
+* Browser/Windows is an exception...
+  * Careful, the bridge is a **mirage**!
+  * JavaScript is **native**
+  * `cordova.exec` uses a proxy to keep things consistent
+  * [full docs](https://cordova.apache.org/docs/en/latest/guide/platforms/win8/plugin.html#creating-a-windows-plugin-in-javascript)
+
+.notes[
+  <a href="http://github.com/apache/cordova-plugin-device">Device Plugin</a>
+]
+
+---
+footer:
+
+.bg.fit.original[![bg fit original](assets/ios-bridge.png?c)]
+
+---
+footer:
+
+.bg.fit.original[![bg fit original](assets/android-bridge.png?c)]
+
+---
+footer:
+
+.bg.fit.original[![bg fit original](assets/proxy-bridge.png?d)]
+
+
+
 
 ---
 footer:
 class: section
 
-# Creating and Publishing Plugins
-
-###And getting rich, maybe?
-###Or maybe not...
+# Creating Plugins
 
 ???
 
@@ -1101,18 +1214,18 @@ require("cordova/exec/proxy").add("IsPrime", module.exports);
 ---
 footer:
 
-# Plugin Class Mapping (iOS)
+<!-- # Plugin Class Mapping (iOS)
 
-Remember the JS API's call to `cordova.exec` and plugin class mapping in `plugin.xml`?
+Remember the JS API's call to `cordova.exec` and plugin class mapping in `plugin.xml`? -->
 
-.fit.original[![iOS Status Bar Plugin Class Mapping](./assets/ios-plugin-class-map.png)]
+.bg.fit.original[![iOS Status Bar Plugin Class Mapping](./assets/ios-plugin-class-map.png)]
 
 ---
 footer:
 
-# Plugin Class Mapping (Android)
+<!-- # Plugin Class Mapping (Android) -->
 
-.fit.original[![iOS Status Bar Plugin Class Mapping](./assets/android-plugin-class-map.png)]
+.bg.fit.original[![iOS Status Bar Plugin Class Mapping](./assets/android-plugin-class-map.png)]
 
 ---
 footer:
@@ -1304,16 +1417,12 @@ footer:
     cordova create hello com.example.hello hello
     cd hello
     cordova platform add ios android browser
-    cordova plugin add --link /path/to/plugin
+    cordova plugin add /path/to/plugin
     ```
 
 * Open your preferred IDE
 
 * Build &amp; run your app
-
-.notes[
-`--link` &mdash; can simplify dev workflow
-]
 
 ---
 footer:
@@ -1342,40 +1451,11 @@ footer: Photo by bernswaelz (https://pixabay.com/en/users/bernswaelz-1728198/), 
 .bg[![bg o20%](./assets/pics/chain-1662735_1920.jpg)]
 
 
-# What gets --linked?
+# Workflow
 
-* app's `plugins/<your-plugin>` is symlinked to your plugin
-* Native code in symlinked in app's `platforms/`
-
-Exceptions &amp; notes:
-* `cordova clean android` if the build complains
-* `plugin.xml` changes require a `plugin rm` &amp; `add`
-* Changes to your plugin's `www` require an `rm` &amp; `add` as well
-* `platform rm` &amp; `add` won't preserve `--link`s ([CB-12597](https://issues.apache.org/jira/browse/CB-12597))
-
----
-footer:
-
-# Publishing your plugin
-
-* Generate / update `package.json`
-
-  * `plugman` can generate it based on `plugin.xml` for you:
-
-      ```sh
-      plugman createpackagejson .
-      ```
-
-* Once `package.json` is correct, publish via:
-    ```sh
-    npm publish
-    ```
-
-.notes[
-Don't forget `.npmignore`!
-
-If you used the PhoneGap Plugin Template, `package.json` is already there &mdash; you'll need to update it.
-]
+* Run your project
+* If changes need to be made, make them locally
+* Once things work, be sure to copy changes back to the original plugin!
 
 ---
 class: section
@@ -1491,6 +1571,11 @@ footer:
 * Don't forget the Browser platform! It's real, and useful!
 * Don't forget Windows, either
   * JavaScript is a first-class citizen, which makes things even easier.
+
+* Plugins don't just have to be about improving computational performance!
+  * You can do pretty cool things by integrating with the native SDK
+  * https://github.com/purplecabbage/phonegap-plugin-multiview
+
 
 
 ---
