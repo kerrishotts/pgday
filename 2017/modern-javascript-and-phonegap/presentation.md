@@ -31,7 +31,7 @@
 * One of many moderators at:
     * [Cordova Google Group](https://groups.google.com/forum/#!forum/phonegap)
     * [PhoneGap Adobe Forums](http://forums.adobe.com/community/phonegap)
-* @ Adobe now for ~2mo
+* Just started at Adobe
 
 ---
 
@@ -122,7 +122,7 @@
 
 ![bg original 25%](./assets/ios6.png)
 
-# iOS 6 <!--{style="padding-left: 4.5em;"}-->
+# iOS 6 <!--{style="background: none; padding-left: 4.5em;"}-->
 
 ## 93% support for ES5 <!--{style="padding-left: 15em;"}-->
 
@@ -181,7 +181,7 @@
 
 # ES2015 (ES6)
 
-It had been quite a while, so the list is long...
+New to the language...
 
  Feature                               | Feature <!-- {tr:style='display:none'} -->
 :--------------------------------------|:-----------
@@ -215,7 +215,7 @@ Generators (`*`/`yield`)               | Symbols, Maps &amp; Sets, Promises
 
 # Android (Chrome 50)
 
-## 92% ES2015
+## 92% ES2015 \*
 
 ---
 
@@ -265,9 +265,20 @@ Source: http://www.2ality.com/2016/02/ecmascript-2017.html
 
 ---
 
+![bg original](./assets/time_vortex_by_cosmicthunder-d424tir.jpg)
+> > > > **2018** <!--{style="color:#DDD"}-->
+
+<!-- footer: Time Vortex by Cosmic Thunder (https://cosmicthunder.deviantart.com/) -->
+
+
+---
+<!-- footer: -->
+
 # ES2018 and beyond
 
-Stage 3 Proposals (Stage 4 is included in next release)
+Template Literal Revision: https://tc39.github.io/proposal-template-literal-revision/
+
+Stage 3 Proposals
 
 |       |         |
 |:-----:|:-------:|
@@ -296,90 +307,76 @@ Stage 3 Proposals (Stage 4 is included in next release)
 # Block. Scoped. Variables. Finally.
 
 ```javascript
-const SECONDS_IN_A_MINUTE = 60;
-const HELLO = "Hiya";
+const NUMBER_OF_DOCTORS = 13;
+const MY_DOCTOR = "David Tennant";
 
-let i = SECONDS_IN_A_MINUTE;
+let i = NUMBER_OF_DOCTORS;
 for (let i = 0; i < 100; i++) {
-  console.log(HELLO, i); // Hiya 0... Hiya 99
+  console.log(MY_DOCTOR, i); // David Tennant 0, ... 
 }
-console.log(i);          // 60
+console.log(i);              // 13
 ```
 
 ---
 
-# Constants !== immutable
+## Constants !== immutable
 
 The variable can't be reassigned, but the contents are still mutable.
 
 ```javascript
-const DEFAULT_OPTIONS = {
-  quality: 50
+const THE_DOCTOR = {
+  person: "Peter Capaldi"
 };
 
-DEFAULT_OPTIONS.quality = 100;
-console.log(DEFAULT_OPTIONS.quality); // 100
+THE_DOCTOR.person = "Jodie Whittaker";
+console.log(DEFAULT_OPTIONS.person); // Jodie Whittaker
 ```
 
 ---
 
-# Dang it, _this!_
+# _this_ is such a pain...
 
-```javascript <!-- highlight=4,8 number -->
-var app = {
-  text: "Hello, PG Day Attendees!",
-  sayHi: function() { 
-  	alert(this.text); 
+```javascript
+var doctor = {
+  greeting: "Hello, %target%! I'm the Doctor!",
+  sayHi: function(evt) {
+    alert(this.greeting.replace(/%target%/g, 
+      evt.target.dataset.target));
   },
   start: function() {
-    document.querySelector("#clickme")
-    .addEventListener("click", this.sayHi, false);
+    document.querySelector("#sayHi")
+      .addEventListener("click", this.sayHi, false);
   }
 }
 ```
 
 ---
 
-![bg original](../../_common/assets/picard/brain-freeze.jpg)
-
-<div style="position: absolute; top: 60%; width: 90%; height: 40%; left: 5%; right: 5%; background-color: rgba(255,255,255,1); border-radius: 0.5em; border: 1px solid rgba(0,0,0,0.25); display: flex; flex-direction: column;">
-  <div style="line-height: 3.5em; padding: 0.5em; margin: auto; width: 100%;">undefined</div>
-  <div style="border-top: 1px solid rgba(0,0,0,0.25); color: hsl(220, 75%, 60%); text-align: right; padding: 0.5em">Close</div>
-</div>
-
-<!--
-# ![center 250%](./assets/alert-undefined.png)
--->
+## TypeError: undefined is not an object (evaluating 'this.greeting.replace') <!-- {style="color: #A00"} -->
 
 ---
 
 # Arrow functions
 
 ```javascript <!-- number highlight=5,8 -->
-class App {
-  constructor() { 
-    this.text = "Hello, PG Day Attendees!"; 
-  }
-  sayHi() { alert(this.text); }
-  start() {
-    document.querySelector("#clickme")   
-    .addEventListener("click",() => this.sayHi()); // <-
+const doctor = {
+  greeting: "Hello, %target%! I'm the Doctor!",
+  sayHi: function(evt) {
+    alert(this.greeting.replace(/%target%/g, 
+      evt.target.dataset.target));
+  },
+  start: function() {
+    document.querySelector("#sayHi")
+      .addEventListener("click", 
+        evt => this.sayHi(evt), false);
   }
 }
 ```
 
 ---
+![bg original fit](./assets/K9_05.jpg)
 
-![bg original](../../_common/assets/picard/picard-day.jpg)
-
-<div style="position: absolute; top: 60%; width: 90%; height: 40%; left: 5%; right: 5%; background-color: rgba(255,255,255,1); border-radius: 0.5em; border: 1px solid rgba(0,0,0,0.25); display: flex; flex-direction: column;">
-  <div style="padding: 0.5em; margin: auto; width: 100%; line-height: 3.5em">Hello, PG Day Attendees!</div>
-  <div style="border-top: 1px solid rgba(0,0,0,0.25); color: hsl(220, 75%, 60%); text-align: right; padding: 0.5em">Close</div>
-</div>
-
-<!--
-# ![center 250%](./assets/alert-correct.png)
--->
+# Hello, K9! I'm the Doctor!
 
 ---
 
@@ -394,6 +391,12 @@ Zero or 2+ parameters? Use parentheses:
 One parameter? Convention is no parentheses:
 ```javascript
 [1, 2, 3].map(i => i * 2);
+```
+
+Need only the second?
+
+```javascript
+[1, 2, 3].map((_, idx) => idx * 2);
 ```
 
 ---
@@ -422,17 +425,42 @@ Block arrow functions use explicit `return`:
 But what if we return an object? This won't work:
 
 ```javascript
-[1, 2, 3].map(i => {i: i * 2}); // is equivalent to
-[1, 2, 3].map(i => {            // this, which is
+[1, 2, 3].map(i => {i: i * 2});
+```
+
+---
+
+# Arrow function ambiguity
+
+But what if we return an object? This won't work:
+
+```javascript
+[1, 2, 3].map(i => {i: i * 2}); // is equivalent to:
+
+[1, 2, 3].map(i => {
 i:                              // obviously not what
 	i * 2;                      // we want :-(
 });
 ```
-Instead, wrap the implicit return in parentheses:
+
+---
+
+# Arrow function ambiguity
+
+Instead, wrap the object in parentheses:
 
 ```javascript
 [1, 2, 3].map(i => ({i: i * 2}));
 ```
+
+Or, just use the block form:
+
+```javascript
+[1, 2, 3].map(i => {
+  return {i: i * 2};
+});
+```
+
 
 ---
 
@@ -446,7 +474,7 @@ function sayHelloAndGoodbye(name) {
 Goodbye, ${name}`;
 }
 
-sayHelloAndGoodbye("Doctor");  
+console.log(sayHelloAndGoodbye("Doctor"));
 // Hello, Doctor!
 // Goodbye, Doctor!
 ```
@@ -462,7 +490,7 @@ function sayComplexHello(name) {
   return `Hello, ${name ? name : "Doctor"}!`;
 }
 
-sayComplexHello("Alex");    // Hello, Alex!
+sayComplexHello("Sarah");   // Hello, Sarah!
 sayComplexHello();          // Hello, Doctor!
 ```
 
@@ -505,7 +533,7 @@ function gotPos(data) {
   console.log(`${latitude},${longitude}@${timestamp}`);
 }
 function gotError(err) {
-    console.log(`Error received! ${err}`);
+  console.error(`Error received! ${err}`);
 }
 getPos().then(gotPos).catch(gotError);
 ```
@@ -524,13 +552,18 @@ function divide(a, b) {
     return [a / b, null];
   }
 }
-let [results, error] = divide(4, 0);
+const [results, error] = divide(4, 0);
 ```
 
 ---
 
-# async / await (ES2017)
+## async / await (ES2017)
 
+#### Stay for Anis Kadri's talk @ 11:10
+
+###### The evolution of asynchronous programming in JS
+
+<!--
 ```javascript
 async function start() {
   try {
@@ -538,7 +571,7 @@ async function start() {
         {coords:{latitude, longitude}} = pos;
     console.log(`${latitude}, ${longitude}`);
   } catch(err) {
-    console.log(`Error received! ${err}`);
+    console.error(`Error received! ${err}`);
   }
 }
 ```
@@ -547,23 +580,25 @@ async function start() {
 
 **Note**: `async` poisons the call tree; all callers must also be `async` or treat the return result like a `promise`.
 
+-->
+
 ---
 
 # Array-like conversion
 
-If only I had a :dollar: for every time I've written:
-
 ```javascript
+// ES 5 way to convert a NodeList to an Array
 var elList = document.querySelectorAll("a"),
     elArr = [].slice.call(elList, 0);
+
+// ES2015 method
+const elArr = Array.from(
+  document.querySelectorAll("a"));
+  
+// Can also construct series:
+const series = Array.from({length: 8}, 
+  (_, idx) => idx * idx); // [0, 1, 4, 9, 16, 25, ...]
 ```
-
-ES2015:
-
-```javascript
-let elArr = Array.from(document.querySelectorAll("a"));
-```
-
 
 ---
 
@@ -574,7 +609,8 @@ Easy variable arguments:
 function sum(start = 0, ...nums) {
   return nums.reduce((acc, val) => acc + val, start);
 }
-console.log(sum(1, 5, 10, 99)); /* 115 */
+
+console.log(sum(1, 5, 10, 99)); // 115 
 ```
 
 ---
@@ -623,7 +659,7 @@ export function add(a, b) { return a + b; }
 
 index.js:
 ```javascript
-import {add} from "./math.js";
+import { add } from "./math.js";
 console.log(add(4, 3));      // 7
 ```
 
@@ -666,30 +702,18 @@ These can all transpile ES2015+\* to ES5:
 
 ---
 
-> ### Remember module support?
-
----
-
-<!-- template: dark -->
-
-![bg original](../../_common/assets/picard/sigh.jpg)
-
-> ### No Implementation! :scream: <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
-
----
-
 <!-- template: light -->
 
-# Until now...
+# Module Support is problematic
 
-Browsers have _finally_ started shipping implementations:
+Browsers have only _recently_ started shipping implementations:
 
 * Available now:
 	* Safari 10.1, iOS 10.3
+	* Chrome and Android Webview 61
 * Behind a flag:
 	* Edge 15
 	* Firefox 54
-	* Chrome and Android WebView 60
 
 <hr>
 
@@ -721,20 +745,6 @@ game.start();
 	* No node-style resolution
 
 * iOS module loading does not work in PhoneGap / Cordova
-
-<center>
-Timo Ernst<br/>
-Building PhoneGap apps with Vue.js and Framework7<br/>
-13:30 &mdash; 14:10
-</center>
-
----
-<!-- template: dark -->
-
-![bg original](../../_common/assets/picard/yay.jpg)
-
-> ### But we can fix all that... <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
-
 
 ---
 <!-- template: light -->
@@ -823,7 +833,7 @@ npm install --save-dev babel-loader babel-core
     "allowJs": true,
     "target": "es5",
     "module": "es2015", // DCR
-    "lib": ["es2015", ...]
+    "lib": ["es2015", ...],
     "sourceMap": true
   },
   "include": 
@@ -894,7 +904,8 @@ module: {
   "sim:ios": "webpack -d && cordova emulate ios",
   "run:ios": "webpack -d && cordova run ios",
   "build:ios": "webpack -d && cordova build ios",
-  "build:ios:rel": "webpack -p && cordova build ios --release"
+  "build:ios:rel": "webpack -p && cordova build ios 
+    --release"
 }
 ```
 <!-- {style='font-size:89%;'} -->
@@ -957,7 +968,7 @@ Executes when `prepare` is called: `build`, `run`, `emulate`, etc.
 ```sh <!-- prompt=$ cli -->
 cordova build ios               # debug mode
 cordova build ios --release     # production mode
-cordova run ios --notransform   # skip transform/bundling
+cordova run ios --notransform   # skip transform/bundle
 ```
 <!-- {style='font-size:89%'} -->
 
@@ -982,13 +993,6 @@ cordova run ios --notransform   # skip transform/bundling
 
 ###### [Video](./assets/templatevideo.mp4)
 
----
-
-<!-- template: dark -->
-
-![bg original](../../_common/assets/picard/pouting.jpg)
-
-# Reality Check...
 
 ---
 
@@ -1029,14 +1033,6 @@ cordova run ios --notransform   # skip transform/bundling
 **Note:** Results _highly sensitive_ to the JavaScript features in use.
 
 -->
-
----
-
-<!-- template: dark -->
-
-![bg original](../../_common/assets/picard/double-wtf.jpg)
-
-> #### UIWebView strikes again <!--{style='text-align:center; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
 
 ---
 
@@ -1088,7 +1084,6 @@ cordova run ios --notransform   # skip transform/bundling
 * Lots of benefits:
 	* Expressive and concise
 	* Less boilerplate
-	* String padding! :wink:
 
 ---
 
