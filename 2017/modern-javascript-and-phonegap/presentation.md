@@ -329,7 +329,7 @@ const THE_DOCTOR = {
 };
 
 THE_DOCTOR.person = "Jodie Whittaker";
-console.log(DEFAULT_OPTIONS.person); // Jodie Whittaker
+console.log(THE_DOCTOR.person); // Jodie Whittaker
 ```
 
 ---
@@ -344,7 +344,7 @@ var doctor = {
       evt.target.dataset.target));
   },
   start: function() {
-    document.querySelector("#sayHi")
+    document.querySelector("#sayHiToK9")
       .addEventListener("click", this.sayHi, false);
   }
 }
@@ -358,7 +358,7 @@ var doctor = {
 
 # Arrow functions
 
-```javascript <!-- number highlight=5,8 -->
+```javascript
 const doctor = {
   greeting: "Hello, %target%! I'm the Doctor!",
   sayHi: function(evt) {
@@ -366,7 +366,7 @@ const doctor = {
       evt.target.dataset.target));
   },
   start: function() {
-    document.querySelector("#sayHi")
+    document.querySelector("#sayHiToK9")
       .addEventListener("click", 
         evt => this.sayHi(evt), false);
   }
@@ -413,7 +413,7 @@ Block arrow functions use explicit `return`:
 
 ```javascript
 [1, 2, 3].map(i => {
-  let x = Math.floor(Math.random() * 100);
+  const x = Math.floor(Math.random() * 100);
   return i * x;
 });
 ```
@@ -464,7 +464,7 @@ Or, just use the block form:
 
 ---
 
-# Template Strings
+# Template Literals
 
 Multiline and expression interpolation:
 
@@ -481,7 +481,7 @@ console.log(sayHelloAndGoodbye("Doctor"));
 
 ---
 
-# Template Strings
+# Template Literals
 
 Arbitrary expressions (*use with care*):
 
@@ -557,18 +557,13 @@ const [results, error] = divide(4, 0);
 
 ---
 
-## async / await (ES2017)
+# async / await (ES2017)
 
-#### Stay for Anis Kadri's talk @ 11:10
-
-###### The evolution of asynchronous programming in JS
-
-<!--
 ```javascript
 async function start() {
   try {
-    let pos = await getPos(),
-        {coords:{latitude, longitude}} = pos;
+    const pos = await getPos(),
+      {coords:{latitude, longitude}} = pos;
     console.log(`${latitude}, ${longitude}`);
   } catch(err) {
     console.error(`Error received! ${err}`);
@@ -580,8 +575,6 @@ async function start() {
 
 **Note**: `async` poisons the call tree; all callers must also be `async` or treat the return result like a `promise`.
 
--->
-
 ---
 
 # Array-like conversion
@@ -592,8 +585,7 @@ var elList = document.querySelectorAll("a"),
     elArr = [].slice.call(elList, 0);
 
 // ES2015 method
-const elArr = Array.from(
-  document.querySelectorAll("a"));
+const elArr=Array.from(document.querySelectorAll("a"));
   
 // Can also construct series:
 const series = Array.from({length: 8}, 
@@ -636,13 +628,13 @@ function getPicture({quality = 50, width = 512,
 
 ```javascript
 // use all the defaults
-await getPicture();
+getPicture();
 
 // specify only quality
-await getPicture({quality:75});
+getPicture({quality:75});
 
 // specify only height & width
-await getPicture({height: 1024, width: 1024});
+getPicture({height: 1024, width: 1024});
 ```
 
 ---
@@ -669,7 +661,7 @@ console.log(add(4, 3));      // 7
 
 ---
 
-# Native support is a moving target
+# Native support
 
 |     OS             |   ES2015   |   ES2016   |   ES2017   |
 |-------------------:|-----------:|-----------:|-----------:|
@@ -709,8 +701,8 @@ These can all transpile ES2015+\* to ES5:
 Browsers have only _recently_ started shipping implementations:
 
 * Available now:
-	* Safari 10.1, iOS 10.3
-	* Chrome and Android Webview 61
+	* Safari 10.1+, iOS 10.3+
+	* Chrome and Android Webview 61+
 * Behind a flag:
 	* Edge 15
 	* Firefox 54
@@ -739,6 +731,11 @@ game.start();
 
 # There's always a catch
 
+```javascript
+import Game from "./Game"; // bare import (won't work)
+import Decimal from "Decimal"; // also won't work
+```
+
 * No "bare" `import`!
 	* Must include the path
 	* Must include the extension
@@ -763,6 +760,27 @@ You can do more than just bundling:
 
 ---
 
+## We can supply bundled and unbundled versions:
+
+If you want...
+
+```html
+<!-- this script will have modules, and executes in
+     modern browsers -->
+<script type="module" src="./es/index.js"></script>
+
+<!-- this script won't, and will only execute in 
+     older browsers * -->
+<script nomodule src="./js/index.js"></script>
+```
+
+<hr />
+
+\* Except Safari 10.1. See https://gist.github.com/samthor/64b114e4a4f539915a95b91ffd340acc
+See https://jakearchibald.com/2017/es-modules-in-browsers/ for more.
+
+---
+
 # Execution Options
 
 * Manual
@@ -779,7 +797,7 @@ You can do more than just bundling:
 
 * Pick your bundler and transpiler
 
-    * Bundler: Webpack 2
+    * Bundler: Webpack
 
     * Transpilers: TypeScript &amp; Babel (showing both configs)
 
@@ -825,7 +843,7 @@ npm install --save-dev babel-loader babel-core
 
 # Configure Transpiler
 
-<div style="columns: 2; font-size: 80%">
+<div style="columns: 2; font-size: 95%">
 
 ```javascript
 // tsconfig.json
@@ -1084,6 +1102,7 @@ cordova run ios --notransform   # skip transform/bundle
 * Lots of benefits:
 	* Expressive and concise
 	* Less boilerplate
+	* Modules, Template literals, and more!
 
 ---
 
@@ -1120,17 +1139,6 @@ cordova run ios --notransform   # skip transform/bundle
 * [Chrome Platform Status](https://www.chromestatus.com/features)
 
 ---
-
-<!-- template: dark -->
-
-![bg original](../../_common/assets/picard/tongue.jpg)
-
-> ### That's all, folks! <!--{style='text-align:right; color: white; position: absolute; left: 0; right: 0; top: 2in;'}-->
-
----
-
-<!-- template: light -->
-
 
 #  Thanks!
 
