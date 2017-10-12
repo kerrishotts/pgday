@@ -14,12 +14,8 @@ Chances are pretty good you'll need to debug your plugin interactively. To do th
 $ cordova create hello com.example.hello hello
 $ cd hello
 $ cordova platform add --save ios android windows browser
-$ cordova plugin add --save --link /path/to/your/plugin
+$ cordova plugin add --save /path/to/your/plugin
 ```
-
-Note that we added the plugin using `--link`. This makes it easier to change code in your native IDE and have those changes reflect back to your plugin project.
-
-> **Note**: If using `--link` on Windows, you may encounter an `EPERM` (Operation not permitted) error. Relaunch your command prompt with administrative privileges, and try again.
 
 If you want to see the prime plugin's example project, it's available here: <https://github.com/kerrishotts/cordova-plugin-example-isprime/tree/master/example>
 
@@ -69,17 +65,5 @@ You may also need to debug the JavaScript side of things, in which case, you can
 * Windows
     * Use Visual Studio.
 
-So, before we continue on, you may be asking just what gets linked? Here's what happens:
-
-* app's `plugins/<your-plugin>` is symlinked to your plugin
-* Native code is symlinked in app's `platforms/`
-
-Exceptions &amp; notes:
-* Run `cordova clean android` if the Android compiler complains after you make changes
-* `plugin.xml` changes require a `plugin rm` &amp; `add`
-* Changes to your plugin's `www` require a `plugin rm` &amp; `add` as well
-* `platform rm` &amp; `add` won't preserve `--link`s ([CB-12597](https://issues.apache.org/jira/browse/CB-12597))
-* Linking doesn't mean much on the `windows` platform, since `*.winmd` components are builds of other projects, and any other code is JavaScript.
-
-
+If you need to make changes to your plugin code, you'll need to do so in the IDE. Don't forget to copy those changes back to your plugin project!
 

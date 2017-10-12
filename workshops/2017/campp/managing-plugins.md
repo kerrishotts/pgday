@@ -50,18 +50,10 @@ $ cordova plugin add http://github.com/apache/cordova-plugin-device#branch
 Plugins can also be installed from the local file system &mdash; which is very useful during development and testing:
 
 ```sh
-$ cordova plugin add [--save] [--link] /path/to/plugin
+$ cordova plugin add [--save] /path/to/plugin
 
 $ cordova plugin rm [--save] cordova-plugin-device
 ```
-
-The `--link` switch is most useful when developing plugins &mdash; it will link various parts of the plugin in your app's structure to the plugin's native code. This makes it easier to develop the plugin, since changes made in the app project can be reflected back to the plugin.
-
-> **Note:** Not _everything_ is linked; we'll cover this later.
-
-> **Warning:** Careful with parent plugins and child projects &mdash; some tools choke on circular references in the file system
-
-> **Windows 10**: You may need to be an administrator in order to create links.
 
 # Finding plugins
 

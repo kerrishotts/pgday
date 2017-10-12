@@ -4,8 +4,8 @@ description: Creating a Modern PhoneGap Plugin Workshop
 layout: page
 links:
     Up: index.html
-    Previous: creating-4.html
-    Continue: testing.html
+    Previous: plugin-x-ray.html
+    Continue: creating.html
 ---
 
 We've not really discussed just how JavaScript and your plugin's native code actually interact. For non-proxy platforms, they interact over something called a "bridge". The implementation of this bridge is different for each platform, but the idea is the same: to facilitate communication between JavaScript and native code.

@@ -5,7 +5,7 @@ layout: page
 links:
     Up: index.html
     Previous: managing-plugins.html
-    Continue: creating.html
+    Continue: bridges.html
 ---
 
 So, what's in a plugin anyway? Plugins consist of several things:

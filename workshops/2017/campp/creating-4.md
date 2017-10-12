@@ -5,7 +5,7 @@ layout: page
 links:
     Up: index.html
     Previous: creating-3.html
-    Continue: bridges.html
+    Continue: testing.html
 ---
 
 Time to get back to something we mentioned in [Creating a Plugin, part one](./creating.md) &mdash; how `plugin.xml` maps `cordova.exec` requests to our actual native code.
