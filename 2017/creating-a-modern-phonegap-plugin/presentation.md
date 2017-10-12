@@ -158,17 +158,16 @@ class: table-no-header medium
 
  Plugin              | Decision        | Notes
 :-------------------:|:---------------:|:--------------:
- battery-status      | Sunset?         |
- contacts            | Keep            |
- device-orientation  | Sunset?         | `orientation`
- file-transfer       | Sunset?         | XHR2
- inappbrowser        | Keep            |
- network-information | Sunset?         | Browser API
- vibration           | Sunset?         | Browser API
- camera              | Sunset?         | `MediaCapture` API
+ battery-status      | Keep            |
+ camera              | Keep            |
+ contacts            | Sunset          |
+ console             | Merge           | Remember to remove it!
  device              | Keep            |
+ device-motion       | Sunset          | [Migration](https://blog.phonegap.com/migrating-from-the-cordova-device-motion-plugin-ddd8176632ed)
+ device-orientation  | Sunset          | [Migration](https://blog.phonegap.com/migrating-from-the-cordova-device-orientation-plugin-8442b869e6cc)
  dialogs             | Keep            |
- geolocation         | Keep            |
+ file                | Keep            |
+ file-transfer       | Sunset          | XHR2
 
 ---
 
@@ -179,15 +178,16 @@ class: table-no-header medium
 
  Plugin              | Decision        | Notes
 :-------------------:|:---------------:|:--------------:
- media               | Sunset?         | Browser APIs
+ geolocation         | Keep            |
+ globalization       | Keep            |
+ inappbrowser        | Keep            |
+ media               | Sunset          | Browser APIs
+ media-capture       | Keep            |
+ network-information | Keep            |
  splashscreen        | Merge           |
+ statusbar           | Merge           |
+ vibration           | Keep            |
  whitelist           | Keep            |
- console             | Merge           |
- device-motion       | Sunset?         | Browser APIs
- file                | Keep            |
- globalization       | Sunset?         | Use i18n APIs
- media-capture       | Sunset          | `MediaCapture` API
- statusbar           | Merge?          |
 
 ???
 There are two categories of plugins: _core_ and _community_. The former are generally plugins that were originally core functionality &mdash; that is, they were built-in to Cordova and later split out so that they could be maintained separately and receive updates without having to update all of Cordova. The latter are plugins developed and supported by the community themselves.
@@ -204,7 +204,7 @@ class: table
 Devoloped and supported by the community &mdash; like you!
 
 .center.huge[
-https://cordova.apache.org/plugins 
+https://cordova.apache.org/plugins
 
 ~2,720 plugins &amp; templates (excl. core)
 ]
