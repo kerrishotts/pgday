@@ -830,8 +830,7 @@ Babel:
 
 ```sh cli prompt=$ output=2-4
 npm install --save-dev babel-loader babel-core 
-  babel-polyfill babel-preset-es2015 
-  babel-preset-es2016 babel-preset-es2017 
+  babel-polyfill babel-preset-env
   babel-plugin-transform-runtime
 ```
 
@@ -863,11 +862,10 @@ npm install --save-dev babel-loader babel-core
 ```javascript
 // .babelrc
 { "presets": [
-    ["es2015", { 
+    ["env", { 
       "loose": true,
       "modules": false // DCR
-    }], 
-    "es2016", "es2017"
+    }]
   ], 
   "plugins":["transform-runtime"]
 }
